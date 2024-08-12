@@ -1,0 +1,296 @@
+{
+  "menu": [
+    {
+      "menuHeader": "Dashboard"
+    },
+    {
+      "url": "/",
+      "name": "Overview",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "pages-home"
+    },
+    {
+      "menuHeader": "Accounts"
+    },
+    {
+      "url": "auth/login-basic",
+      "name": "User Management",
+      "icon": "menu-icon tf-icons ti ti-login",
+      "slug": "auth-login-basic",
+      "target": "_blank",
+      "submenu": [
+        {
+          "url": "/",
+          "name": "All Users",
+          "slug": "dashboard-analytics"
+        },
+        {
+          "url": "dashboard/crm",
+          "name": "Recruiters",
+          "slug": "dashboard-crm"
+        },
+        {
+          "url": "app/ecommerce/dashboard",
+          "name": "Job Seekers",
+          "slug": "app-ecommerce-dashboard"
+        },
+        {
+          "url": "app/logistics/dashboard",
+          "name": "Freelancers",
+          "slug": "app-logistics-dashboard"
+        },
+        {
+          "url": "app/academy/dashboard",
+          "name": "Add New User",
+          "slug": "app-academy-dashboard"
+        },
+        {
+          "url": "app/academy/dashboard",
+          "name": "Activity Log",
+          "slug": "app-academy-dashboard"
+        }
+      ]
+    },
+    {
+      "menuHeader": "Postings"
+    },
+    {
+      "url": "auth/login-basic",
+      "name": "Job Postings",
+      "icon": "menu-icon tf-icons ti ti-login",
+      "slug": "auth-login-basic",
+      "target": "_blank",
+      "submenu": [
+        {
+          "url": "/",
+          "name": "All Job Postings",
+          "slug": "dashboard-analytics"
+        },
+        {
+          "url": "dashboard/crm",
+          "name": "Pending Approvals",
+          "slug": "dashboard-crm"
+        },
+        {
+          "url": "app/ecommerce/dashboard",
+          "name": "Active Postings",
+          "slug": "app-ecommerce-dashboard"
+        },
+        {
+          "url": "app/logistics/dashboard",
+          "name": "Expired Postings",
+          "slug": "app-logistics-dashboard"
+        },
+        {
+          "url": "app/academy/dashboard",
+          "name": "Categories & Tags",
+          "slug": "app-academy-dashboard"
+        }
+      ]
+    },
+    {
+      "menuHeader": "Submissions"
+    },
+    {
+      "url": "auth/login-basic",
+      "name": "Applications",
+      "icon": "menu-icon tf-icons ti ti-login",
+      "slug": "auth-login-basic",
+      "target": "_blank",
+      "submenu": [
+        {
+          "url": "/",
+          "name": "All Applications",
+          "slug": "dashboard-analytics"
+        },
+        {
+          "url": "dashboard/crm",
+          "name": "By Job Seeker",
+          "slug": "dashboard-crm"
+        },
+        {
+          "url": "app/ecommerce/dashboard",
+          "name": "By Job Freelancers",
+          "slug": "app-ecommerce-dashboard"
+        },
+        {
+          "url": "app/logistics/dashboard",
+          "name": "Shortlisted Candidates",
+          "slug": "app-logistics-dashboard"
+        },
+        {
+          "url": "app/academy/dashboard",
+          "name": "Interview Schedules",
+          "slug": "app-academy-dashboard"
+        }
+      ]
+    },
+    {
+      "menuHeader": "Others"
+    },
+    {
+      "url": "auth/login-basic",
+      "name": "Freelance Services",
+      "icon": "menu-icon tf-icons ti ti-login",
+      "slug": "auth-login-basic",
+      "target": "_blank",
+      "submenu": [
+        {
+          "url": "/",
+          "name": "All Services",
+          "slug": "dashboard-analytics"
+        },
+        {
+          "url": "dashboard/crm",
+          "name": "Pending Approvals",
+          "slug": "dashboard-crm"
+        },
+        {
+          "url": "app/ecommerce/dashboard",
+          "name": "Active Services",
+          "slug": "app-ecommerce-dashboard"
+        },
+        {
+          "url": "app/logistics/dashboard",
+          "name": "Expired Services",
+          "slug": "app-logistics-dashboard"
+        }
+      ]
+    },
+    {
+      "menuHeader": "Pricing"
+    },
+    {
+      "url": "auth/login-basic",
+      "name": "Subscription Plans",
+      "icon": "menu-icon tf-icons ti ti-login",
+      "slug": "auth-login-basic",
+      "target": "_blank",
+      "submenu": [
+        {
+          "url": "/",
+          "name": "Manage Plans",
+          "slug": "dashboard-analytics"
+        },
+        {
+          "url": "dashboard/crm",
+          "name": "User Subscriptions",
+          "slug": "dashboard-crm"
+        },
+        {
+          "url": "app/ecommerce/dashboard",
+          "name": "Transactions",
+          "slug": "app-ecommerce-dashboard"
+        },
+        {
+          "url": "app/logistics/dashboard",
+          "name": "Subscription Analytics",
+          "slug": "app-logistics-dashboard"
+        }
+      ]
+    },
+    {
+      "menuHeader": "Services"
+    },
+    {
+      "url": "auth/login-basic",
+      "name": "Advertisement",
+      "icon": "menu-icon tf-icons ti ti-login",
+      "slug": "auth-login-basic",
+      "target": "_blank",
+      "submenu": [
+        {
+          "url": "/",
+          "name": "Manage Ads",
+          "slug": "dashboard-analytics"
+        },
+        {
+          "url": "dashboard/crm",
+          "name": "Ad Performance",
+          "slug": "dashboard-crm"
+        },
+        {
+          "url": "app/ecommerce/dashboard",
+          "name": "Ad Requests",
+          "slug": "app-ecommerce-dashboard"
+        }
+      ]
+    },
+    {
+      "menuHeader": "Content"
+    },
+    {
+      "url": "auth/login-basic",
+      "name": "Content Management",
+      "icon": "menu-icon tf-icons ti ti-login",
+      "slug": "auth-login-basic",
+      "target": "_blank",
+      "submenu": [
+        {
+          "url": "/",
+          "name": "Blog Posts",
+          "slug": "dashboard-analytics"
+        },
+        {
+          "url": "dashboard/crm",
+          "name": "Announcements",
+          "slug": "dashboard-crm"
+        },
+        {
+          "url": "app/ecommerce/dashboard",
+          "name": "Help & FAQ",
+          "slug": "app-ecommerce-dashboard"
+        }
+      ]
+    },
+    {
+      "menuHeader": "Settings"
+    },
+    {
+      "url": "auth/login-basic",
+      "name": "General Settings",
+      "icon": "menu-icon tf-icons ti ti-login",
+      "slug": "auth-login-basic",
+      "target": "_blank",
+      "submenu": [
+        {
+          "url": "/",
+          "name": "Profile Settings",
+          "slug": "dashboard-analytics"
+        },
+        {
+          "url": "dashboard/crm",
+          "name": "Notification Settings",
+          "slug": "dashboard-crm"
+        },
+        {
+          "url": "app/ecommerce/dashboard",
+          "name": "Payment Gateway",
+          "slug": "app-ecommerce-dashboard"
+        },
+        {
+          "url": "app/ecommerce/dashboard",
+          "name": "Language Settings",
+          "slug": "app-ecommerce-dashboard"
+        }
+      ]
+    },
+    {
+      "menuHeader": "Support"
+    },
+    {
+      "url": "auth/login-basic",
+      "name": "User Support Tickets",
+      "icon": "menu-icon tf-icons ti ti-login",
+      "slug": "auth-login-basic",
+      "target": "_blank"
+    },
+    {
+      "url": "auth/register-basic",
+      "name": "Log Out",
+      "icon": "menu-icon tf-icons ti ti-user",
+      "slug": "auth-register-basic",
+      "target": "_blank"
+    }
+  ]
+}
