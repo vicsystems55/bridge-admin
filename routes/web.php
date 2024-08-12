@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\language\LanguageController;
 use App\Http\Controllers\pages\HomePage;
@@ -20,8 +21,20 @@ use App\Http\Controllers\apps\LogisticsDashboard;
 |
 */
 
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
 // Main Page Route
-Route::get('/', [HomePage::class, 'index'])->name('pages-home');
+Route::get('/', [HomePage::class, 'index'])->name('pages-home')->middleware('auth');
 Route::get('/page-2', [Page2::class, 'index'])->name('pages-page-2');
 
 // locale
@@ -35,3 +48,5 @@ Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-
 Route::get('/auth/register-basic', [RegisterBasic::class, 'index'])->name('auth-register-basic');
 
 Route::get('/app/logistics/dashboard', [LogisticsDashboard::class, 'index'])->name('app-logistics-dashboard');
+
+require __DIR__.'/auth.php';
