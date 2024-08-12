@@ -6,8 +6,11 @@ use App\Models\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\EmailVerificationMail;
+use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class ApiAuthController extends Controller
 {
@@ -58,15 +61,15 @@ class ApiAuthController extends Controller
 
 
     // try {
-    //code...
+
+
+    Mail::to($user->email)
+    ->send(new WelcomeMail($datax));
+
+
 
     // Mail::to($user->email)
-    // ->send(new Welcome($datax));
-
-
-
-    // Mail::to($user->email)
-    // ->send(new EmailVerification($datax));
+    // ->send(new EmailVerificationMail($datax));
 
 
 
