@@ -23,9 +23,7 @@ use App\Http\Controllers\apps\LogisticsDashboard;
 
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [LogisticsDashboard::class, 'index'])->name('app-logistics-dashboard')->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -34,7 +32,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Main Page Route
-Route::get('/', [HomePage::class, 'index'])->name('pages-home')->middleware('auth');
+Route::get('/home', [HomePage::class, 'index'])->name('pages-home')->middleware('auth');
 Route::get('/page-2', [Page2::class, 'index'])->name('pages-page-2');
 
 // locale

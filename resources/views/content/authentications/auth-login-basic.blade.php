@@ -4,7 +4,7 @@
 
 @extends('layouts/layoutMaster')
 
-@section('title', 'Login Basic - Pages')
+@section('title', 'Login')
 
 @section('vendor-style')
     @vite(['resources/assets/vendor/libs/@form-validation/form-validation.scss'])
@@ -32,16 +32,17 @@
                         <!-- Logo -->
                         <div class="app-brand justify-content-center mb-4 mt-2">
                             <a href="{{ url('/') }}" class="app-brand-link gap-2">
-                                <span class="app-brand-logo dem">@include('_partials.macros', ['height' => 90, 'withbg' => 'fill: #fff;'])</span>
-
+                                {{-- <span class="app-brand-logo dem">@include('_partials.macros', ['height' => 90, 'withbg' => 'fill: #fff;'])</span> --}}
+                              <img style="height: 90px;" src="/images/logo.png" alt="">
                             </a>
                         </div>
-                    
+
                         <!-- /Logo -->
-                        <h4 class="mb-1 pt-2">Welcome to {{ config('variables.templateName') }}! 👋</h4>
-                        <p class="mb-4">Please sign-in to your account and start the adventure</p>
+                        <h4 class="mb-1 pt-2 text-center">Welcome to {{ config('variables.templateName') }}! 👋</h4>
+
 
                         <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
+                          @csrf
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email or Username</label>
                                 <input type="text" class="form-control" id="email" name="email"

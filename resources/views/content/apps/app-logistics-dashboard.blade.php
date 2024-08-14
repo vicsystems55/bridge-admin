@@ -590,7 +590,7 @@
 
   <!-- On route vehicles Table -->
 
-  <div class="col-12 order-5">
+  {{-- <div class="col-12 order-5">
     <div class="card">
       <div class="card-header d-flex align-items-center justify-content-between">
         <div class="card-title mb-0">
@@ -623,7 +623,7 @@
         </table>
       </div>
     </div>
-  </div>
+  </div> --}}
 
   <!--/ On route vehicles Table -->
 </div>

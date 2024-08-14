@@ -43,15 +43,22 @@ $customizerHidden = 'customizer-hide';
           <!-- Logo -->
           <div class="app-brand justify-content-center mb-4 mt-2">
             <a href="{{ url('/') }}" class="app-brand-link gap-2">
-                <span class="app-brand-logo dem">@include('_partials.macros', ['height' => 90, 'withbg' => 'fill: #fff;'])</span>
-
+                {{-- <span class="app-brand-logo dem">@include('_partials.macros', ['height' => 90, 'withbg' => 'fill: #fff;'])</span> --}}
+                <img style="height: 90px;" src="/images/logo.png" alt="">
             </a>
         </div>
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <p class="alert alert-warning">{{$error}}</p>
+            @endforeach
+        @endif
+
           <!-- /Logo -->
           <h4 class="mb-1 pt-2">Adventure starts here 🚀</h4>
           <p class="mb-4">Make your app management easy and fun!</p>
 
           <form id="formAuthentication" class="mb-3" action="{{route('register')}}" method="POST">
+            @csrf
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
               <input type="text" class="form-control" id="username" name="name" placeholder="Enter your username" autofocus>
