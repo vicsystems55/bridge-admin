@@ -32,7 +32,8 @@ Route::middleware('auth')->group(function () {
 });
 
 // Main Page Route
-Route::get('/home', [HomePage::class, 'index'])->name('pages-home')->middleware('auth');
+Route::get('/', [LogisticsDashboard::class, 'index'])->name('app-logistics-dashboard');
+
 Route::get('/page-2', [Page2::class, 'index'])->name('pages-page-2');
 
 // locale

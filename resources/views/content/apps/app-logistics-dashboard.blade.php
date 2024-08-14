@@ -41,7 +41,7 @@
           </div>
           <h4 class="ms-1 mb-0">42</h4>
         </div>
-        <p class="mb-1">On route vehicles</p>
+        <p class="mb-1">Applications</p>
         <p class="mb-0">
           <span class="fw-medium me-1">+18.2%</span>
           <small class="text-muted">than last week</small>
@@ -58,7 +58,7 @@
           </div>
           <h4 class="ms-1 mb-0">8</h4>
         </div>
-        <p class="mb-1">Vehicles with errors</p>
+        <p class="mb-1">Job Seekers</p>
         <p class="mb-0">
           <span class="fw-medium me-1">-8.7%</span>
           <small class="text-muted">than last week</small>
@@ -75,7 +75,7 @@
           </div>
           <h4 class="ms-1 mb-0">27</h4>
         </div>
-        <p class="mb-1">Deviated from route</p>
+        <p class="mb-1">Freelancers</p>
         <p class="mb-0">
           <span class="fw-medium me-1">+4.3%</span>
           <small class="text-muted">than last week</small>
@@ -92,7 +92,7 @@
           </div>
           <h4 class="ms-1 mb-0">13</h4>
         </div>
-        <p class="mb-1">Late vehicles</p>
+        <p class="mb-1">Connections</p>
         <p class="mb-0">
           <span class="fw-medium me-1">-2.5%</span>
           <small class="text-muted">than last week</small>
@@ -108,7 +108,7 @@
     <div class="card">
       <div class="card-header">
         <div class="card-title mb-0">
-          <h5 class="m-0">Vehicles overview</h5>
+          <h5 class="m-0">Overview</h5>
         </div>
       </div>
       <div class="card-body">
@@ -203,7 +203,7 @@
     <div class="card">
       <div class="card-header d-flex align-items-center justify-content-between">
         <div class="card-title mb-0">
-          <h5 class="m-0 me-2">Shipment statistics</h5>
+          <h5 class="m-0 me-2">Statistics</h5>
           <small class="text-muted">Total number of deliveries 23.8k</small>
         </div>
         <div class="dropdown">
