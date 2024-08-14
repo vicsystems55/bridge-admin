@@ -113,9 +113,9 @@
       </div>
       <div class="card-body">
         <div class="d-none d-lg-flex vehicles-progress-labels mb-4">
-          <div class="vehicles-progress-label on-the-way-text" style="width: 39.7%;">On the way</div>
-          <div class="vehicles-progress-label unloading-text" style="width: 28.3%;">Unloading</div>
-          <div class="vehicles-progress-label loading-text" style="width: 17.4%;">Loading</div>
+          <div class="vehicles-progress-label on-the-way-text" style="width: 39.7%;">Applications</div>
+          <div class="vehicles-progress-label unloading-text" style="width: 28.3%;">Jobs</div>
+          <div class="vehicles-progress-label loading-text" style="width: 17.4%;">Interviews</div>
           <div class="vehicles-progress-label waiting-text text-nowrap" style="width: 14.6%;">Waiting</div>
         </div>
         <div class="vehicles-overview-progress progress rounded-2 my-4" style="height: 46px;">
@@ -127,22 +127,7 @@
         <div class="table-responsive">
           <table class="table card-table">
             <tbody class="table-border-bottom-0">
-              <tr>
-                <td class="w-50 ps-0">
-                  <div class="d-flex justify-content-start align-items-center">
-                    <div class="me-2">
-                      <i class="ti ti-truck mt-n1"></i>
-                    </div>
-                    <h6 class="mb-0 fw-normal">On the way</h6>
-                  </div>
-                </td>
-                <td class="text-end pe-0 text-nowrap">
-                  <h6 class="mb-0">2hr 10min</h6>
-                </td>
-                <td class="text-end pe-0">
-                  <span class="fw-medium">39.7%</span>
-                </td>
-              </tr>
+              
               <tr>
                 <td class="w-50 ps-0">
                   <div class="d-flex justify-content-start align-items-center">
@@ -231,7 +216,7 @@
   </div>
   <!--/ Shipment statistics -->
   <!-- Delivery Performance -->
-  <div class="col-lg-6 col-xxl-4 mb-4 order-2 order-xxl-2">
+  {{-- <div class="col-lg-6 col-xxl-4 mb-4 order-2 order-xxl-2">
     <div class="card h-100">
       <div class="card-header d-flex align-items-center justify-content-between mb-2">
         <div class="card-title mb-0">
@@ -356,10 +341,10 @@
         </ul>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!--/ Delivery Performance -->
   <!-- Reasons for delivery exceptions -->
-  <div class="col-md-6 col-xxl-4 mb-4 order-1 order-xxl-3">
+  {{-- <div class="col-md-6 col-xxl-4 mb-4 order-1 order-xxl-3">
     <div class="card h-100">
       <div class="card-header d-flex align-items-center justify-content-between">
         <div class="card-title mb-0">
@@ -380,10 +365,10 @@
         <div id="deliveryExceptionsChart" class="pt-md-4"></div>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!--/ Reasons for delivery exceptions -->
   <!-- Orders by Countries -->
-  <div class="col-md-6 col-xxl-4 mb-4 order-0 order-xxl-4">
+  {{-- <div class="col-md-6 col-xxl-4 mb-4 order-0 order-xxl-4">
     <div class="card h-100">
       <div class="card-header d-flex justify-content-between pb-2">
         <div class="card-title mb-1">
@@ -585,7 +570,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
   <!--/ Orders by Countries -->
 
   <!-- On route vehicles Table -->
