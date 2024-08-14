@@ -1,6 +1,6 @@
 @extends('layouts/layoutMaster')
 
-@section('title', 'Logistics Dashboard - Apps')
+@section('title', 'Dashboard - Home')
 
 @section('vendor-style')
 @vite([
@@ -127,7 +127,7 @@
         <div class="table-responsive">
           <table class="table card-table">
             <tbody class="table-border-bottom-0">
-              
+
               <tr>
                 <td class="w-50 ps-0">
                   <div class="d-flex justify-content-start align-items-center">
