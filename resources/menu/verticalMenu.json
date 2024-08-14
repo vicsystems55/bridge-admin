@@ -13,7 +13,7 @@
       "menuHeader": "Accounts"
     },
     {
-      "url": "auth/login-basic",
+      "url": "/dashboard",
       "name": "User Management",
       "icon": "menu-icon tf-icons ti ti-login",
       "slug": "auth-login-basic",
@@ -25,27 +25,27 @@
           "slug": "dashboard-analytics"
         },
         {
-          "url": "dashboard/crm",
+          "url": "dashboard",
           "name": "Recruiters",
           "slug": "dashboard-crm"
         },
         {
-          "url": "app/ecommerce/dashboard",
+          "url": "dashboard",
           "name": "Job Seekers",
           "slug": "app-ecommerce-dashboard"
         },
         {
-          "url": "app/logistics/dashboard",
+          "url": "dashboard",
           "name": "Freelancers",
           "slug": "app-logistics-dashboard"
         },
         {
-          "url": "app/academy/dashboard",
+          "url": "dashboard",
           "name": "Add New User",
           "slug": "app-academy-dashboard"
         },
         {
-          "url": "app/academy/dashboard",
+          "url": "dashboard",
           "name": "Activity Log",
           "slug": "app-academy-dashboard"
         }
@@ -55,7 +55,7 @@
       "menuHeader": "Postings"
     },
     {
-      "url": "auth/login-basic",
+      "url": "dashboard",
       "name": "Job Postings",
       "icon": "menu-icon tf-icons ti ti-login",
       "slug": "auth-login-basic",
@@ -67,22 +67,22 @@
           "slug": "dashboard-analytics"
         },
         {
-          "url": "dashboard/crm",
+          "url": "dashboard",
           "name": "Pending Approvals",
           "slug": "dashboard-crm"
         },
         {
-          "url": "app/ecommerce/dashboard",
+          "url": "dashboard",
           "name": "Active Postings",
           "slug": "app-ecommerce-dashboard"
         },
         {
-          "url": "app/logistics/dashboard",
+          "url": "dashboard",
           "name": "Expired Postings",
           "slug": "app-logistics-dashboard"
         },
         {
-          "url": "app/academy/dashboard",
+          "url": "dashboard",
           "name": "Categories & Tags",
           "slug": "app-academy-dashboard"
         }
@@ -92,7 +92,7 @@
       "menuHeader": "Submissions"
     },
     {
-      "url": "auth/login-basic",
+      "url": "/dashboard",
       "name": "Applications",
       "icon": "menu-icon tf-icons ti ti-login",
       "slug": "auth-login-basic",
@@ -104,22 +104,22 @@
           "slug": "dashboard-analytics"
         },
         {
-          "url": "dashboard/crm",
+          "url": "dashboard",
           "name": "By Job Seeker",
           "slug": "dashboard-crm"
         },
         {
-          "url": "app/ecommerce/dashboard",
+          "url": "dashboard",
           "name": "By Job Freelancers",
           "slug": "app-ecommerce-dashboard"
         },
         {
-          "url": "app/logistics/dashboard",
+          "url": "dashboard",
           "name": "Shortlisted Candidates",
           "slug": "app-logistics-dashboard"
         },
         {
-          "url": "app/academy/dashboard",
+          "url": "dashboard",
           "name": "Interview Schedules",
           "slug": "app-academy-dashboard"
         }
@@ -129,7 +129,7 @@
       "menuHeader": "Others"
     },
     {
-      "url": "auth/login-basic",
+      "url": "/dashboard",
       "name": "Freelance Services",
       "icon": "menu-icon tf-icons ti ti-login",
       "slug": "auth-login-basic",
@@ -141,17 +141,17 @@
           "slug": "dashboard-analytics"
         },
         {
-          "url": "dashboard/crm",
+          "url": "dashboard",
           "name": "Pending Approvals",
           "slug": "dashboard-crm"
         },
         {
-          "url": "app/ecommerce/dashboard",
+          "url": "dashboard",
           "name": "Active Services",
           "slug": "app-ecommerce-dashboard"
         },
         {
-          "url": "app/logistics/dashboard",
+          "url": "dashboard",
           "name": "Expired Services",
           "slug": "app-logistics-dashboard"
         }
@@ -161,7 +161,7 @@
       "menuHeader": "Pricing"
     },
     {
-      "url": "auth/login-basic",
+      "url": "/dashboard",
       "name": "Subscription Plans",
       "icon": "menu-icon tf-icons ti ti-login",
       "slug": "auth-login-basic",
@@ -173,17 +173,17 @@
           "slug": "dashboard-analytics"
         },
         {
-          "url": "dashboard/crm",
+          "url": "dashboard",
           "name": "User Subscriptions",
           "slug": "dashboard-crm"
         },
         {
-          "url": "app/ecommerce/dashboard",
+          "url": "dashboard",
           "name": "Transactions",
           "slug": "app-ecommerce-dashboard"
         },
         {
-          "url": "app/logistics/dashboard",
+          "url": "dashboard",
           "name": "Subscription Analytics",
           "slug": "app-logistics-dashboard"
         }
@@ -193,7 +193,7 @@
       "menuHeader": "Services"
     },
     {
-      "url": "auth/login-basic",
+      "url": "/dashboard",
       "name": "Advertisement",
       "icon": "menu-icon tf-icons ti ti-login",
       "slug": "auth-login-basic",
@@ -205,12 +205,12 @@
           "slug": "dashboard-analytics"
         },
         {
-          "url": "dashboard/crm",
+          "url": "dashboard",
           "name": "Ad Performance",
           "slug": "dashboard-crm"
         },
         {
-          "url": "app/ecommerce/dashboard",
+          "url": "dashboard",
           "name": "Ad Requests",
           "slug": "app-ecommerce-dashboard"
         }
@@ -220,7 +220,7 @@
       "menuHeader": "Content"
     },
     {
-      "url": "auth/login-basic",
+      "url": "/dashboard",
       "name": "Content Management",
       "icon": "menu-icon tf-icons ti ti-login",
       "slug": "auth-login-basic",
@@ -232,12 +232,12 @@
           "slug": "dashboard-analytics"
         },
         {
-          "url": "dashboard/crm",
+          "url": "dashboard",
           "name": "Announcements",
           "slug": "dashboard-crm"
         },
         {
-          "url": "app/ecommerce/dashboard",
+          "url": "dashboard",
           "name": "Help & FAQ",
           "slug": "app-ecommerce-dashboard"
         }
@@ -247,7 +247,7 @@
       "menuHeader": "Settings"
     },
     {
-      "url": "auth/login-basic",
+      "url": "/dashboard",
       "name": "General Settings",
       "icon": "menu-icon tf-icons ti ti-login",
       "slug": "auth-login-basic",
@@ -259,17 +259,17 @@
           "slug": "dashboard-analytics"
         },
         {
-          "url": "dashboard/crm",
+          "url": "dashboard",
           "name": "Notification Settings",
           "slug": "dashboard-crm"
         },
         {
-          "url": "app/ecommerce/dashboard",
+          "url": "dashboard",
           "name": "Payment Gateway",
           "slug": "app-ecommerce-dashboard"
         },
         {
-          "url": "app/ecommerce/dashboard",
+          "url": "dashboard",
           "name": "Language Settings",
           "slug": "app-ecommerce-dashboard"
         }
@@ -279,7 +279,7 @@
       "menuHeader": "Support"
     },
     {
-      "url": "auth/login-basic",
+      "url": "/dashboard",
       "name": "User Support Tickets",
       "icon": "menu-icon tf-icons ti ti-login",
       "slug": "auth-login-basic",

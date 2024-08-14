@@ -104,7 +104,7 @@
 <!--/ Card Border Shadow -->
 <div class="row">
   <!-- Vehicles overview -->
-  <div class="col-xxl-6 mb-4 order-5 order-xxl-0">
+  <div class="col-md-6 ">
     <div class="card">
       <div class="card-header">
         <div class="card-title mb-0">
@@ -184,12 +184,12 @@
   </div>
   <!--/ Vehicles overview -->
   <!-- Shipment statistics-->
-  <div class="col-lg-6 col-xxl-6 mb-4 order-3 order-xxl-1">
+  <div class="col-md-6 ">
     <div class="card">
       <div class="card-header d-flex align-items-center justify-content-between">
         <div class="card-title mb-0">
           <h5 class="m-0 me-2">Statistics</h5>
-          <small class="text-muted">Total number of deliveries 23.8k</small>
+          <small class="text-muted">Total number of received 23.8k</small>
         </div>
         <div class="dropdown">
           <button type="button" class="btn btn-label-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">January</button>
