@@ -15,19 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group([
-  'prefix' => '/v1',
-],
-function () {
 
+Route::get('/test', [ApiAuthController::class, 'test']);
   // Route::get('test-route', [ApiAuthController::class,'register']);
 
-  Route::post('/register', [ApiAuthController::class, 'register']);
+  Route::post('/registerp', [ApiAuthController::class, 'register']);
 
   Route::post('/login', [ApiAuthController::class, 'login']);
 
   Route::post('/verify-otp', [ApiAuthController::class, 'verify_otp']);
 
   Route::post('/resend-otp', [ApiAuthController::class, 'resend_otp']);
-
-});

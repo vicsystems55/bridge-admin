@@ -25,10 +25,18 @@ class ApiAuthController extends Controller
    * @return \Illuminate\Http\Response
    */
 
+   public function test(){
+
+    return 123;
+
+   }
+
 
 
   public function register(Request $request)
   {
+
+
 
 
     $validatedData = $request->validate([
@@ -47,6 +55,7 @@ class ApiAuthController extends Controller
       'password' => Hash::make($validatedData['password']),
     ]);
 
+
     $user->update([
       'otp' => rand(111111, 999999)
     ]);
@@ -58,6 +67,8 @@ class ApiAuthController extends Controller
       'otp' => $user->otp ?? ''
     ];
 
+    // return $datax;
+
 
 
     // try {
@@ -65,6 +76,9 @@ class ApiAuthController extends Controller
 
     Mail::to($user->email)
     ->send(new WelcomeMail($datax));
+
+    // return $user;
+
 
 
 
@@ -79,6 +93,9 @@ class ApiAuthController extends Controller
 
 
     $token = $user->createToken('auth_token')->plainTextToken;
+
+    // return $token;
+
 
     // $user = User::where($user->id);
 

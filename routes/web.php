@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Main Page Route
-Route::get('/', [LogisticsDashboard::class, 'index'])->name('app-logistics-dashboard');
+Route::get('/', [LogisticsDashboard::class, 'index']);
 
 Route::get('/page-2', [Page2::class, 'index'])->name('pages-page-2');
 
@@ -44,8 +44,8 @@ Route::get('/pages/misc-error', [MiscError::class, 'index'])->name('pages-misc-e
 
 // authentication
 Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('login');
-Route::get('/auth/register-basic', [RegisterBasic::class, 'index'])->name('auth-register-basic');
+// Route::get('/auth/register-basic', [RegisterBasic::class, 'index'])->name('auth-register-basic');
 
-Route::get('/app/logistics/dashboard', [LogisticsDashboard::class, 'index'])->name('app-logistics-dashboard');
+// Route::get('/app/logistics/dashboard', [LogisticsDashboard::class, 'index'])->name('app-logistics-dashboard');
 
 require __DIR__.'/auth.php';
