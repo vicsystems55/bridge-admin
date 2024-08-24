@@ -75,7 +75,7 @@
                                                 Hey</p>
                                             <p
                                                 style="font-family: 'Montserrat', sans-serif; mso-line-height-rule: exactly; margin-top: 0; font-size: 24px; font-weight: 700; color: #ff5850;">
-                                                J{{ $data['name'] }}!</p>
+                                                J{{ $datax['name'] }}!</p>
 
 
                                             <p
