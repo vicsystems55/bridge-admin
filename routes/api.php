@@ -16,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/test', [ApiAuthController::class, 'test']);
+Route::get('/testp', [ApiAuthController::class, 'test']);
   // Route::get('test-route', [ApiAuthController::class,'register']);
 
   Route::post('/registerp', [ApiAuthController::class, 'register']);
 
-  Route::post('/login', [ApiAuthController::class, 'login']);
+  Route::post('/loginp', [ApiAuthController::class, 'login']);
 
   Route::post('/verify-otp', [ApiAuthController::class, 'verify_otp']);
 

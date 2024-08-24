@@ -16,9 +16,11 @@ class WelcomeMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public array $datax;
+
+    public function __construct(array $datax)
     {
-        //
+        $this->datax = $datax;
     }
 
     /**
@@ -38,6 +40,7 @@ class WelcomeMail extends Mailable
     {
         return new Content(
             view: 'mails.welcome_mail',
+            with: ['datax' => $this->datax]
         );
     }
 
