@@ -1,8 +1,11 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\API\v1\ApiAuthController;
+use App\Models\ProfileUpdate;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileUpdateController;
+use App\Http\Controllers\API\v1\ApiAuthController;
+use App\Http\Controllers\UserPermissionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +29,13 @@ Route::get('/testp', [ApiAuthController::class, 'test']);
   Route::post('/verify-otp', [ApiAuthController::class, 'verify_otp']);
 
   Route::post('/resend-otp', [ApiAuthController::class, 'resend_otp']);
+
+  Route::apiResource('/profile', ProfileUpdateController::class)->middleware('auth:sanctum');
+
+  Route::get('/users', [ProfileUpdateController::class, 'users']);
+
+  Route::get('/user-roles', [UserPermissionsController::class, 'user_roles'])->middleware('auth:sanctum');
+
+  Route::post('/create-roles', [UserPermissionsController::class, 'create']);
+
+  Route::post('/assign-role', [UserPermissionsController::class, 'assign_role']);

@@ -71,7 +71,7 @@ class ApiAuthController extends Controller
 
 
 
-    // try {
+    try {
 
 
     Mail::to($user->email)
@@ -87,9 +87,9 @@ class ApiAuthController extends Controller
 
 
 
-    // } catch (\Throwable $th) {
+    } catch (\Throwable $th) {
     //     // throw $th;
-    // }
+    }
 
 
     $token = $user->createToken('auth_token')->plainTextToken;
