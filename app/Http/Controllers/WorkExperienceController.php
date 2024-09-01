@@ -36,7 +36,13 @@ class WorkExperienceController extends Controller
         $user = User::find($request->user()->id);
         $profile = ProfileUpdate::where('user_id', $request->user()->id)->first();
 
-        $work_experience = WorkExperience::create([
+        $work_experience = WorkExperience::updateOrCreate([
+          'user_id' => $user->id,
+          'profile_update_id' => $profile->id,
+          'job_title' => $request->job_title,
+          'company_name' => $request->company_name,
+
+        ],[
           'user_id' => $user->id,
           'profile_update_id' => $profile->id,
           'job_title' => $request->job_title,

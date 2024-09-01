@@ -6,6 +6,7 @@ use App\Models\WorkExperience;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileUpdateController;
 use App\Http\Controllers\API\v1\ApiAuthController;
+use App\Http\Controllers\EducationController;
 use App\Http\Controllers\WorkExperienceController;
 use App\Http\Controllers\UserPermissionsController;
 
@@ -35,6 +36,9 @@ Route::get('/testp', [ApiAuthController::class, 'test']);
   Route::apiResource('/profile', ProfileUpdateController::class)->middleware('auth:sanctum');
 
   Route::apiResource('/work-experience', WorkExperienceController::class)->middleware('auth:sanctum');
+
+  Route::apiResource('/education', EducationController::class)->middleware('auth:sanctum');
+
 
   Route::get('/users', [ProfileUpdateController::class, 'users']);
 

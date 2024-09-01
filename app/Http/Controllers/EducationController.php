@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Education;
+use App\Models\ProfileUpdate;
 use Illuminate\Http\Request;
 
 class EducationController extends Controller
@@ -13,14 +14,12 @@ class EducationController extends Controller
     public function index()
     {
         //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $education_qualifications = Education::where('user_id', request()->user()->id)->get();
+
+        return $education_qualifications;
+
+
     }
 
     /**
@@ -29,23 +28,28 @@ class EducationController extends Controller
     public function store(Request $request)
     {
         //
+
+        $user_profile = ProfileUpdate::where('user_id', $request->user()->id)->first();
+
+        $education = Education::updateOrCreate([
+          'user_id' => $request->user()->id,
+          'profile_update_id' => $request->user_profile_id,
+          'award' => $request->award,
+          'institution_name' => $request->institution_name,
+        ],[
+          'user_id' => $request->user()->id,
+          'profile_update_id' => $request->user_profile_id,
+          'award' => $request->award,
+          'institution_name' => $request->institution_name,
+          'location' => $request->location,
+          'graduation_date' => $request->graduation_date,
+          'field_of_study' => $request->field_of_study,
+        ]);
+
+        return $education;
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Education $education)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Education $education)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -53,6 +57,20 @@ class EducationController extends Controller
     public function update(Request $request, Education $education)
     {
         //
+
+        $educational_qualification = Education::find($education->id)->update(
+          [
+            'user_id' => $request->user()->id,
+            'profile_update_id' => $request->user_profile_id,
+            'award' => $request->award,
+            'institution_name' => $request->institution_name,
+            'location' => $request->location,
+            'graduation_date' => $request->graduation_date,
+            'field_of_study' => $request->field_of_study,
+          ]
+        );
+
+        return $educational_qualification;
     }
 
     /**
@@ -61,5 +79,9 @@ class EducationController extends Controller
     public function destroy(Education $education)
     {
         //
+
+        $education =  Education::find($education->id);
+
+        return $education->delete();
     }
 }

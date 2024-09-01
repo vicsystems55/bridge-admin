@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('education', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('profile_update_id');
+            $table->foreignId('profile_update_id')->nullable();
             $table->foreignId('user_id');
 
             $table->string('award');
