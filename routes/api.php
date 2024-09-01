@@ -2,9 +2,11 @@
 
 use Illuminate\Http\Request;
 use App\Models\ProfileUpdate;
+use App\Models\WorkExperience;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileUpdateController;
 use App\Http\Controllers\API\v1\ApiAuthController;
+use App\Http\Controllers\WorkExperienceController;
 use App\Http\Controllers\UserPermissionsController;
 
 /*
@@ -31,6 +33,8 @@ Route::get('/testp', [ApiAuthController::class, 'test']);
   Route::post('/resend-otp', [ApiAuthController::class, 'resend_otp']);
 
   Route::apiResource('/profile', ProfileUpdateController::class)->middleware('auth:sanctum');
+
+  Route::apiResource('/work-experience', WorkExperienceController::class)->middleware('auth:sanctum');
 
   Route::get('/users', [ProfileUpdateController::class, 'users']);
 

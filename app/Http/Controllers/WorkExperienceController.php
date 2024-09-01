@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\WorkExperience;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\ProfileUpdate;
+use App\Models\WorkExperience;
 
 class WorkExperienceController extends Controller
 {
@@ -13,15 +15,13 @@ class WorkExperienceController extends Controller
     public function index()
     {
         //
+
+        $work_experiences = WorkExperience::where('user_id', request()->user()->id)->get();
+
+        return $work_experiences;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -29,22 +29,24 @@ class WorkExperienceController extends Controller
     public function store(Request $request)
     {
         //
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(WorkExperience $workExperience)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(WorkExperience $workExperience)
-    {
-        //
+        $user = User::find($request->user()->id);
+        $profile = ProfileUpdate::where('user_id', $request->user()->id)->first();
+
+        $work_experience = WorkExperience::create([
+          'user_id' => $user->id,
+          'profile_update_id' => $profile->id,
+          'job_title' => $request->job_title,
+          'company_name' => $request->company_name,
+          'location' => $request->location,
+          'start_date' => $request->start_date,
+          'end_date' => $request->end_date,
+        ]);
+
+        return $work_experience;
+
+
     }
 
     /**
@@ -53,6 +55,16 @@ class WorkExperienceController extends Controller
     public function update(Request $request, WorkExperience $workExperience)
     {
         //
+
+        $workExperience = WorkExperience::find($workExperience->id)->update([
+          'job_title' => $request->job_title,
+          'company_name' => $request->company_name,
+          'location' => $request->location,
+          'start_date' => $request->start_date,
+          'end_date' => $request->end_date
+        ]);
+
+        return $workExperience;
     }
 
     /**
@@ -61,5 +73,8 @@ class WorkExperienceController extends Controller
     public function destroy(WorkExperience $workExperience)
     {
         //
+        return WorkExperience::find($workExperience->id)->delete();
+
+
     }
 }
