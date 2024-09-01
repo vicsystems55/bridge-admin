@@ -13,15 +13,12 @@ class LanguageSpokenController extends Controller
     public function index()
     {
         //
+        $languages = LanguageSpoken::where('user_id', request()->user()->id)->get();
+
+        return $languages;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -29,31 +26,18 @@ class LanguageSpokenController extends Controller
     public function store(Request $request)
     {
         //
+        $language = LanguageSpoken::updateOrCreate([
+          'user_id' => $request->user()->id,
+          'name' => $request->name,
+        ],[
+          'user_id' => $request->user()->id,
+          'name' => $request->name,
+          'proficiency' => $request->proficiency,
+        ]);
+
+        return $language;
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(LanguageSpoken $languageSpoken)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(LanguageSpoken $languageSpoken)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, LanguageSpoken $languageSpoken)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -61,5 +45,8 @@ class LanguageSpokenController extends Controller
     public function destroy(LanguageSpoken $languageSpoken)
     {
         //
+        $language = LanguageSpoken::find($languageSpoken->id);
+
+        return $language->delete();
     }
 }
