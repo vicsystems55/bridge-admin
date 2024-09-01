@@ -34,7 +34,9 @@ class UserPermissionsController extends Controller
 
     public function assign_role(Request $request){
 
-      $user = User::find($request->user_id);
+      $user = User::find($request->user()->id);
+
+
 
       return $user->assignRole($request->role_name);
 
