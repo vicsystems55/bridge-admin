@@ -126,12 +126,13 @@ class ApiAuthController extends Controller
       ], 401);
     } else {
 
-      $user = User::where('email', $request['email'])->firstOrFail();
+      $user = User::with('roles')->where('email', $request['email'])->firstOrFail();
 
       $token = $user->createToken('auth_token')->plainTextToken;
 
       return response()->json([
         'access_token' => $token,
+        'role' => $user->roles[0]->name??'user',
         'user_data' => $user,
         'token_type' => 'Bearer',
       ]);
