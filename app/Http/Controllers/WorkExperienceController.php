@@ -30,6 +30,8 @@ class WorkExperienceController extends Controller
     {
         //
 
+        return 123;
+
 
         $user = User::find($request->user()->id);
         $profile = ProfileUpdate::where('user_id', $request->user()->id)->first();
