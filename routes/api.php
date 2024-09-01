@@ -46,4 +46,4 @@ Route::get('/testp', [ApiAuthController::class, 'test']);
 
   Route::post('/create-roles', [UserPermissionsController::class, 'create']);
 
-  Route::post('/assign-role', [UserPermissionsController::class, 'assign_role']);
+  Route::post('/assign-role', [UserPermissionsController::class, 'assign_role'])->middleware('auth:sanctum');
