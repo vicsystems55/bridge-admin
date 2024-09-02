@@ -7,59 +7,27 @@ use Illuminate\Http\Request;
 
 class ResumeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+  public function uploadResume(Request $request)
+  {
+      // Validate the request data
+      $request->validate([
+          'resume' => 'required|file|mimes:pdf,doc,docx', // Adjust validation rules as needed
+      ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Resume $resume)
-    {
-        //
-    }
+      // Get the uploaded file
+      $file = $request->file('resume');
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Resume $resume)
-    {
-        //
-    }
+      // Generate a unique filename
+      $filename = time() . '_' . $file->getClientOriginalName();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Resume $resume)
-    {
-        //
-    }
+      // Store the file in the storage folder
+      $file->storeAs('uploads', $filename);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Resume $resume)
-    {
-        //
-    }
+      // Save the filename to the database (if needed)
+      // ...
+
+      return response()->json(['message' => 'Resume uploaded successfully']);
+  }
 }
