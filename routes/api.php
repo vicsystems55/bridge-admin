@@ -1,18 +1,21 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Models\ProfileUpdate;
-use App\Models\LanguageSpoken;
-use App\Models\WorkExperience;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ProfileUpdateController;
 use App\Http\Controllers\API\v1\ApiAuthController;
+use App\Http\Controllers\CompanyProfileController;
 use App\Http\Controllers\LanguageSpokenController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\WorkExperienceController;
 use App\Http\Controllers\UserPermissionsController;
+use App\Http\Controllers\RecruiterProfileController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +51,10 @@ Route::get('/testp', [ApiAuthController::class, 'test']);
   Route::apiResource('/skills', SkillController::class)->middleware('auth:sanctum');
 
   Route::apiResource('/resume', ResumeController::class)->middleware('auth:sanctum');
+
+  Route::apiResource('/company-profile', CompanyProfileController::class)->middleware('auth:sanctum');
+
+  Route::apiResource('/recruiter-profile', RecruiterProfileController::class)->middleware('auth:sanctum');
 
    Route::get('/users', [ProfileUpdateController::class, 'users']);
 
