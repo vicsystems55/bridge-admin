@@ -47,9 +47,9 @@ Route::get('/testp', [ApiAuthController::class, 'test']);
 
   Route::apiResource('/skills', SkillController::class)->middleware('auth:sanctum');
 
-  Route::post('/resume', [ResumeController::class, 'uploadResume'])->middleware('auth:sanctum');
+  Route::apiResource('/resume', ResumeController::class)->middleware('auth:sanctum');
 
-  Route::get('/users', [ProfileUpdateController::class, 'users']);
+   Route::get('/users', [ProfileUpdateController::class, 'users']);
 
   Route::get('/user-roles', [UserPermissionsController::class, 'user_roles'])->middleware('auth:sanctum');
 

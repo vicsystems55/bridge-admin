@@ -9,8 +9,16 @@ use App\Models\ProfileUpdate;
 class ResumeController extends Controller
 {
 
+  public function index(){
 
-  public function uploadResume(Request $request)
+
+    $resume = Resume::where('user_id', request()->user()->id)->first();
+
+    return $resume;
+  }
+
+
+  public function store(Request $request)
   {
       // Validate the request data
       $request->validate([
@@ -34,7 +42,7 @@ class ResumeController extends Controller
         'path' => $filename
       ]);
 
-      
+
 
       // Save the filename to the database (if needed)
       // ...
