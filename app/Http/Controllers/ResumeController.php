@@ -13,7 +13,7 @@ class ResumeController extends Controller
   {
       // Validate the request data
       $request->validate([
-          'resume' => 'required|file|mimes:pdf,doc,docx,jpg,jpeg', // Adjust validation rules as needed
+          'resume' => 'required|file|mimes:pdf,doc,docx,jpg,jpeg,png', // Adjust validation rules as needed
       ]);
 
       // Get the uploaded file
