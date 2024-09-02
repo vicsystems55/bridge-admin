@@ -9,6 +9,7 @@ use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ProfileUpdateController;
 use App\Http\Controllers\API\v1\ApiAuthController;
 use App\Http\Controllers\LanguageSpokenController;
+use App\Http\Controllers\SkillController;
 use App\Http\Controllers\WorkExperienceController;
 use App\Http\Controllers\UserPermissionsController;
 
@@ -42,6 +43,8 @@ Route::get('/testp', [ApiAuthController::class, 'test']);
   Route::apiResource('/education', EducationController::class)->middleware('auth:sanctum');
 
   Route::apiResource('/language', LanguageSpokenController::class)->middleware('auth:sanctum');
+
+  Route::apiResource('/skills', SkillController::class)->middleware('auth:sanctum');
 
   Route::get('/users', [ProfileUpdateController::class, 'users']);
 
