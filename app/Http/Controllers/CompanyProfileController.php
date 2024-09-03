@@ -13,7 +13,7 @@ class CompanyProfileController extends Controller
     public function index()
     {
         //
-        $company_profile = CompanyProfile::where('user_id', request()->user()->id)->first();
+        $company_profile = CompanyProfile::where('user_id', request()->user()->id)->latest()->first();
 
         return $company_profile;
     }
