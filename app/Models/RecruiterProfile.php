@@ -11,4 +11,6 @@ class RecruiterProfile extends Model
 
     protected $guarded = [];
 
+  
+
 }

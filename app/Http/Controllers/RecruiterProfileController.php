@@ -26,10 +26,13 @@ class RecruiterProfileController extends Controller
         //
         $recruiter_profile = RecruiterProfile::updateOrCreate([
           'user_id' => $request->user()->id,
-          'recruiter_name' => $request->recruiter_name
+          'recruiter_name' => $request->recruiter_name,
+          'position' => $request->position,
         ],[
           'user_id' => $request->user()->id,
-          'recruiter_name' => $request->recruiter_name
+          'recruiter_name' => $request->recruiter_name,
+          'position' => $request->position,
+
         ]);
 
         return $recruiter_profile;
