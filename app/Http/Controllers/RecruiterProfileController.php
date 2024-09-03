@@ -13,6 +13,9 @@ class RecruiterProfileController extends Controller
     public function index()
     {
         //
+        $recruiter_profile = RecruiterProfile::where('user_id', request()->user()->id)->first();
+
+        return $recruiter_profile;
     }
 
     /**
@@ -21,7 +24,16 @@ class RecruiterProfileController extends Controller
     public function store(Request $request)
     {
         //
-        
+        $recruiter_profile = RecruiterProfile::updateOrCreate([
+          'user_id' => $request->user()->id,
+          'recruiter_name' => $request->recruiter_name
+        ],[
+          'user_id' => $request->user()->id,
+          'recruiter_name' => $request->recruiter_name
+        ]);
+
+        return $recruiter_profile;
+
     }
 
 
