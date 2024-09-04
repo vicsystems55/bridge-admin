@@ -3,13 +3,14 @@
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SkillController;
+use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\EducationController;
+use App\Http\Controllers\JobPostingController;
 use App\Http\Controllers\ProfileUpdateController;
 use App\Http\Controllers\API\v1\ApiAuthController;
 use App\Http\Controllers\CompanyProfileController;
 use App\Http\Controllers\LanguageSpokenController;
-use App\Http\Controllers\ResumeController;
-use App\Http\Controllers\SkillController;
 use App\Http\Controllers\WorkExperienceController;
 use App\Http\Controllers\UserPermissionsController;
 use App\Http\Controllers\RecruiterProfileController;
@@ -56,7 +57,9 @@ Route::get('/testp', [ApiAuthController::class, 'test']);
 
   Route::apiResource('/recruiter-profile', RecruiterProfileController::class)->middleware('auth:sanctum');
 
-   Route::get('/users', [ProfileUpdateController::class, 'users']);
+  Route::apiResource('/job-postings', JobPostingController::class)->middleware('auth:sanctum');
+
+  Route::get('/users', [ProfileUpdateController::class, 'users']);
 
   Route::get('/user-roles', [UserPermissionsController::class, 'user_roles'])->middleware('auth:sanctum');
 
