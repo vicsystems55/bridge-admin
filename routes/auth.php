@@ -14,11 +14,12 @@ use App\Http\Controllers\authentications\RegisterBasic;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
+
     Route::get('register', [RegisterBasic::class, 'index'])->name('auth-register-basic');
 
     Route::post('register', [RegisteredUserController::class, 'store'])->name('register');
 
-    Route::get('login', [LoginBasic::class, 'index'])->name('auth-login-basic');
+    Route::get('login', [LoginBasic::class, 'index'])->name('login');
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 

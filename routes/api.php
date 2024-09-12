@@ -30,7 +30,7 @@ use App\Http\Controllers\RecruiterProfileController;
 */
 
 
-Route::get('/testp', [ApiAuthController::class, 'test']);
+  Route::get('/testp', [ApiAuthController::class, 'test']);
   // Route::get('test-route', [ApiAuthController::class,'register']);
 
   Route::post('/registerp', [ApiAuthController::class, 'register']);
@@ -62,6 +62,8 @@ Route::get('/testp', [ApiAuthController::class, 'test']);
   Route::get('/users', [ProfileUpdateController::class, 'users']);
 
   Route::get('/user-roles', [UserPermissionsController::class, 'user_roles'])->middleware('auth:sanctum');
+
+  Route::get('/job-seeker', [UserPermissionsController::class, 'jobSeekers'])->middleware('auth:sanctum');
 
   Route::post('/create-roles', [UserPermissionsController::class, 'create']);
 

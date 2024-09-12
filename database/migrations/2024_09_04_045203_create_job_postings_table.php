@@ -30,17 +30,6 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->boolean('active')->default(1);
 
-
-
-
-
-
-
-
-
-
-
-
             $table->timestamps();
         });
     }

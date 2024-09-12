@@ -51,4 +51,26 @@ class User extends Authenticatable
       return $this->hasOne(ProfileUpdate::class, 'user_id', 'id');
 
   }
+
+    public function work_experiences(){
+      return $this->hasMany(WorkExperience::class, 'user_id', 'id');
+    }
+
+    public function education(){
+      return $this->hasMany(Education::class, 'user_id', 'id');
+    }
+
+    public function skills(){
+      return $this->hasMany(Skill::class, 'user_id', 'id');
+    }
+
+    public function resume(){
+      return $this->hasOne(Resume::class, 'user_id', 'id');
+    }
+
+    public function languages(){
+      return $this->hasMany(LanguageSpoken::class, 'user_id', 'id');
+    }
+
+
 }

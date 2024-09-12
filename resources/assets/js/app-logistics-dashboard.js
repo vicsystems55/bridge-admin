@@ -25,7 +25,7 @@
     },
     line: {
       series1: config.colors.warning,
-      series2: config.colors.primary,
+      series2: config.colors.warning,
       series3: '#7367f029'
     }
   };
@@ -36,20 +36,25 @@
     shipmentConfig = {
       series: [
         {
-          name: 'Shipment',
-          type: 'column',
+          name: 'Recruiters',
+          type: 'line',
           data: [38, 45, 33, 38, 32, 50, 48, 40, 42, 37]
         },
         {
-          name: 'Delivery',
+          name: 'Job Seekers',
           type: 'line',
           data: [23, 28, 23, 32, 28, 44, 32, 38, 26, 34]
+        },
+        {
+          name: 'Freelancers',
+          type: 'line',
+          data: [23, 28, 23, 32, 28, 44, 32, 3, 26, 34]
         }
       ],
       chart: {
         height: 270,
         type: 'line',
-        stacked: false,
+        stacked: true,
         parentHeightOffset: 0,
         toolbar: {
           show: false
@@ -115,7 +120,7 @@
       },
       xaxis: {
         tickAmount: 10,
-        categories: ['1 Jan', '2 Jan', '3 Jan', '4 Jan', '5 Jan', '6 Jan', '7 Jan', '8 Jan', '9 Jan', '10 Jan'],
+        categories: ['JAN', 'FEB', 'MAR', 'APRI', 'MAY', 'JUN', '7 JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
         labels: {
           style: {
             colors: labelColor,
@@ -230,7 +235,7 @@
         chartColors.donut.series4
       ],
       stroke: {
-        width: 0
+        width: 3
       },
       dataLabels: {
         enabled: false,

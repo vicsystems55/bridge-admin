@@ -4,25 +4,25 @@
       "menuHeader": "Dashboard"
     },
     {
-      "url": "/",
+      "url": "dashboard",
       "name": "Overview",
       "icon": "menu-icon tf-icons ti ti-smart-home",
-      "slug": "pages-home"
+      "slug": "app-logistics-dashboard"
     },
     {
       "menuHeader": "Accounts"
     },
     {
-      "url": "/dashboard",
+      "url": "/",
       "name": "User Management",
       "icon": "menu-icon tf-icons ti ti-login",
-      "slug": "auth-login-basic",
+      "slug": "user-accounts",
       "target": "_blank",
       "submenu": [
         {
-          "url": "/",
+          "url": "user-accounts",
           "name": "All Users",
-          "slug": "dashboard-analytics"
+          "slug": "user-accounts"
         },
         {
           "url": "dashboard",

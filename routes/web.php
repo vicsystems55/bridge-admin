@@ -25,6 +25,11 @@ use App\Http\Controllers\apps\LogisticsDashboard;
 
 Route::get('/dashboard', [LogisticsDashboard::class, 'index'])->name('app-logistics-dashboard')->middleware('auth');
 
+Route::get('/user-accounts', [LogisticsDashboard::class, 'user_accounts'])->name('user-accounts')->middleware('auth');
+
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -43,7 +48,7 @@ Route::get('lang/{locale}', [LanguageController::class, 'swap']);
 Route::get('/pages/misc-error', [MiscError::class, 'index'])->name('pages-misc-error');
 
 // authentication
-Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('login');
+// Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('login');
 // Route::get('/auth/register-basic', [RegisterBasic::class, 'index'])->name('auth-register-basic');
 
 // Route::get('/app/logistics/dashboard', [LogisticsDashboard::class, 'index'])->name('app-logistics-dashboard');

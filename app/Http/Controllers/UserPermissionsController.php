@@ -42,4 +42,21 @@ class UserPermissionsController extends Controller
 
 
     }
+
+    public function jobSeekers(Request $request){
+
+      $users = User::with([
+        'profile',
+        'work_experiences',
+        'education',
+        'skills',
+        'resume',
+        'languages'
+        ])->whereHas('roles', function ($query) {
+        $query->where('name', 'job_seeker');
+    })->get();
+
+    return $users;
+
+    }
 }
