@@ -54,7 +54,11 @@ class UserPermissionsController extends Controller
         'languages'
         ])->whereHas('roles', function ($query) {
         $query->where('name', 'job_seeker');
-    })->get();
+    })->whereHas('profile', function ($query) {
+      // Ensures that only users with a profile are retrieved.
+      $query->whereNotNull('id'); // Assuming 'id' is a required field in profile; adjust as needed.
+  })
+    ->get();
 
     return $users;
 
