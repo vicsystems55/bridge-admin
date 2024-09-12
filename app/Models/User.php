@@ -60,6 +60,10 @@ class User extends Authenticatable
       return $this->hasMany(Education::class, 'user_id', 'id');
     }
 
+    public function latest_education(){
+      return $this->hasOne(Education::class, 'user_id', 'id')->latest();
+    }
+
     public function skills(){
       return $this->hasMany(Skill::class, 'user_id', 'id');
     }

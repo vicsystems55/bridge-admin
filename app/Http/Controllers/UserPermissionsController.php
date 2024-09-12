@@ -46,7 +46,7 @@ class UserPermissionsController extends Controller
     $users = User::with([
       'profile',
       'work_experiences',
-      'education',
+      'latest_education',
       'skills',
       'resume',
       'languages'
@@ -55,7 +55,7 @@ class UserPermissionsController extends Controller
     })->whereHas('profile', function ($query) {
       // Ensures that only users with a profile are retrieved.
       $query->whereNotNull('id'); // Assuming 'id' is a required field in profile; adjust as needed.
-    })->whereHas('education', function ($query) {
+    })->whereHas('latest_education', function ($query) {
       // Ensures that only users with a profile are retrieved.
       $query->whereNotNull('id'); // Assuming 'id' is a required field in profile; adjust as needed.
     })
