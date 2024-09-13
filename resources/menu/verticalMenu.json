@@ -25,29 +25,14 @@
           "slug": "user-accounts"
         },
         {
-          "url": "dashboard",
-          "name": "Recruiters",
-          "slug": "dashboard-crm"
-        },
-        {
-          "url": "dashboard",
-          "name": "Job Seekers",
-          "slug": "app-ecommerce-dashboard"
-        },
-        {
-          "url": "dashboard",
-          "name": "Freelancers",
-          "slug": "app-logistics-dashboard"
-        },
-        {
-          "url": "dashboard",
+          "url": "add-new-user",
           "name": "Add New User",
-          "slug": "app-academy-dashboard"
+          "slug": "add-new-user"
         },
         {
-          "url": "dashboard",
+          "url": "activity-log",
           "name": "Activity Log",
-          "slug": "app-academy-dashboard"
+          "slug": "activity-log"
         }
       ]
     },
@@ -62,29 +47,24 @@
       "target": "_blank",
       "submenu": [
         {
-          "url": "/",
+          "url": "all-job-postings",
           "name": "All Job Postings",
-          "slug": "dashboard-analytics"
+          "slug": "all-job-postings"
         },
         {
-          "url": "dashboard",
+          "url": "pending-approval",
           "name": "Pending Approvals",
-          "slug": "dashboard-crm"
+          "slug": "pending-approval"
         },
         {
-          "url": "dashboard",
+          "url": "active-postings",
           "name": "Active Postings",
-          "slug": "app-ecommerce-dashboard"
+          "slug": "active-postings"
         },
         {
-          "url": "dashboard",
+          "url": "expired-postings",
           "name": "Expired Postings",
-          "slug": "app-logistics-dashboard"
-        },
-        {
-          "url": "dashboard",
-          "name": "Categories & Tags",
-          "slug": "app-academy-dashboard"
+          "slug": "expired-postings"
         }
       ]
     },
@@ -99,29 +79,29 @@
       "target": "_blank",
       "submenu": [
         {
-          "url": "/",
+          "url": "all-applications",
           "name": "All Applications",
-          "slug": "dashboard-analytics"
+          "slug": "all-applications"
         },
         {
-          "url": "dashboard",
+          "url": "job-seekers-applications",
           "name": "By Job Seeker",
-          "slug": "dashboard-crm"
+          "slug": "ob-seekers-applications"
         },
         {
-          "url": "dashboard",
-          "name": "By Job Freelancers",
-          "slug": "app-ecommerce-dashboard"
+          "url": "freelancers-bids",
+          "name": "Freelancers Bids",
+          "slug": "freelancers-bids"
         },
         {
-          "url": "dashboard",
+          "url": "shortlisted",
           "name": "Shortlisted Candidates",
-          "slug": "app-logistics-dashboard"
+          "slug": "shortlisted"
         },
         {
-          "url": "dashboard",
+          "url": "schedulted-interviews",
           "name": "Interview Schedules",
-          "slug": "app-academy-dashboard"
+          "slug": "scheduled-interviews"
         }
       ]
     },

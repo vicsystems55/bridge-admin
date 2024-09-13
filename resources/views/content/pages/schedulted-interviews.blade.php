@@ -32,33 +32,13 @@
 @section('content')
 
 <div class="row g-4 mb-4">
+
   <div class="col-sm-6 col-xl-3">
     <div class="card">
       <div class="card-body">
         <div class="d-flex align-items-start justify-content-between">
           <div class="content-left">
-            <span>Session</span>
-            <div class="d-flex align-items-center my-2">
-              <h3 class="mb-0 me-2">21,459</h3>
-              <p class="text-success mb-0">(+29%)</p>
-            </div>
-            <p class="mb-0">Total Users</p>
-          </div>
-          <div class="avatar">
-            <span class="avatar-initial rounded bg-label-primary">
-              <i class="ti ti-user ti-sm"></i>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-xl-3">
-    <div class="card">
-      <div class="card-body">
-        <div class="d-flex align-items-start justify-content-between">
-          <div class="content-left">
-            <span>Paid Users</span>
+            <span>All Applications</span>
             <div class="d-flex align-items-center my-2">
               <h3 class="mb-0 me-2">4,567</h3>
               <p class="text-success mb-0">(+18%)</p>
@@ -79,7 +59,7 @@
       <div class="card-body">
         <div class="d-flex align-items-start justify-content-between">
           <div class="content-left">
-            <span>Active Users</span>
+            <span>Shortlisted</span>
             <div class="d-flex align-items-center my-2">
               <h3 class="mb-0 me-2">19,860</h3>
               <p class="text-danger mb-0">(-14%)</p>
@@ -100,7 +80,7 @@
       <div class="card-body">
         <div class="d-flex align-items-start justify-content-between">
           <div class="content-left">
-            <span>Pending Users</span>
+            <span>Scheduled Interviews</span>
             <div class="d-flex align-items-center my-2">
               <h3 class="mb-0 me-2">237</h3>
               <p class="text-success mb-0">(+42%)</p>
@@ -120,7 +100,7 @@
 <!-- Users List Table -->
 <div class="card">
   <div class="card-header border-bottom">
-    <h5 class="card-title mb-3">All Users</h5>
+    <h5 class="card-title mb-3">Scheduled Interviews</h5>
 
   </div>
   <div class="card-body">
@@ -130,8 +110,7 @@
         <tr>
           <th></th>
           <th>Fullname</th>
-          <th>Role</th>
-          <th>Plan</th>
+
           <th>Status</th>
           <th>Actions</th>
         </tr>
@@ -140,20 +119,13 @@
         @foreach ($users as $user)
 
         <tr>
-          <td>{{$loop->iteration}}</td>
-          <td>{{$user->name}}</td>
+          <td>1</td>
+          <td>John Doe</td>
           <td>
-
-            @forelse ($user->roles as $role)
-
-            <span class="badge rounded-pill bg-primary">{{$role->name}}</span>
-            @empty
-
-            @endforelse
+              New
           </td>
           <td></td>
-          <td></td>
-          <td></td>
+
 
         </tr>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CompanyProfile;
 use App\Models\JobPosting;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,8 @@ class JobPostingController extends Controller
     {
         //
 
+        $company_profile = CompanyProfile::find($request->company_profile_id);
+
         $job_post = JobPosting::updateOrCreate([
           'user_id' => $request->user()->id,
           'job_title' => $request->job_title,
@@ -40,10 +43,10 @@ class JobPostingController extends Controller
           'min_experience' => $request->min_experience,
           'renumeration_type' => $request->renumeration_type,
           'renumeration_amount' => $request->renumeration_amount,
-          'company_name' => $request->company_name,
-          'company_industry' => $request->company_industry,
+          'company_name' => $request->company_name?? $company_profile->company_name,
+          'company_industry' => $request->company_industry?? $company_profile->industry_type,
           'website' => $request->website,
-          'location' => $request->location,
+          'location' => $request->location?? $company_profile->address,
         ]);
 
         return $job_post;

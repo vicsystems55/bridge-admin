@@ -102,7 +102,7 @@
   </div>
 </div>
 <!--/ Card Border Shadow -->
-<div class="row">
+<div class="row d-none">
   <!-- Vehicles overview -->
   <div class="col-md-6 ">
     <div class="card">

@@ -21,11 +21,40 @@ use App\Http\Controllers\apps\LogisticsDashboard;
 |
 */
 
+Route::middleware('auth')->group(function () {
+
+  Route::get('/dashboard', [LogisticsDashboard::class, 'index'])->name('app-logistics-dashboard');
+
+  Route::get('/user-accounts', [LogisticsDashboard::class, 'user_accounts'])->name('user-accounts');
+
+  Route::get('/add-new-user', [LogisticsDashboard::class, 'add_new_user'])->name('add-new-user');
+
+  Route::get('/activity-log', [LogisticsDashboard::class, 'activity_log'])->name('activity-log');
+
+  Route::get('/all-job-postings', [LogisticsDashboard::class, 'all_job_postings'])->name('all-job-postings');
+
+  Route::get('/pending-approval', [LogisticsDashboard::class, 'pending_approval'])->name('pending-approval');
+
+  Route::get('/active-postings', [LogisticsDashboard::class, 'active_postings'])->name('active-postings');
+
+  Route::get('/expired-postings', [LogisticsDashboard::class, 'expired_postings'])->name('expired-postings');
+
+  Route::get('/all-applications', [LogisticsDashboard::class, 'all_applications'])->name('all-applications');
+
+  Route::get('/all-applications', [LogisticsDashboard::class, 'all_applications'])->name('all-applications');
+
+  Route::get('/job-seekers-applications', [LogisticsDashboard::class, 'job-seekers-applications'])->name('job-seekers-applications');
+  
+  Route::get('/freelancers-bids', [LogisticsDashboard::class, 'freelancers-bids'])->name('freelancers-bids');
+  
+  Route::get('/shortlisted', [LogisticsDashboard::class, 'shortlisted'])->name('shortlisted');
+  
+  Route::get('/schedulted-interviews', [LogisticsDashboard::class, 'schedulted-interviews'])->name('schedulted-interviews');
+  
 
 
-Route::get('/dashboard', [LogisticsDashboard::class, 'index'])->name('app-logistics-dashboard')->middleware('auth');
+});
 
-Route::get('/user-accounts', [LogisticsDashboard::class, 'user_accounts'])->name('user-accounts')->middleware('auth');
 
 
 
