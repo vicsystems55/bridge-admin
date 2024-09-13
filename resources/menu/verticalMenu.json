@@ -86,7 +86,7 @@
         {
           "url": "job-seekers-applications",
           "name": "By Job Seeker",
-          "slug": "ob-seekers-applications"
+          "slug": "job-seekers-applications"
         },
         {
           "url": "freelancers-bids",
@@ -105,38 +105,8 @@
         }
       ]
     },
-    {
-      "menuHeader": "Others"
-    },
-    {
-      "url": "/dashboard",
-      "name": "Freelance Services",
-      "icon": "menu-icon tf-icons ti ti-login",
-      "slug": "auth-login-basic",
-      "target": "_blank",
-      "submenu": [
-        {
-          "url": "/",
-          "name": "All Services",
-          "slug": "dashboard-analytics"
-        },
-        {
-          "url": "dashboard",
-          "name": "Pending Approvals",
-          "slug": "dashboard-crm"
-        },
-        {
-          "url": "dashboard",
-          "name": "Active Services",
-          "slug": "app-ecommerce-dashboard"
-        },
-        {
-          "url": "dashboard",
-          "name": "Expired Services",
-          "slug": "app-logistics-dashboard"
-        }
-      ]
-    },
+
+
     {
       "menuHeader": "Pricing"
     },
@@ -148,24 +118,24 @@
       "target": "_blank",
       "submenu": [
         {
-          "url": "/",
+          "url": "manage-subscriptions",
           "name": "Manage Plans",
-          "slug": "dashboard-analytics"
+          "slug": "manage-subscriptions"
         },
         {
-          "url": "dashboard",
+          "url": "user-subscriptions",
           "name": "User Subscriptions",
-          "slug": "dashboard-crm"
+          "slug": "user-subscriptions"
         },
         {
-          "url": "dashboard",
+          "url": "transactions",
           "name": "Transactions",
-          "slug": "app-ecommerce-dashboard"
+          "slug": "transactions"
         },
         {
-          "url": "dashboard",
+          "url": "subscription-analytics",
           "name": "Subscription Analytics",
-          "slug": "app-logistics-dashboard"
+          "slug": "subscription-analytics"
         }
       ]
     },
@@ -180,9 +150,9 @@
       "target": "_blank",
       "submenu": [
         {
-          "url": "/",
+          "url": "manage-ads",
           "name": "Manage Ads",
-          "slug": "dashboard-analytics"
+          "slug": "manage-ads"
         },
         {
           "url": "dashboard",

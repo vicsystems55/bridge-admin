@@ -43,14 +43,21 @@ Route::middleware('auth')->group(function () {
 
   Route::get('/all-applications', [LogisticsDashboard::class, 'all_applications'])->name('all-applications');
 
-  Route::get('/job-seekers-applications', [LogisticsDashboard::class, 'job-seekers-applications'])->name('job-seekers-applications');
-  
-  Route::get('/freelancers-bids', [LogisticsDashboard::class, 'freelancers-bids'])->name('freelancers-bids');
-  
+  Route::get('/job-seekers-applications', [LogisticsDashboard::class, 'job_seekers_applications'])->name('job-seekers-applications');
+
+  Route::get('/freelancers-bids', [LogisticsDashboard::class, 'freelancers_bids'])->name('freelancers-bids');
+
   Route::get('/shortlisted', [LogisticsDashboard::class, 'shortlisted'])->name('shortlisted');
+
+  Route::get('/schedulted-interviews', [LogisticsDashboard::class, 'scheduled_interviews'])->name('schedulted-interviews');
+
+  Route::get('/transactions', [LogisticsDashboard::class, 'transactions'])->name('transactions');
   
-  Route::get('/schedulted-interviews', [LogisticsDashboard::class, 'schedulted-interviews'])->name('schedulted-interviews');
+  Route::get('/subscription-analytics', [LogisticsDashboard::class, 'subscription_analytics'])->name('subscription_analytics');
   
+  Route::get('/user-subscriptions', [LogisticsDashboard::class, 'user_subscriptions'])->name('user_subscriptions');
+  
+  Route::get('/manage-subscriptions', [LogisticsDashboard::class, 'manage_subscriptions'])->name('manage_subscriptions');
 
 
 });

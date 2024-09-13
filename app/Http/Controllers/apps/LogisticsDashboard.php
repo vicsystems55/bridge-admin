@@ -85,8 +85,51 @@ class LogisticsDashboard extends Controller
     $all_applications = ApplicationSubmission::latest()->get();
 
     return view('content.pages.all_applications', compact('all_applications'));
-
-
-
   }
+
+  public function freelancers_bids(){
+    $all_applications = ApplicationSubmission::latest()->get();
+
+    return view('content.pages.freelancers_bids', compact('all_applications'));
+  }
+
+  public function shortlisted(){
+    $all_applications = ApplicationSubmission::latest()->get();
+
+    return view('content.pages.shortlisted', compact('all_applications'));
+  }
+
+  public function scheduled_interviews(){
+    $all_applications = ApplicationSubmission::latest()->get();
+
+    return view('content.pages.scheduled_interviews', compact('all_applications'));
+  }
+
+  public function job_seekers_applications(){
+    $job_seekers_applications = ApplicationSubmission::latest()->get();
+    return view('content.pages.job_seekers_applications', compact('job_seekers_applications'));
+  }
+
+  public function transactions(){
+
+    $subscriptions = 'null';
+    return view('content.pages.transactions');
+  }
+  public function subscription_analytics(){
+
+    $subscriptions = 'null';
+    return view('content.pages.subscription_analytics');
+  }
+  public function user_subscriptions(){
+
+    $subscriptions = 'null';
+    return view('content.pages.user_subscriptions');
+  }
+  public function manage_subscriptions(){
+
+    $subscriptions = 'null';
+    return view('content.pages.manage_subscriptions');
+  }
+
+
 }

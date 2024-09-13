@@ -100,39 +100,12 @@
 <!-- Users List Table -->
 <div class="card">
   <div class="card-header border-bottom">
-    <h5 class="card-title mb-3">All Freelancers Bids</h5>
+    <h5 class="card-title mb-3">Analytics</h5>
 
   </div>
   <div class="card-body">
 
-    <table class="datatables-user table">
-      <thead class="border-top">
-        <tr>
-          <th></th>
-          <th>Fullname</th>
-
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach ($users as $user)
-
-        <tr>
-          <td>1</td>
-          <td>John Doe</td>
-          <td>
-              New
-          </td>
-          <td></td>
-
-
-        </tr>
-
-
-        @endforeach
-      </tbody>
-    </table>
+ <h4 class="text-center py-5">No Transactions yet.</h4>
 
   </div>
 

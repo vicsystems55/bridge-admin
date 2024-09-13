@@ -100,7 +100,7 @@
 <!-- Users List Table -->
 <div class="card">
   <div class="card-header border-bottom">
-    <h5 class="card-title mb-3">All Applications</h5>
+    <h5 class="card-title mb-3">Users Subsciptions</h5>
 
   </div>
   <div class="card-body">
@@ -116,21 +116,13 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($users as $user)
-
         <tr>
           <td>1</td>
-          <td>John Doe</td>
-          <td>
-              New
-          </td>
-          <td></td>
-
-
+          <td>Name</td>
+          <td>UI Ux</td>
+          <td>We</td>
+          <td><button class="btn">view details</button></td>
         </tr>
-
-
-        @endforeach
       </tbody>
     </table>
 

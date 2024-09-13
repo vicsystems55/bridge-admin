@@ -100,7 +100,7 @@
 <!-- Users List Table -->
 <div class="card">
   <div class="card-header border-bottom">
-    <h5 class="card-title mb-3">All Submissions</h5>
+    <h5 class="card-title mb-3">Transactions</h5>
 
   </div>
   <div class="card-body">
@@ -110,7 +110,7 @@
         <tr>
           <th></th>
           <th>Fullname</th>
-          <td>Job Position</td>
+
           <th>Status</th>
           <th>Actions</th>
         </tr>

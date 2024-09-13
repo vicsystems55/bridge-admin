@@ -32,9 +32,10 @@
 @section('content')
 
 
+<!-- Users List Table -->
 <div class="card">
   <div class="card-header border-bottom">
-    <h5 class="card-title mb-3">Shortlisted Candidates</h5>
+    <h5 class="card-title mb-3">By Job Seekers</h5>
 
   </div>
   <div class="card-body">
