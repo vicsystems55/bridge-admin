@@ -65,6 +65,8 @@ use App\Http\Controllers\RecruiterProfileController;
 
   Route::get('/job-seeker', [UserPermissionsController::class, 'jobSeekers'])->middleware('auth:sanctum');
 
+  Route::get('/job-seeker/{id}', [UserPermissionsController::class, 'jobSeeker'])->middleware('auth:sanctum');
+
   Route::post('/create-roles', [UserPermissionsController::class, 'create']);
 
   Route::post('/assign-role', [UserPermissionsController::class, 'assign_role'])->middleware('auth:sanctum');

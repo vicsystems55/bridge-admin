@@ -37,18 +37,20 @@
       series: [
         {
           name: 'Recruiters',
-          type: 'line',
-          data: [38, 45, 33, 38, 32, 50, 48, 40, 42, 37]
+          type: 'column',
+          data: [38, 45, 33, 38, 32, 50, 48, 40, 42, 37],
+          visible: false
         },
         {
           name: 'Job Seekers',
-          type: 'line',
-          data: [23, 28, 23, 32, 28, 44, 32, 38, 26, 34]
+          type: 'column',
+          data: [23, 28, 23, 32, 28, 44, 32, 38, 26, 34],
+          visible: false 
         },
         {
           name: 'Freelancers',
-          type: 'line',
-          data: [23, 28, 23, 32, 28, 44, 32, 3, 26, 34]
+          type: 'column',
+          data: [23, 28, 23, 32, 28, 44, 32, 33, 26, 34]
         }
       ],
       chart: {
@@ -120,7 +122,7 @@
       },
       xaxis: {
         tickAmount: 10,
-        categories: ['JAN', 'FEB', 'MAR', 'APRI', 'MAY', 'JUN', '7 JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
+        categories: ['JAN', 'FEB', 'MAR', 'APRI', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
         labels: {
           style: {
             colors: labelColor,

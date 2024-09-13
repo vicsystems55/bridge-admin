@@ -63,4 +63,28 @@ class UserPermissionsController extends Controller
 
     return $users;
   }
+
+  public function jobSeeker(Request $request, $id)
+  {
+
+    $users = User::find($id)->with([
+      'profile',
+      'work_experiences',
+      'latest_education',
+      'skills',
+      'resume',
+      'languages'
+    ])->whereHas('roles', function ($query) {
+      $query->where('name', 'job_seeker');
+    })->whereHas('profile', function ($query) {
+      // Ensures that only users with a profile are retrieved.
+      $query->whereNotNull('id'); // Assuming 'id' is a required field in profile; adjust as needed.
+    })->whereHas('latest_education', function ($query) {
+      // Ensures that only users with a profile are retrieved.
+      $query->whereNotNull('id'); // Assuming 'id' is a required field in profile; adjust as needed.
+    })
+      ->first();
+
+    return $users;
+  }
 }
