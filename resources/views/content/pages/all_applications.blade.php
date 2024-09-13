@@ -110,27 +110,19 @@
         <tr>
           <th></th>
           <th>Fullname</th>
-
+          <td>Job Position</td>
           <th>Status</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
-        @foreach ($users as $user)
-
         <tr>
           <td>1</td>
-          <td>John Doe</td>
-          <td>
-              New
-          </td>
-          <td></td>
-         
-
+          <td>Name</td>
+          <td>UI Ux</td>
+          <td>We</td>
+          <td><button class="btn">view details</button></td>
         </tr>
-
-
-        @endforeach
       </tbody>
     </table>
 

@@ -13,9 +13,23 @@ return new class extends Migration
     {
         Schema::create('application_submissions', function (Blueprint $table) {
             $table->id();
-            $table->foreign('job_seeker_id')->references('id')->on('users');
+
+            $table->bigInteger('job_seeker_id')->unsigned();
+            $table->bigInteger('reviewed_by')->unsigned();
+
+
             $table->foreignId('job_posting_id');
+
+            $table->string('cover_letter')->nullable();
+            $table->string('portfolio')->nullable();
+            $table->string('uploaded_cv_path')->nullable();
+
             $table->string('status')->default('active');
+
+
+
+            $table->foreign('job_seeker_id')->references('id')->on('users');
+            $table->foreign('reviewed_by')->references('id')->on('users');
 
 
 
