@@ -148,10 +148,14 @@
 
             <span class="badge rounded-pill bg-primary">{{$role->name}}</span>
             @empty
+            <span class="badge rounded-pill bg-primary">default user</span>
 
             @endforelse
           </td>
-          <td></td>
+          <td>
+            <span class="badge rounded-pill bg-warning">Basic Plan</span>
+
+          </td>
           <td></td>
           <td></td>
 

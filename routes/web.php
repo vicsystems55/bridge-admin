@@ -52,12 +52,12 @@ Route::middleware('auth')->group(function () {
   Route::get('/schedulted-interviews', [LogisticsDashboard::class, 'scheduled_interviews'])->name('schedulted-interviews');
 
   Route::get('/transactions', [LogisticsDashboard::class, 'transactions'])->name('transactions');
-  
-  Route::get('/subscription-analytics', [LogisticsDashboard::class, 'subscription_analytics'])->name('subscription_analytics');
-  
-  Route::get('/user-subscriptions', [LogisticsDashboard::class, 'user_subscriptions'])->name('user_subscriptions');
-  
-  Route::get('/manage-subscriptions', [LogisticsDashboard::class, 'manage_subscriptions'])->name('manage_subscriptions');
+
+  Route::get('/subscription-analytics', [LogisticsDashboard::class, 'subscription_analytics'])->name('subscription-analytics');
+
+  Route::get('/user-subscriptions', [LogisticsDashboard::class, 'user_subscriptions'])->name('user-subscriptions');
+
+  Route::get('/manage-subscriptions', [LogisticsDashboard::class, 'manage_subscriptions'])->name('manage-subscriptions');
 
 
 });

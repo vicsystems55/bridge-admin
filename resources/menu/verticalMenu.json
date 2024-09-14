@@ -114,7 +114,7 @@
       "url": "/dashboard",
       "name": "Subscription Plans",
       "icon": "menu-icon tf-icons ti ti-login",
-      "slug": "auth-login-basic",
+      "slug": "manage-subscriptions",
       "target": "_blank",
       "submenu": [
         {
