@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->bigInteger('job_seeker_id')->unsigned();
-            $table->bigInteger('reviewed_by')->unsigned();
+            $table->bigInteger('reviewed_by')->unsigned()->nullable();
 
 
             $table->foreignId('job_posting_id');

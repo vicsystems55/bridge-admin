@@ -29,6 +29,14 @@ class LogisticsDashboard extends Controller
     return view('content.pages.user-list', compact('users'));
   }
 
+  public function user_details(){
+
+    $user ='j';
+
+    return view('content.pages.user_details', compact('user'));
+
+  }
+
   public function all_job_postings()
   {
     $all_job_postings = JobPosting::latest()->get();
@@ -130,6 +138,9 @@ class LogisticsDashboard extends Controller
     $subscriptions = 'null';
     return view('content.pages.manage_subscriptions');
   }
+
+
+
 
 
 }

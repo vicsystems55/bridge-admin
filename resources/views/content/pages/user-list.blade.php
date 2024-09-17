@@ -156,8 +156,13 @@
             <span class="badge rounded-pill bg-warning">Basic Plan</span>
 
           </td>
-          <td></td>
-          <td></td>
+          <td>
+            <span class="badge rounded-pill bg-success">Active</span>
+
+          </td>
+          <td>
+            <a href="/user-details" class="btn btn-primary">view more</a>
+          </td>
 
         </tr>
 

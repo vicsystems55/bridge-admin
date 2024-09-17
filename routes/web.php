@@ -27,6 +27,8 @@ Route::middleware('auth')->group(function () {
 
   Route::get('/user-accounts', [LogisticsDashboard::class, 'user_accounts'])->name('user-accounts');
 
+  Route::get('/user-details', [LogisticsDashboard::class, 'user_details'])->name('user-details');
+
   Route::get('/add-new-user', [LogisticsDashboard::class, 'add_new_user'])->name('add-new-user');
 
   Route::get('/activity-log', [LogisticsDashboard::class, 'activity_log'])->name('activity-log');
@@ -58,6 +60,15 @@ Route::middleware('auth')->group(function () {
   Route::get('/user-subscriptions', [LogisticsDashboard::class, 'user_subscriptions'])->name('user-subscriptions');
 
   Route::get('/manage-subscriptions', [LogisticsDashboard::class, 'manage_subscriptions'])->name('manage-subscriptions');
+
+
+  //user details view
+
+//   Route::get('/app/user/view/account', [LogisticsDashboard::class, 'index'])->name('app-user-view-account');
+// Route::get('/app/user/view/security', [LogisticsDashboard::class, 'index'])->name('app-user-view-security');
+// Route::get('/app/user/view/billing', [LogisticsDashboard::class, 'index'])->name('app-user-view-billing');
+// Route::get('/app/user/view/notifications', [LogisticsDashboard::class, 'index'])->name('app-user-view-notifications');
+// Route::get('/app/user/view/connections', [LogisticsDashboard::class, 'index'])->name('app-user-view-connections');
 
 
 });

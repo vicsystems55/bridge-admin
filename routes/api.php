@@ -2,11 +2,13 @@
 
 use Illuminate\Http\Request;
 
+use App\Models\ApplicationSubmission;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\JobPostingController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileUpdateController;
 use App\Http\Controllers\API\v1\ApiAuthController;
 use App\Http\Controllers\CompanyProfileController;
@@ -14,9 +16,7 @@ use App\Http\Controllers\LanguageSpokenController;
 use App\Http\Controllers\WorkExperienceController;
 use App\Http\Controllers\UserPermissionsController;
 use App\Http\Controllers\RecruiterProfileController;
-
-
-
+use App\Http\Controllers\ApplicationSubmissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +53,8 @@ use App\Http\Controllers\RecruiterProfileController;
 
   Route::apiResource('/resume', ResumeController::class)->middleware('auth:sanctum');
 
+  Route::post('/application-submssion', [ApplicationSubmissionController::class, 'submitApplication'])->middleware('auth:sanctum');
+
   Route::apiResource('/company-profile', CompanyProfileController::class)->middleware('auth:sanctum');
 
   Route::apiResource('/recruiter-profile', RecruiterProfileController::class)->middleware('auth:sanctum');
@@ -70,3 +72,5 @@ use App\Http\Controllers\RecruiterProfileController;
   Route::post('/create-roles', [UserPermissionsController::class, 'create']);
 
   Route::post('/assign-role', [UserPermissionsController::class, 'assign_role'])->middleware('auth:sanctum');
+
+  Route::get('/notifications', [NotificationController::class, 'index']);

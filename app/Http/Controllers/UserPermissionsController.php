@@ -67,7 +67,7 @@ class UserPermissionsController extends Controller
   public function jobSeeker(Request $request, $id)
   {
 
-    $users = User::find($id)->with([
+    $user = User::find($id)->with([
       'profile',
       'work_experiences',
       'latest_education',
@@ -85,6 +85,6 @@ class UserPermissionsController extends Controller
     })
       ->first();
 
-    return $users;
+    return $user;
   }
 }
