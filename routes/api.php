@@ -30,47 +30,47 @@ use App\Http\Controllers\ApplicationSubmissionController;
 */
 
 
-  Route::get('/testp', [ApiAuthController::class, 'test']);
-  // Route::get('test-route', [ApiAuthController::class,'register']);
+Route::get('/testp', [ApiAuthController::class, 'test']);
+// Route::get('test-route', [ApiAuthController::class,'register']);
 
-  Route::post('/registerp', [ApiAuthController::class, 'register']);
+Route::post('/registerp', [ApiAuthController::class, 'register']);
 
-  Route::post('/loginp', [ApiAuthController::class, 'login']);
+Route::post('/loginp', [ApiAuthController::class, 'login']);
 
-  Route::post('/verify-otp', [ApiAuthController::class, 'verify_otp']);
+Route::post('/verify-otp', [ApiAuthController::class, 'verify_otp']);
 
-  Route::post('/resend-otp', [ApiAuthController::class, 'resend_otp']);
+Route::post('/resend-otp', [ApiAuthController::class, 'resend_otp']);
 
-  Route::apiResource('/profile', ProfileUpdateController::class)->middleware('auth:sanctum');
+Route::apiResource('/profile', ProfileUpdateController::class)->middleware('auth:sanctum');
 
-  Route::apiResource('/work-experience', WorkExperienceController::class)->middleware('auth:sanctum');
+Route::apiResource('/work-experience', WorkExperienceController::class)->middleware('auth:sanctum');
 
-  Route::apiResource('/education', EducationController::class)->middleware('auth:sanctum');
+Route::apiResource('/education', EducationController::class)->middleware('auth:sanctum');
 
-  Route::apiResource('/language', LanguageSpokenController::class)->middleware('auth:sanctum');
+Route::apiResource('/language', LanguageSpokenController::class)->middleware('auth:sanctum');
 
-  Route::apiResource('/skills', SkillController::class)->middleware('auth:sanctum');
+Route::apiResource('/skills', SkillController::class)->middleware('auth:sanctum');
 
-  Route::apiResource('/resume', ResumeController::class)->middleware('auth:sanctum');
+Route::apiResource('/resume', ResumeController::class)->middleware('auth:sanctum');
 
-  Route::post('/application-submssion', [ApplicationSubmissionController::class, 'submitApplication'])->middleware('auth:sanctum');
+Route::post('/application-submssion', [ApplicationSubmissionController::class, 'submitApplication'])->middleware('auth:sanctum');
 
-  Route::apiResource('/company-profile', CompanyProfileController::class)->middleware('auth:sanctum');
+Route::apiResource('/company-profile', CompanyProfileController::class)->middleware('auth:sanctum');
 
-  Route::apiResource('/recruiter-profile', RecruiterProfileController::class)->middleware('auth:sanctum');
+Route::apiResource('/recruiter-profile', RecruiterProfileController::class)->middleware('auth:sanctum');
 
-  Route::apiResource('/job-postings', JobPostingController::class)->middleware('auth:sanctum');
+Route::apiResource('/job-postings', JobPostingController::class)->middleware('auth:sanctum');
 
-  Route::get('/users', [ProfileUpdateController::class, 'users']);
+Route::get('/users', [ProfileUpdateController::class, 'users']);
 
-  Route::get('/user-roles', [UserPermissionsController::class, 'user_roles'])->middleware('auth:sanctum');
+Route::get('/user-roles', [UserPermissionsController::class, 'user_roles'])->middleware('auth:sanctum');
 
-  Route::get('/job-seeker', [UserPermissionsController::class, 'jobSeekers'])->middleware('auth:sanctum');
+Route::get('/job-seeker', [UserPermissionsController::class, 'jobSeekers'])->middleware('auth:sanctum');
 
-  Route::get('/job-seeker-profile/{id}', [UserPermissionsController::class, 'jobSeeker'])->middleware('auth:sanctum');
+Route::get('/job-seeker/{id}', [UserPermissionsController::class, 'jobSeeker'])->middleware('auth:sanctum');
 
-  Route::post('/create-roles', [UserPermissionsController::class, 'create']);
+Route::post('/create-roles', [UserPermissionsController::class, 'create']);
 
-  Route::post('/assign-role', [UserPermissionsController::class, 'assign_role'])->middleware('auth:sanctum');
+Route::post('/assign-role', [UserPermissionsController::class, 'assign_role'])->middleware('auth:sanctum');
 
-  Route::get('/notifications', [NotificationController::class, 'index']);
+Route::get('/notifications', [NotificationController::class, 'index']);
