@@ -64,8 +64,10 @@ class UserPermissionsController extends Controller
     return $users;
   }
 
-  public function jobSeeker(Request $request, $id)
+  public function jobSeeker($id)
   {
+
+    // return $id;
 
     $user = User::find($id)->with([
       'profile',
@@ -82,8 +84,7 @@ class UserPermissionsController extends Controller
     })->whereHas('latest_education', function ($query) {
       // Ensures that only users with a profile are retrieved.
       $query->whereNotNull('id'); // Assuming 'id' is a required field in profile; adjust as needed.
-    })
-      ->first();
+    });
 
     return $user;
   }
