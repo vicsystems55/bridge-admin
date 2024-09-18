@@ -30,7 +30,7 @@ class ApplicationSubmissionController extends Controller
         // Store the file in the storage folder
         $file->storeAs('uploads', $filename);
 
-        return 123;
+
 
         // $profile = ApplicationSubmission::where('user_id', $request->user()->id)->first();
 
@@ -44,6 +44,8 @@ class ApplicationSubmissionController extends Controller
           'cover_letter' => $request->cover_letter,
           'uploaded_cv_path' => $filename,
         ]);
+
+        return 123;
 
         }else{
 
