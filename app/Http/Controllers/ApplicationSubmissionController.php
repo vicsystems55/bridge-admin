@@ -40,7 +40,7 @@ class ApplicationSubmissionController extends Controller
           'job_seeker_id' => $request->user()->id,
           'job_posting_id' => $request->job_posting_id,
           'cover_letter' => $request->cover_letter,
-          'uploaded_cv_path' => $request->uploaded_cv_path,
+          'uploaded_cv_path' => $filename,
         ]);
 
         }else{
