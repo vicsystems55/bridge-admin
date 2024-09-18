@@ -34,11 +34,7 @@ class ApplicationSubmissionController extends Controller
 
         // $profile = ApplicationSubmission::where('user_id', $request->user()->id)->first();
 
-       $application = ApplicationSubmission::updateOrCreate([
-          'job_seeker_id' => $request->user()->id,
-          'job_posting_id' => $request->job_posting_id,
-          'cover_letter' => $request->cover_letter,
-        ],[
+       $application = ApplicationSubmission::create([
           'job_seeker_id' => $request->user()->id,
           'job_posting_id' => $request->job_posting_id,
           'cover_letter' => $request->cover_letter,
