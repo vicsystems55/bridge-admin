@@ -12,7 +12,7 @@ class ApplicationSubmissionController extends Controller
   public function submitApplication(Request $request){
 
 
-    return $request->all();
+    // return $request->all();
 
           // Validate the request data
         $request->validate([
