@@ -11,6 +11,9 @@ class ApplicationSubmissionController extends Controller
 {
   public function submitApplication(Request $request){
 
+
+    return $request->all();
+
           // Validate the request data
         $request->validate([
             'resume' => 'required|file|mimes:pdf,doc,docx,jpg,jpeg,png', // Adjust validation rules as needed
