@@ -36,8 +36,8 @@ class ApplicationSubmissionController extends Controller
 
        $application = ApplicationSubmission::create([
           'job_seeker_id' => $request->user()->id,
-          'job_posting_id' => $request->job_posting_id,
-          'cover_letter' => $request->cover_letter,
+          'job_posting_id' => 'kk',
+          'cover_letter' => 'k',
           'uploaded_cv_path' => $filename,
         ]);
 
