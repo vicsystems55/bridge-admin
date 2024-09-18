@@ -2,64 +2,73 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ApplicationSubmission;
+use App\Models\Resume;
 use Illuminate\Http\Request;
+use App\Models\ProfileUpdate;
+use App\Models\ApplicationSubmission;
 
 class ApplicationSubmissionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+  public function submitApplication(Request $request){
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+          // Validate the request data
+        $request->validate([
+            'resume' => 'required|file|mimes:pdf,doc,docx,jpg,jpeg,png', // Adjust validation rules as needed
+        ]);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        if ($request->file('resume')) {
+          # code...
+            // Get the uploaded file
+        $file = $request->file('resume');
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ApplicationSubmission $applicationSubmission)
-    {
-        //
-    }
+        // Generate a unique filename
+        $filename = time() . '_' . $file->getClientOriginalName();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(ApplicationSubmission $applicationSubmission)
-    {
-        //
-    }
+        // Store the file in the storage folder
+        $file->storeAs('uploads', $filename);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, ApplicationSubmission $applicationSubmission)
-    {
-        //
-    }
+        // $profile = ApplicationSubmission::where('user_id', $request->user()->id)->first();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(ApplicationSubmission $applicationSubmission)
-    {
-        //
-    }
+        ApplicationSubmission::updateOrCreate([
+          'job_seeker_id' => $request->user()->id,
+          'job_posting_id' => $request->job_posting_id,
+          'cover_letter' => $request->cover_letter,
+        ],[
+          'job_seeker_id' => $request->user()->id,
+          'job_posting_id' => $request->job_posting_id,
+          'cover_letter' => $request->cover_letter,
+          'uploaded_cv_path' => $request->uploaded_cv_path,
+        ]);
+
+        }else{
+
+
+          $resume = Resume::where('user_id', $request->user()->id)->first();
+
+          ApplicationSubmission::updateOrCreate([
+            'job_seeker_id' => $request->user()->id,
+            'job_posting_id' => $request->job_posting_id,
+            'cover_letter' => $request->cover_letter,
+          ],[
+            'job_seeker_id' => $request->user()->id,
+            'job_posting_id' => $request->job_posting_id,
+            'cover_letter' => $request->cover_letter,
+            'uploaded_cv_path' => $resume->path,
+          ]);
+
+
+        }
+
+
+
+
+
+        // Save the filename to the database (if needed)
+        // ...
+
+        return response()->json(['message' => 'Resume uploaded successfully']);
+
+
+
+  }
 }
