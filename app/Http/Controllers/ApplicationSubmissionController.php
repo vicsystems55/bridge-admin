@@ -30,6 +30,8 @@ class ApplicationSubmissionController extends Controller
         // Store the file in the storage folder
         $file->storeAs('uploads', $filename);
 
+        return 123;
+
         // $profile = ApplicationSubmission::where('user_id', $request->user()->id)->first();
 
        $application = ApplicationSubmission::updateOrCreate([
