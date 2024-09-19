@@ -71,4 +71,9 @@ class ApplicationSubmissionController extends Controller
 
     return response()->json(['message' => 'Resume uploaded successfully']);
   }
+
+  public function getSubmissions(){
+    $applications = ApplicationSubmission::with(['job_seeker', 'job_postings'])->latest()->get();
+    return $applications;
+  }
 }
