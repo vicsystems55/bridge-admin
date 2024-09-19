@@ -9,71 +9,66 @@ use App\Models\ApplicationSubmission;
 
 class ApplicationSubmissionController extends Controller
 {
-  public function submitApplication(Request $request){
+  public function submitApplication(Request $request)
+  {
 
 
     // return $request->all();
 
-          // Validate the request data
-        $request->validate([
-            'resume' => 'required|file|mimes:pdf,doc,docx,jpg,jpeg,png', // Adjust validation rules as needed
-        ]);
+    // Validate the request data
+    $request->validate([
+      'resume' => 'required|file|mimes:pdf,doc,docx,jpg,jpeg,png', // Adjust validation rules as needed
+    ]);
 
-        if ($request->file('resume')) {
-          # code...
-            // Get the uploaded file
-        $file = $request->file('resume');
+    if ($request->file('resume')) {
+      # code...
+      // Get the uploaded file
+      $file = $request->file('resume');
 
-        // Generate a unique filename
-        $filename = time() . '_' . $file->getClientOriginalName();
+      // Generate a unique filename
+      $filename = time() . '_' . $file->getClientOriginalName();
 
-        // Store the file in the storage folder
-        $file->storeAs('uploads', $filename);
-
-
-
-        // $profile = ApplicationSubmission::where('user_id', $request->user()->id)->first();
-
-       $application = ApplicationSubmission::create([
-          'job_seeker_id' => $request->user()->id,
-          'job_posting_id' => 'kk',
-          'cover_letter' => 'k',
-          'uploaded_cv_path' => $filename,
-        ]);
-
-        return 123;
-
-        }else{
+      // Store the file in the storage folder
+      $file->storeAs('uploads', $filename);
 
 
-          $resume = Resume::where('user_id', $request->user()->id)->first();
 
-          ApplicationSubmission::updateOrCreate([
-            'job_seeker_id' => $request->user()->id,
-            'job_posting_id' => $request->job_posting_id,
-            'cover_letter' => $request->cover_letter,
-          ],[
-            'job_seeker_id' => $request->user()->id,
-            'job_posting_id' => $request->job_posting_id,
-            'cover_letter' => $request->cover_letter,
-            'uploaded_cv_path' => $resume->path,
-          ]);
+      // $profile = ApplicationSubmission::where('user_id', $request->user()->id)->first();
+
+      $application = ApplicationSubmission::create([
+        'job_seeker_id' => $request->user()->id,
+        'job_posting_id' => $request->job_posting_id,
+        'cover_letter' => $request->cover_letter,
+        'uploaded_cv_path' => $filename,
+      ]);
+
+      return 123;
+    } else {
 
 
-        }
+      $resume = Resume::where('user_id', $request->user()->id)->first();
 
-        return $application;
+      ApplicationSubmission::updateOrCreate([
+        'job_seeker_id' => $request->user()->id,
+        'job_posting_id' => $request->job_posting_id,
+        'cover_letter' => $request->cover_letter,
+      ], [
+        'job_seeker_id' => $request->user()->id,
+        'job_posting_id' => $request->job_posting_id,
+        'cover_letter' => $request->cover_letter,
+        'uploaded_cv_path' => $resume->path,
+      ]);
+    }
+
+    // return $application;
 
 
 
 
 
-        // Save the filename to the database (if needed)
-        // ...
+    // Save the filename to the database (if needed)
+    // ...
 
-        return response()->json(['message' => 'Resume uploaded successfully']);
-
-
-
+    return response()->json(['message' => 'Resume uploaded successfully']);
   }
 }
