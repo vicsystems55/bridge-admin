@@ -73,7 +73,7 @@ class ApplicationSubmissionController extends Controller
   }
 
   public function getSubmissions(){
-    $applications = ApplicationSubmission::with(['job_seeker', 'job_postings'])->latest()->get();
+    $applications = ApplicationSubmission::with(['job_seeker.profile_update', 'job_postings'])->latest()->get();
     return $applications;
   }
 }
