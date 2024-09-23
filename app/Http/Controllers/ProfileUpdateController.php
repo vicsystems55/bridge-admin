@@ -51,7 +51,7 @@ class ProfileUpdateController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request)
+    public function showProfile(Request $request, $id)
     {
         //
 
