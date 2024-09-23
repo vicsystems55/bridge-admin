@@ -51,7 +51,7 @@ class ProfileUpdateController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ProfileUpdate $profileUpdate)
+    public function show(Request $request)
     {
         //
 

@@ -43,6 +43,9 @@ Route::post('/resend-otp', [ApiAuthController::class, 'resend_otp']);
 
 Route::apiResource('/profile', ProfileUpdateController::class)->middleware('auth:sanctum');
 
+Route::get('/profile/{id}', [ProfileUpdateController::class, 'show'])->middleware('auth:sanctum');
+
+
 Route::apiResource('/work-experience', WorkExperienceController::class)->middleware('auth:sanctum');
 
 Route::apiResource('/education', EducationController::class)->middleware('auth:sanctum');
