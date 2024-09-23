@@ -51,14 +51,14 @@ class ProfileUpdateController extends Controller
     /**
      * Display the specified resource.
      */
-    public function showProfile(Request $request, $id)
+    public function show($id)
     {
         //
 
         // return 123;
 
 
-        $profile = ProfileUpdate::where('user_id', request()->user()->id)->with('user')->first();
+        $profile = ProfileUpdate::where('user_id', $id)->with('user')->first();
 
         return $profile;
     }
