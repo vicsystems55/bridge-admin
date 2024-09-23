@@ -61,6 +61,28 @@ class ProfileUpdateController extends Controller
         return $profile;
     }
 
+    public function update_avatar(Request $request){
+
+      $request->validate([
+        'resume' => 'required|file|mimes:JPEG,JPG,PNG,jpg,jpeg,png', // Adjust validation rules as needed
+    ]);
+
+    // Get the uploaded file
+    $file = $request->file('avatar');
+
+    // Generate a unique filename
+    $filename = time() . '_' . $file->getClientOriginalName();
+
+    // Store the file in the storage folder
+    $file->storeAs('avatars', $filename);
+
+    return User::find($request->user()->id)->update([
+      'avatar' => $filename
+    ]);
+
+
+    }
+
     /**
      * Update the specified resource in storage.
      */
