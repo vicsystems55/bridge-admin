@@ -73,7 +73,7 @@ class ProfileUpdateController extends Controller
     $file = $request->file('avatar');
 
     // Generate a unique filename
-    $filename = time() . '_' . $file->getClientOriginalName();
+    $filename = time() . '_' . $file->getClientOriginalName(); //...
 
     // Store the file in the storage folder
     $file->storeAs('public/avatars', $filename);

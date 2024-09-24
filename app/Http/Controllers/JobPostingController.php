@@ -44,7 +44,7 @@ class JobPostingController extends Controller
           'renumeration_type' => $request->renumeration_type,
           'renumeration_amount' => $request->renumeration_amount,
           'company_name' => $request->company_name?? $company_profile->company_name,
-          'company_industry' => $request->company_industry?? $company_profile->industry_type,
+          'company_industry' => $company_profile->industry_type,
           'website' => $request->website,
           'location' => $request->location?? $company_profile->address,
         ]);
