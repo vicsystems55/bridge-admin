@@ -58,7 +58,7 @@ class ProfileUpdateController extends Controller
         // return 123;
 
 
-        $profile = ProfileUpdate::where('user_id', $id)->with('user')->first();
+        $profile = ProfileUpdate::with('user')->where('user_id', $id)->firstOrFail();
 
         return $profile;
     }
