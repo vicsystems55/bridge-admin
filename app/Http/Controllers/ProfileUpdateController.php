@@ -78,9 +78,11 @@ class ProfileUpdateController extends Controller
     // Store the file in the storage folder
     $file->storeAs('public/avatars', $filename);
 
-    return User::find($request->user()->id)->update([
+   User::find($request->user()->id)->update([
       'avatar' => $filename
     ]);
+
+    return User::find($request->user()->id);
 
 
     }
