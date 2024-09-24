@@ -32,7 +32,7 @@ class ResumeController extends Controller
       $filename = time() . '_' . $file->getClientOriginalName();
 
       // Store the file in the storage folder
-      $file->storeAs('uploads', $filename);
+      $file->storeAs('public/uploads', $filename);
 
       $profile = ProfileUpdate::where('user_id', $request->user()->id)->first();
 

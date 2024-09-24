@@ -76,7 +76,7 @@ class ProfileUpdateController extends Controller
     $filename = time() . '_' . $file->getClientOriginalName();
 
     // Store the file in the storage folder
-    $file->storeAs('avatars', $filename);
+    $file->storeAs('public/avatars', $filename);
 
     return User::find($request->user()->id)->update([
       'avatar' => $filename
