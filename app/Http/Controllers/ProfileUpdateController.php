@@ -66,7 +66,7 @@ class ProfileUpdateController extends Controller
     public function update_avatar(Request $request){
 
       $request->validate([
-        'resume' => 'required|file|mimes:JPEG,JPG,PNG,jpg,jpeg,png', // Adjust validation rules as needed
+        'avatar' => 'required|file|mimes:JPEG,JPG,PNG,jpg,jpeg,png', // Adjust validation rules as needed
     ]);
 
     // Get the uploaded file
