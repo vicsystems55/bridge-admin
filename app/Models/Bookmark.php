@@ -12,6 +12,6 @@ class Bookmark extends Model
     protected $guarded = [];
 
     public function bookmarkable(){
-      $this->morphTo();
+      return $this->morphTo();
     }
 }

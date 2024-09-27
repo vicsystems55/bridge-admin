@@ -4,27 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Bookmark;
 use App\Models\JobPosting;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Queue\Events\JobPopping;
 
 class BookmarkController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        //
+        $user = auth()->user(); // Assuming authenticated user
 
-        // Fetch bookmarks for JobPost
-        $user = auth()->user();
-        // return $user;
         $bookmarks = Bookmark::where('user_id', $user->id)
-            ->where('bookmarkable_type', JobPosting::class) // Ensure JobPost::class is used
-            ->with('bookmarkable')
+            ->where('bookmarkable_type', JobPosting::class)
+            ->with('bookmarkable') // Load the associated job posting
             ->get();
 
-        return response()->json($bookmarks);
+        return response()->json(['bookmarks' => $bookmarks]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -39,15 +39,45 @@ class BookmarkController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $bookmark = Bookmark::create([
-          'user_id' =>$request->user()->id,
-          'bookmarkable_type' =>'App\\Models\\JobPost',
-          'bookmarkable_id' =>$request->bookmarkable_id,
-          'category' =>$request->category,
+        $request->validate([
+            'job_posting_id' => 'required|exists:job_postings,id',
         ]);
 
-        return $bookmark;
+        if($request->bookmarkable_type == 'JobPosting'){
+
+          $bookmark = Bookmark::updateOrCreate([
+            'user_id' => $request->user()->id,
+            'bookmarkable_id' => $request->job_posting_id,
+          ],[
+            'user_id' => $request->user()->id,
+            'bookmarkable_type' => JobPosting::class,
+            'bookmarkable_id' => $request->job_posting_id,
+
+          ]);
+
+          return $bookmark;
+
+        }
+        if($request->bookmarkable_type == 'JobSeeker'){
+
+          $bookmark = Bookmark::updateOrCreate([
+            'user_id' => $request->user()->id,
+            'bookmarkable_id' => $request->job_posting_id,
+          ],[
+            'user_id' => $request->user()->id,
+            'bookmarkable_type' => User::class,
+            'bookmarkable_id' => $request->job_posting_id,
+
+          ]);
+
+          return $bookmark;
+
+
+        }
+
+
+
+
     }
 
 
