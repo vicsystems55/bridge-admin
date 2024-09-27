@@ -78,6 +78,8 @@ class BookmarkController extends Controller
 
 
 
+
+
     }
 
 
@@ -109,8 +111,17 @@ class BookmarkController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Bookmark $bookmark)
+    public function removeBookmarkedJob(Request $request)
     {
         //
+
+        // return 123;
+
+        $bookmark = Bookmark::where('bookmarkable_id', $request->job_posting_id)
+        ->where('user_id', $request->user()->id)
+        ->where('bookmarkable_type', JobPosting::class)
+        ->first();
+
+        return $bookmark->delete();
     }
 }
