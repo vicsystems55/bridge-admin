@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CompanyProfile;
+use App\Models\Bookmark;
 use App\Models\JobPosting;
 use Illuminate\Http\Request;
+use App\Models\CompanyProfile;
 
 class JobPostingController extends Controller
 {
@@ -14,9 +15,20 @@ class JobPostingController extends Controller
     public function index()
     {
         //
-        $job_postings = JobPosting::where('active', 1)->latest()->get();
+        $user = auth()->user(); // Assuming authenticated user
 
-        return $job_postings;
+        $jobPostings = JobPosting::all();
+
+        $bookmarks = Bookmark::where('user_id', $user->id)
+            ->where('bookmarkable_type', JobPosting::class)
+            ->pluck('bookmarkable_id');
+
+        $jobPostings = $jobPostings->map(function ($jobPosting) use ($bookmarks) {
+            $jobPosting->bookmarked = $bookmarks->contains($jobPosting->id);
+            return $jobPosting;
+        });
+
+        return response()->json(['job_postings' => $jobPostings]);
     }
 
     /**
