@@ -17,6 +17,7 @@ use App\Http\Controllers\WorkExperienceController;
 use App\Http\Controllers\UserPermissionsController;
 use App\Http\Controllers\RecruiterProfileController;
 use App\Http\Controllers\ApplicationSubmissionController;
+use App\Http\Controllers\BookmarkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,3 +82,5 @@ Route::post('/assign-role', [UserPermissionsController::class, 'assign_role'])->
 Route::get('/notifications', [NotificationController::class, 'index']);
 
 Route::post('/update-avatar', [ProfileUpdateController::class, 'update_avatar'])->middleware('auth:sanctum');
+
+Route::apiResource('bookmarks', BookmarkController::class)->middleware('auth:sanctum');

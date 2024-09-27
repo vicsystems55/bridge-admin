@@ -52,6 +52,7 @@ class ApiAuthController extends Controller
       'name' => $validatedData['name'],
       'email' => $validatedData['email'],
       'role' => 'user',
+      'avatar' => 'avatar.png',
       'password' => Hash::make($validatedData['password']),
     ]);
 
