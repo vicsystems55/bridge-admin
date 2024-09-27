@@ -28,7 +28,7 @@ class JobPostingController extends Controller
             return $jobPosting;
         });
 
-        return response()->json(['job_postings' => $jobPostings]);
+        return $jobPostings;
     }
 
     /**
