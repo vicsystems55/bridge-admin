@@ -83,6 +83,8 @@ Route::get('/notifications', [NotificationController::class, 'index']);
 
 Route::post('/update-avatar', [ProfileUpdateController::class, 'update_avatar'])->middleware('auth:sanctum');
 
+Route::post('/update-company-logo', [CompanyProfileController::class, 'update_company_logo'])->middleware('auth:sanctum');
+
 Route::apiResource('bookmarks', BookmarkController::class)->middleware('auth:sanctum');
 
 Route::post('/remove-bookmarked-job', [BookmarkController::class, 'removeBookmarkedJob'])->middleware('auth:sanctum');

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('about');
             $table->string('address');
             $table->string('company_size');
+            $table->string('company_logo')->nullable();
             $table->string('website')->nullable();
             $table->string('facebook_url')->nullable();
             $table->string('twitter_url')->nullable();
