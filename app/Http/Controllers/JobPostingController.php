@@ -31,6 +31,25 @@ class JobPostingController extends Controller
         return $jobPostings;
     }
 
+    public function allJobPostings()
+    {
+        //
+        $user = auth()->user(); // Assuming authenticated user
+
+        $jobPostings = JobPosting::latest()->get();
+
+        $bookmarks = Bookmark::where('user_id', $user->id)
+            ->where('bookmarkable_type', JobPosting::class)
+            ->pluck('bookmarkable_id');
+
+        $jobPostings = $jobPostings->map(function ($jobPosting) use ($bookmarks) {
+            $jobPosting->bookmarked = $bookmarks->contains($jobPosting->id);
+            return $jobPosting;
+        });
+
+        return $jobPostings;
+    }
+
     /**
      * Store a newly created resource in storage.
      */
