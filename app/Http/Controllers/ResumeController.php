@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Resume;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\ProfileUpdate;
 
@@ -40,6 +41,17 @@ class ResumeController extends Controller
         'user_id' => $request->user()->id,
         'profile_update_id' => $profile->id??'',
         'path' => $filename
+      ]);
+
+
+
+      Notification::create([
+
+        'user_id' => $request->user()->id,
+        'subject' => 'Resume Update',
+        'body' => '🎉 Congratulations, your resume has been updated.',
+        'type' => 'resume-update',
+
       ]);
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Skill;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\ProfileUpdate;
 
@@ -35,6 +36,17 @@ class SkillController extends Controller
         'profile_update_id' => $user_profile->id ?? '',
         'user_id' => $request->user()->id,
         'name' => $request->name,
+      ]);
+
+
+
+      Notification::create([
+
+        'user_id' => $request->user()->id,
+        'subject' => 'Skill Update',
+        'body' => 'New Skill added successfully',
+        'type' => 'skill-update',
+
       ]);
 
       return $skill;

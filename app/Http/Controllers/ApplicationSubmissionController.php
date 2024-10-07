@@ -6,6 +6,8 @@ use App\Models\Resume;
 use Illuminate\Http\Request;
 use App\Models\ProfileUpdate;
 use App\Models\ApplicationSubmission;
+use App\Models\JobPosting;
+use App\Models\Notification;
 
 class ApplicationSubmissionController extends Controller
 {
@@ -62,6 +64,17 @@ class ApplicationSubmissionController extends Controller
 
     // return $application;
 
+    $jobPost = JobPosting::find($request->job_posting_id);
+
+
+    Notification::create([
+
+      'user_id' => $request->user()->id,
+      'subject' => 'Application Status',
+      'body' => 'Your application for ' .$jobPost->title.' has been submitted successfully',
+      'type' => 'job-application',
+
+    ]);
 
 
 

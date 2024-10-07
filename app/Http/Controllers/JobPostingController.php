@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Bookmark;
 use App\Models\JobPosting;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\CompanyProfile;
 
@@ -78,6 +79,16 @@ class JobPostingController extends Controller
           'company_industry' => $company_profile->industry_type??'',
           'website' => $request->website,
           'location' => $request->location?? $company_profile->address,
+        ]);
+
+
+        Notification::create([
+
+          'user_id' => $request->user()->id,
+          'subject' => 'New Job Post Published',
+          'body' => 'Your job post [' .$job_post->title .'] has been published successfully',
+          'type' => 'job-post',
+
         ]);
 
         return $job_post;

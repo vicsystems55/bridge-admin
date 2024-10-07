@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\ProfileUpdate;
 use App\Models\WorkExperience;
@@ -51,6 +52,16 @@ class WorkExperienceController extends Controller
           'start_date' => $request->start_date,
           'end_date' => $request->end_date,
         ]);
+
+        Notification::create([
+
+          'user_id' => $request->user()->id,
+          'subject' => 'Work Experience Update',
+          'body' => 'Your work experience as ' .$request->job_title.' has been updated successfully',
+          'type' => 'work-experience',
+
+        ]);
+
 
         return $work_experience;
 
