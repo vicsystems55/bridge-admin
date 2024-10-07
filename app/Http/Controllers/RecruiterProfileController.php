@@ -13,7 +13,7 @@ class RecruiterProfileController extends Controller
     public function index()
     {
         //
-        $recruiter_profile = RecruiterProfile::where('user_id', request()->user()->id)->first();
+        $recruiter_profile = RecruiterProfile::where('user_id', request()->user()->id)->firstOrfail();
 
         return $recruiter_profile;
     }
