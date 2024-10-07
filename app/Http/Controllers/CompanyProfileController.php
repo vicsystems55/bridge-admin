@@ -75,7 +75,7 @@ class CompanyProfileController extends Controller
     // Store the file in the storage folder
     $file->storeAs('public/company_logos', $filename);
 
-    CompanyProfile::find($request->id)->update([
+    CompanyProfile::where('user_id',$request->user()->id)->update([
     'company_logo' => $filename,
     ]);
 
@@ -83,7 +83,7 @@ class CompanyProfileController extends Controller
     //   'avatar' => $filename
     // ]);
 
-    return CompanyProfile::find($request->id);
+    return CompanyProfile::where('user_id' ,$request->user()->id);
   }
 
   /**
