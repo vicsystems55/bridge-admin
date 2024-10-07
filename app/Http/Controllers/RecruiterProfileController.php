@@ -15,7 +15,11 @@ class RecruiterProfileController extends Controller
         //
         $recruiter_profile = RecruiterProfile::where('user_id', request()->user()->id)->firstOrfail();
 
-        return $recruiter_profile;
+        if (!$recruiter_profile) {
+          return response()->json([], 200); // You can customize the response as needed
+      }
+
+      return $recruiter_profile;
     }
 
     /**
