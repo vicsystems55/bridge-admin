@@ -17,7 +17,7 @@ class JobPostingController extends Controller
         //
         $user = auth()->user(); // Assuming authenticated user
 
-        $jobPostings = JobPosting::all();
+        $jobPostings = JobPosting::where('user_id', $user->id)->all();
 
         $bookmarks = Bookmark::where('user_id', $user->id)
             ->where('bookmarkable_type', JobPosting::class)
