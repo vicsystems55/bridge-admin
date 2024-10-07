@@ -44,6 +44,18 @@ class ApplicationSubmissionController extends Controller
         'uploaded_cv_path' => $filename,
       ]);
 
+      $jobPost = JobPosting::find($request->job_posting_id);
+
+
+      Notification::create([
+
+        'user_id' => $request->user()->id,
+        'subject' => 'Application Status',
+        'body' => 'Your application for ' .$jobPost->title.' has been submitted successfully',
+        'type' => 'job-application',
+
+      ]);
+
       return 123;
     } else {
 
