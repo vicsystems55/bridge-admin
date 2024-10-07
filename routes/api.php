@@ -84,7 +84,7 @@ Route::post('/create-roles', [UserPermissionsController::class, 'create']);
 
 Route::post('/assign-role', [UserPermissionsController::class, 'assign_role'])->middleware('auth:sanctum');
 
-Route::get('/notifications', [NotificationController::class, 'index']);
+Route::get('/notifications', [NotificationController::class, 'index'])->middleware('auth:sanctum');
 
 Route::post('/update-avatar', [ProfileUpdateController::class, 'update_avatar'])->middleware('auth:sanctum');
 

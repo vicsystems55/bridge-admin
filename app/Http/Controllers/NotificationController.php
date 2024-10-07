@@ -11,7 +11,9 @@ class NotificationController extends Controller
 
     public function index(Request $request){
 
+      $notifications = Notification::where('user_id', $request->user()->id)->latest()->get();
 
-      return Notification::where('user_id', $request->user()->id)->latest()->get();
+
+      return $notifications;
     }
 }
