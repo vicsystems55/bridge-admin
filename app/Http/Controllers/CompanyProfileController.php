@@ -83,7 +83,7 @@ class CompanyProfileController extends Controller
     //   'avatar' => $filename
     // ]);
 
-    return CompanyProfile::where('user_id' ,$request->user()->id);
+    return CompanyProfile::where('user_id' ,$request->user()->id)->first();
   }
 
   /**
