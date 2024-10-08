@@ -51,7 +51,7 @@ class ApplicationSubmissionController extends Controller
 
         'user_id' => $request->user()->id,
         'subject' => 'Application Status',
-        'body' => 'Your application for ' .$jobPost->title.' has been submitted successfully',
+        'body' => 'Your application has been submitted successfully',
         'type' => 'job-application',
 
       ]);
