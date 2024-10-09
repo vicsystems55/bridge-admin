@@ -32,7 +32,7 @@ class BookmarkController extends Controller
     public function create()
     {
         //
-        
+
     }
 
     /**
@@ -40,11 +40,13 @@ class BookmarkController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'job_posting_id' => 'required|exists:job_postings,id',
-        ]);
+
 
         if($request->bookmarkable_type == 'JobPosting'){
+
+          $request->validate([
+            'job_posting_id' => 'required|exists:job_postings,id',
+        ]);
 
           $bookmark = Bookmark::updateOrCreate([
             'user_id' => $request->user()->id,
@@ -60,6 +62,10 @@ class BookmarkController extends Controller
 
         }
         if($request->bookmarkable_type == 'JobSeeker'){
+
+          $request->validate([
+            'job_posting_id' => 'required|exists:users,id',
+        ]);
 
           $bookmark = Bookmark::updateOrCreate([
             'user_id' => $request->user()->id,
@@ -118,11 +124,23 @@ class BookmarkController extends Controller
 
         // return 123;
 
-        $bookmark = Bookmark::where('bookmarkable_id', $request->job_posting_id)
-        ->where('user_id', $request->user()->id)
-        ->where('bookmarkable_type', JobPosting::class)
-        ->first();
+        try {
+          //code...
+          $bookmark = Bookmark::where('bookmarkable_id', $request->job_posting_id)
+          ->where('user_id', $request->user()->id)
+          ->where('bookmarkable_type', JobPosting::class)
+          ->first();
 
-        return $bookmark->delete();
+          return $bookmark->delete();
+        } catch (\Throwable $th) {
+          //throw $th;
+
+          $bookmark = Bookmark::where('bookmarkable_id', $request->job_posting_id)
+          ->where('user_id', $request->user()->id)
+          ->where('bookmarkable_type', User::class)
+          ->first();
+
+          return $bookmark->delete();
+        }
     }
 }
