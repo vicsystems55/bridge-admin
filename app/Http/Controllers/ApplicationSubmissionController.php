@@ -97,8 +97,28 @@ class ApplicationSubmissionController extends Controller
     return response()->json(['message' => 'Resume uploaded successfully']);
   }
 
-  public function getSubmissions(){
-    $applications = ApplicationSubmission::with(['job_seeker.profile', 'job_postings'])->latest()->get();
-    return $applications;
+  public function getSubmissions(Request $request){
+    $user = $request->user();
+    if($user->hasRole('job_seeker')){
+      $applications = ApplicationSubmission::with(['job_seeker.profile', 'job_postings'])
+      ->where('job_seeker_id', $request->user()->id)
+      ->latest()
+      ->get();
+        return $applications;
+
+    }
+    if($user->hasRole('recruiter')){
+
+      $applications = ApplicationSubmission::with(['job_seeker.profile', 'job_postings'])
+      ->whereHas('job_postings', function ($query) use ($request) {
+          $query->where('user_id', $request->user()->id);
+      })
+      ->latest()
+      ->get();
+
+      return $applications;
+
+    }
+
   }
 }
