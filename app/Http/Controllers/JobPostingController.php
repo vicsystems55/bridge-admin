@@ -22,7 +22,7 @@ class JobPostingController extends Controller
 
         $jobPostings = JobPosting::where('user_id', $user->id)->get();
 
-        return $jobPostings;
+        // return $jobPostings;
 
         $bookmarks = Bookmark::where('user_id', $user->id)
             ->where('bookmarkable_type', JobPosting::class)
