@@ -18,9 +18,9 @@ class JobPostingController extends Controller
         //
         $user = $request->user(); // Assuming authenticated user
 
-        return $user->id;
+        // return $user->id;
 
-        $jobPostings = JobPosting::where('user_id', $user->id)->all();
+        $jobPostings = JobPosting::where('user_id', $user->id)->get();
 
         return $jobPostings;
 
