@@ -13,10 +13,10 @@ class JobPostingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $user = auth()->user(); // Assuming authenticated user
+        $user = $request->user(); // Assuming authenticated user
 
         $jobPostings = JobPosting::where('user_id', $user->id)->all();
 
