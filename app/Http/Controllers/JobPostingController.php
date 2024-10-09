@@ -20,6 +20,8 @@ class JobPostingController extends Controller
 
         $jobPostings = JobPosting::where('user_id', $user->id)->all();
 
+        return $jobPostings;
+
         $bookmarks = Bookmark::where('user_id', $user->id)
             ->where('bookmarkable_type', JobPosting::class)
             ->pluck('bookmarkable_id');
