@@ -62,6 +62,8 @@ Route::middleware('auth')->group(function () {
   Route::get('/manage-subscriptions', [LogisticsDashboard::class, 'manage_subscriptions'])->name('manage-subscriptions');
 
 
+
+
   //user details view
 
 //   Route::get('/app/user/view/account', [LogisticsDashboard::class, 'index'])->name('app-user-view-account');
@@ -72,6 +74,9 @@ Route::middleware('auth')->group(function () {
 
 
 });
+
+Route::get('/privacy-policy', [LogisticsDashboard::class, 'privacyPolicy'])->name('privacy-policy');
+
 
 
 

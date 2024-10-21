@@ -15,6 +15,13 @@ class LogisticsDashboard extends Controller
     return view('content.apps.app-logistics-dashboard');
   }
 
+  public function privacyPolicy(){
+
+
+    
+    return view('content.pages.privacy_policy');
+  }
+
   public function user_accounts()
   {
 
