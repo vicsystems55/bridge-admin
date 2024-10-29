@@ -7,13 +7,14 @@ use Illuminate\Http\Request;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\Messaging\CloudMessage;
 
+
 class FirebaseController extends Controller
 {
   public function sendPushNotification($fcmToken, $title, $body)
   {
 
 
-    $firebase = (new Factory)->withServiceAccount(__DIR__.'/bridgepushnotifications-firebase-adminsdk-cyugc-95763c3edb.json');
+    $firebase = (new Factory)->withServiceAccount('/bridgepushnotifications-firebase-adminsdk-cyugc-95763c3edb.json');
     $messaging = $firebase->createMessaging();
 
     $message = CloudMessage::withTarget('token', $fcmToken)
