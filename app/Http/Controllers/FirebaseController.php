@@ -14,11 +14,13 @@ class FirebaseController extends Controller
   {
 
 
-    $firebase = (new Factory)->withServiceAccount('./bridgepushnotifications-firebase-adminsdk-cyugc-95763c3edb.json');
+    $firebase = (new Factory)->withServiceAccount(storage_path('app/public/bridgepushnotifications-firebase-adminsdk-cyugc-95763c3edb.json'));
     $messaging = $firebase->createMessaging();
 
     $message = CloudMessage::withTarget('token', $fcmToken)
       ->withNotification(['title' => $title, 'body' => $body]);
+
+      
 
     $messaging->send($message);
   }
