@@ -97,4 +97,4 @@ Route::post('/remove-bookmarked-job', [BookmarkController::class, 'removeBookmar
 
 
 // test push notifications
-Route::post('/push-notification', [FirebaseController::class, 'sendToUser']);
+Route::get('/push-notification', [FirebaseController::class, 'sendToUser']);

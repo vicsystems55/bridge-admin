@@ -15,7 +15,7 @@ class FirebaseController extends Controller
 
 
     $firebase = (new Factory)->withServiceAccount(storage_path('app/public/bridgepushnotifications-firebase-adminsdk-cyugc-95763c3edb.json'));
-
+    return $firebase;
 
     $messaging = $firebase->createMessaging();
 
