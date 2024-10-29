@@ -7,6 +7,8 @@ use App\Models\JobPosting;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\CompanyProfile;
+use Kreait\Firebase\Factory;
+use Kreait\Firebase\Messaging\CloudMessage;
 
 class JobPostingController extends Controller
 {
@@ -86,6 +88,7 @@ class JobPostingController extends Controller
         ]);
 
 
+
         Notification::create([
 
           'user_id' => $request->user()->id,
@@ -95,7 +98,44 @@ class JobPostingController extends Controller
 
         ]);
 
+        $this->sendToUser();
+
         return $job_post;
+    }
+
+
+    public function sendPushNotification($fcmToken, $title, $body)
+    {
+
+
+      $firebase = (new Factory)->withServiceAccount(storage_path('app/public/bridgepushnotifications-firebase-adminsdk-cyugc-95763c3edb.json'));
+
+
+      $messaging = $firebase->createMessaging();
+
+      // return $messaging;
+
+      $message = CloudMessage::withTarget('token', $fcmToken)
+        ->withNotification(['title' => $title, 'body' => $body]);
+
+        // return $message;
+
+
+
+      $messaging->send($message);
+    }
+
+    public function sendToUser()
+    {
+
+      // return $request->fcmToken;
+      $fcmToken = 'eRxa9H64TdScokyTpOEDgR:APA91bGzQmaEZjfzQARrgeEAtKmKFtqdUi057enM2QXk0HjN5fQx8BOms6O1DUfh_PNNCQoKALmTnAgE0XUNOIBcXIR-tRoaV4RlHeJdYYUZgIbon4_hj_U';
+      $title = "Hello User!";
+      $body = "This is a test push notification.";
+
+      $this->sendPushNotification($fcmToken, $title, $body);
+
+      // return response()->json(['success' => true]);
     }
 
     /**
