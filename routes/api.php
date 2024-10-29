@@ -18,6 +18,7 @@ use App\Http\Controllers\UserPermissionsController;
 use App\Http\Controllers\RecruiterProfileController;
 use App\Http\Controllers\ApplicationSubmissionController;
 use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\FirebaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,3 +94,7 @@ Route::post('/update-company-logo', [CompanyProfileController::class, 'update_co
 Route::apiResource('bookmarks', BookmarkController::class)->middleware('auth:sanctum');
 
 Route::post('/remove-bookmarked-job', [BookmarkController::class, 'removeBookmarkedJob'])->middleware('auth:sanctum');
+
+
+// test push notifications
+Route::post('/push-notification', [FirebaseController::class, 'sendToUser']);
