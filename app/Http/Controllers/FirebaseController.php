@@ -13,7 +13,7 @@ class FirebaseController extends Controller
   {
 
 
-    $firebase = (new Factory)->withServiceAccount(config('firebase.credentials.file'));
+    $firebase = (new Factory)->withServiceAccount(config('firebase.credentials'));
     $messaging = $firebase->createMessaging();
 
     $message = CloudMessage::withTarget('token', $fcmToken)
