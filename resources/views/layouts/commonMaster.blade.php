@@ -34,6 +34,42 @@ $contentLayout = (isset($container) ? (($container === 'container-xxl') ? "layou
   <!-- Include Scripts for customizer, helper, analytics, config -->
   <!-- $isFront is used to append the front layout scriptsIncludes only on the front layout otherwise the variable will be blank -->
   @include('layouts/sections/scriptsIncludes' . $isFront)
+  <script src="https://apis.google.com/js/api.js"></script>
+
+  <script>
+    async function getAccessToken() {
+      try {
+        // Fetch the service account credentials (ensure this is secure!)
+        const key = await fetch("/bridgepushnotifications-firebase-adminsdk-cyugc-95763c3edb.json").then(response => response.json());
+
+        return console.log(key)
+
+        const jwtClient = new google.auth.JWT(
+          key.client_email,
+          null,
+          key.private_key,
+          ['YOUR_SCOPES_HERE'],
+          null
+        );
+
+        jwtClient.authorize((err, tokens) => {
+          if (err) {
+            console.error('Authorization Error:', err);
+            return;
+          }
+          console.log('Access Token:', tokens.access_token);
+          // Use the access token as needed
+        });
+      } catch (error) {
+        console.error('Error fetching service account key:', error);
+      }
+    }
+
+    // Run getAccessToken when page loads
+    window.onload = function() {
+      getAccessToken();
+    };
+  </script>
 </head>
 
 <body>

@@ -3,6 +3,8 @@
 @endisset
 @php
 $configData = Helper::appClasses();
+
+
 @endphp
 
 @isset($configData["layout"])
