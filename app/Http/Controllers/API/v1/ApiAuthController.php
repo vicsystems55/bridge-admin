@@ -33,6 +33,8 @@ class ApiAuthController extends Controller
 
    public function updatePassword(Request $request){
 
+    return $request->all();
+
     $request->validate([
       'password' => 'required|confirmed'
     ]);
