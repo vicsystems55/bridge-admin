@@ -49,6 +49,8 @@ class ApiAuthController extends Controller
 
     }
 
+    return Hash::make($request->old_password);
+
 
 
 
