@@ -41,17 +41,10 @@ class ApiAuthController extends Controller
 
     $user = User::find($request->user()->id);
 
-    if (Hash::make($request->old_password) == $user->password) {
 
       return $user->update([
         'password' => Hash::make($request->password)
       ]);
-
-    }
-
-    return Hash::make($request->old_password);
-
-
 
 
    }
