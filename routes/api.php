@@ -45,6 +45,9 @@ Route::post('/resend-otp', [ApiAuthController::class, 'resend_otp']);
 
 Route::apiResource('/profile', ProfileUpdateController::class)->middleware('auth:sanctum');
 
+Route::post('/update-password', [ApiAuthController::class, 'updatePassword'])->middleware('auth:sanctum');
+
+
 // Route::get('/profile/{id}', [ProfileUpdateController::class, 'showProfile'])->middleware('auth:sanctum');
 
 
@@ -94,6 +97,8 @@ Route::post('/update-company-logo', [CompanyProfileController::class, 'update_co
 Route::apiResource('bookmarks', BookmarkController::class)->middleware('auth:sanctum');
 
 Route::post('/remove-bookmarked-job', [BookmarkController::class, 'removeBookmarkedJob'])->middleware('auth:sanctum');
+
+
 
 
 // test push notifications

@@ -31,6 +31,27 @@ class ApiAuthController extends Controller
 
    }
 
+   public function updatePassword(Request $request){
+
+    $request->validate([
+      'password' => 'required|confirmed'
+    ]);
+
+    $user = User::find($request->user()->id);
+
+    if (Auth::attempt($request->only($user->email, $request->old_password))) {
+
+      return $user->update([
+        'password' => Hash::make($request->password)
+      ]);
+
+    }
+
+
+
+
+   }
+
 
 
   public function register(Request $request)
