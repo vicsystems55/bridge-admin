@@ -41,7 +41,7 @@ class ApiAuthController extends Controller
 
     $user = User::find($request->user()->id);
 
-    if (Auth::guard('api')->attempt($request->only($user->email, $request->old_password))) {
+    if (Hash::make($request->old_password) == $user->password) {
 
       return $user->update([
         'password' => Hash::make($request->password)
