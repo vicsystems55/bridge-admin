@@ -65,6 +65,8 @@ Route::post('/application-submssion', [ApplicationSubmissionController::class, '
 
 Route::get('/application-submssion', [ApplicationSubmissionController::class, 'getSubmissions'])->middleware('auth:sanctum');
 
+Route::get('/application-details', [ApplicationSubmissionController::class, 'applicationDetails'])->middleware('auth:sanctum');
+
 Route::apiResource('/company-profile', CompanyProfileController::class)->middleware('auth:sanctum');
 
 Route::apiResource('/recruiter-profile', RecruiterProfileController::class)->middleware('auth:sanctum');

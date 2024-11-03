@@ -121,4 +121,18 @@ class ApplicationSubmissionController extends Controller
     }
 
   }
+
+  public function applicationDetails(Request $request){
+
+    $application = ApplicationSubmission::with(['job_seeker.profile','job_seeker.latest_education', 'job_postings'])
+    ->where('id', $request->jobId)
+    ->whereHas('job_postings', function ($query) use ($request) {
+        $query->where('user_id', $request->user()->id);
+    })
+    ->latest()
+    ->first();
+
+    return $application;
+
+  }
 }
