@@ -6,7 +6,10 @@ use App\Models\ApplicationSubmission;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\ResumeController;
+use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\FirebaseController;
 use App\Http\Controllers\EducationController;
+use App\Http\Controllers\BurconnRegController;
 use App\Http\Controllers\JobPostingController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileUpdateController;
@@ -17,8 +20,6 @@ use App\Http\Controllers\WorkExperienceController;
 use App\Http\Controllers\UserPermissionsController;
 use App\Http\Controllers\RecruiterProfileController;
 use App\Http\Controllers\ApplicationSubmissionController;
-use App\Http\Controllers\BookmarkController;
-use App\Http\Controllers\FirebaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,6 +101,10 @@ Route::apiResource('bookmarks', BookmarkController::class)->middleware('auth:san
 
 Route::post('/remove-bookmarked-job', [BookmarkController::class, 'removeBookmarkedJob'])->middleware('auth:sanctum');
 
+
+Route::post('/bursconn/register-member', [BurconnRegController::class, 'regMember']);
+
+Route::get('/bursconn/members', [BurconnRegController::class, 'members']);
 
 
 
