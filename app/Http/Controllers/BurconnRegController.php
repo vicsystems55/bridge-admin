@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BursconRegMail;
 use App\Models\BurconnReg;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class BurconnRegController extends Controller
 {
@@ -33,6 +35,24 @@ class BurconnRegController extends Controller
 
 
     ]);
+
+    $datax = [
+      'id' => $member->id,
+      'surname' => $member->surname,
+      'firstname' => $member->firstname,
+      'othernames' => $member->othernames,
+      'schoolName' => $member->schoolName,
+      'state' => $member->state,
+
+    ];
+
+
+    Mail::to($member->email)
+    ->send(new BursconRegMail($datax));
+
+
+
+
 
     return $member;
   }
