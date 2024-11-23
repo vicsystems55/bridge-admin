@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Resume;
-use Illuminate\Http\Request;
-use App\Models\ProfileUpdate;
-use App\Models\ApplicationSubmission;
 use App\Models\JobPosting;
 use App\Models\Notification;
+use Illuminate\Http\Request;
+use App\Models\ProfileUpdate;
+use App\Mail\ApplicationStatusMail;
+use Illuminate\Support\Facades\Mail;
+use App\Models\ApplicationSubmission;
 
 class ApplicationSubmissionController extends Controller
 {
@@ -138,22 +141,83 @@ class ApplicationSubmissionController extends Controller
 
   public function reviewApplication(Request $request){
 
+    // return $request->all();
+
+    $application = ApplicationSubmission::with('job_seeker')->find($request->id);
+    $job_seeker = User::find($request->job_seeker_id);
+    $jobPost = JobPosting::find($application->job_posting_id);
+
+    // return $application;
+    // return $job_seeker;
+    // return $jobPost;
+
+    $datax = [
+      'jobTitle' => $jobPost->job_title,
+      'jobSeekerName' => $job_seeker->name,
+      'companyName' => $jobPost->company,
+      'reviewNote' => $request->review_note,
+    ];
+
+
+
     if($request->status == 'accepted'){
-      $application = ApplicationSubmission::find($request->id)->update([
+      $application->update([
+        'reviewed_by' => $request->user()->id,
         'interview_date' => $request->interview_date,
         'review_noted' => $request->review_note,
         'status' => $request->status
       ]);
-      return $application;
+
+      Notification::create([
+        'user_id' => $application->job_seeker->id,
+        'subject' => 'Application Accepted',
+        'body' => 'Congratulations! Your application has been accepted. Please log in to your account for more details and next steps.',
+        'type' => 'application-status',
+    ]);
+
+    Notification::create([
+      'user_id' => $request->user()->id,
+      'subject' => 'Application Accepted',
+      'body'    => 'An application for the position of "' . $jobPost->title . '" has been accepted. The interview is scheduled for ' . $request->interview_date . '.',
+      'type'    => 'application-status',
+  ]);
+
+
+
+
+    Mail::to($job_seeker->email)
+    ->send(new ApplicationStatusMail($datax));
+
+
+    return $application;
 
     }
     if($request->status == 'rejected'){
 
-      $application = ApplicationSubmission::find($request->id)->update([
+      $application->update([
+        'reviewed_by' => $request->user()->id,
         'review_noted' => $request->review_noted,
         'status' => $request->status
       ]);
-      return $application;
+
+      Notification::create([
+        'user_id' => $application->job_seeker->id,
+        'subject' => 'Application Rejected',
+        'body' => 'We regret to inform you that your application has been rejected. Please log in to your account for more information and explore other opportunities.',
+        'type' => 'application-status',
+    ]);
+
+    Notification::create([
+      'user_id' => $request->user()->id,
+      'subject' => 'Application Rejected',
+      'body'    => 'An application for the position of "' . $jobPost->title . '" has been rejected.',
+      'type'    => 'application-status',
+  ]);
+
+    Mail::to($job_seeker->email)
+    ->send(new ApplicationStatusMail($datax));
+
+    return $application;
 
 
     }
