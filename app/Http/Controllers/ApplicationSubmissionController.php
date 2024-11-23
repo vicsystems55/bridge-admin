@@ -160,7 +160,7 @@ class ApplicationSubmissionController extends Controller
 
 
 
-    if($request->status == 'accepted'){
+    if($request->status == 'accept'){
       $application->update([
         'reviewed_by' => $request->user()->id,
         'interview_date' => $request->interview_date,
@@ -192,7 +192,7 @@ class ApplicationSubmissionController extends Controller
     return $application;
 
     }
-    if($request->status == 'rejected'){
+    if($request->status == 'reject'){
 
       $application->update([
         'reviewed_by' => $request->user()->id,
