@@ -144,7 +144,7 @@ class ApplicationSubmissionController extends Controller
     // return $request->all();
 
     $application = ApplicationSubmission::with('job_seeker')->find($request->id);
-    $job_seeker = User::find($request->job_seeker_id);
+    $job_seeker = User::find($application->job_seeker_id);
     $jobPost = JobPosting::find($application->job_posting_id);
 
     // return $application;
@@ -214,8 +214,8 @@ class ApplicationSubmissionController extends Controller
       'type'    => 'application-status',
   ]);
 
-    Mail::to($job_seeker->email)
-    ->send(new ApplicationStatusMail($datax));
+    // Mail::to($job_seeker->email)
+    // ->send(new ApplicationStatusMail($datax));
 
     return $application;
 
