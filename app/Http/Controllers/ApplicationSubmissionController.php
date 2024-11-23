@@ -164,7 +164,7 @@ class ApplicationSubmissionController extends Controller
       $application->update([
         'reviewed_by' => $request->user()->id,
         'interview_date' => $request->interview_date,
-        'review_noted' => $request->review_note,
+        'review_note' => $request->review_note,
         'status' => $request->status
       ]);
 
