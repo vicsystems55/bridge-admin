@@ -135,4 +135,29 @@ class ApplicationSubmissionController extends Controller
     return $application;
 
   }
+
+  public function reviewApplication(Request $request){
+
+    if($request->status == 'accepted'){
+      $application = ApplicationSubmission::find($request->id)->update([
+        'interview_date' => $request->interview_date,
+        'review_noted' => $request->review_note,
+        'status' => $request->status
+      ]);
+      return $application;
+
+    }
+    if($request->status == 'rejected'){
+
+      $application = ApplicationSubmission::find($request->id)->update([
+        'review_noted' => $request->review_noted,
+        'status' => $request->status
+      ]);
+      return $application;
+
+
+    }
+
+
+  }
 }
