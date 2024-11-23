@@ -141,7 +141,7 @@ class ApplicationSubmissionController extends Controller
 
   public function reviewApplication(Request $request){
 
-    return $request->all();
+    // return $request->all();
 
     $application = ApplicationSubmission::with('job_seeker')->find($request->id);
     $job_seeker = User::find($application->job_seeker_id);
