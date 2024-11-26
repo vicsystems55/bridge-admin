@@ -6,7 +6,9 @@ use App\Models\ApplicationSubmission;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\ResumeController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\ContractController;
 use App\Http\Controllers\FirebaseController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\BurconnRegController;
@@ -61,6 +63,22 @@ Route::apiResource('/language', LanguageSpokenController::class)->middleware('au
 Route::apiResource('/skills', SkillController::class)->middleware('auth:sanctum');
 
 Route::apiResource('/resume', ResumeController::class)->middleware('auth:sanctum');
+
+// projects
+
+Route::post('/create-project', [ProjectController::class, 'createProject'])->middleware('auth:sanctum');
+
+Route::put('/update-project', [ProjectController::class, 'updateProject'])->middleware('auth:sanctum');
+
+Route::get('/projects', [ProjectController::class, 'allProjects'])->middleware('auth:sanctum');
+
+//contracts
+
+Route::post('/create-contract', [ContractController::class, 'createContract'])->middleware('auth:sanctum');
+
+Route::get('/contracts', [ContractController::class, 'allContracts'])->middleware('auth:sanctum');
+
+
 
 Route::post('/application-submssion', [ApplicationSubmissionController::class, 'submitApplication'])->middleware('auth:sanctum');
 
