@@ -48,7 +48,7 @@ class ProjectController extends Controller
     public function createProject(Request $request)
     {
 
-        return $request->all();
+        // return $request->all();
 
         // Validate incoming data
         $validatedData = $request->validate([
@@ -64,10 +64,10 @@ class ProjectController extends Controller
         $project = Project::create([
             'title' => $validatedData['title'],
             'description' => $validatedData['description'],
-            'min_budget' => $validatedData['min_budget'],
-            'max_budget' => $validatedData['max_budget'],
+            'budget_range' => $validatedData['budgetRange'], // Update to match your DB column
             'category' => $validatedData['category'],
-            'skills' => $validatedData['skills'],
+            'skills' => json_encode($validatedData['skills']), // Convert the skills array to JSON
+
         ]);
 
         // Return success response or redirect
