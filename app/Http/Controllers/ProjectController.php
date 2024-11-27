@@ -61,10 +61,15 @@ class ProjectController extends Controller
     //     ]);
 
         // Create the project if validation passes
+
+        $budgetParts = explode('-', $request->budgetRange);
+        $minBudget = trim($budgetParts[0]);
+        $maxBudget = trim($budgetParts[1]);
         $project = Project::create([
             'title' => $request->title,
             'description' => $request->description,
-            'budget_range' => $request->budgetRange,
+            'min_budget' => (float) $minBudget, // Convert to float for decimal handling
+            'max_budget' => (float) $maxBudget,
             'category' => $request->category,
             'skills' => json_encode($request->skills),
 
