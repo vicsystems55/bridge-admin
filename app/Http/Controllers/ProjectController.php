@@ -48,6 +48,8 @@ class ProjectController extends Controller
     public function createProject(Request $request)
     {
 
+        return $request->all();
+
         // Validate incoming data
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
