@@ -51,14 +51,14 @@ class ProjectController extends Controller
         // return $request->all();
 
         // Validate incoming data
-    $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string|max:1000',
-            'min_budget' => 'required|numeric|min:0',
-            'max_budget' => 'required|numeric|min:0|gte:min_budget', // Ensure max_budget is greater than or equal to min_budget
-            'category' => 'required|string|max:255',
-            'skills' => 'required|string|max:500',
-        ]);
+    // $request->validate([
+    //         'title' => 'required|string|max:255',
+    //         'description' => 'required|string|max:1000',
+    //         'min_budget' => 'required|numeric|min:0',
+    //         'max_budget' => 'required|numeric|min:0|gte:min_budget', // Ensure max_budget is greater than or equal to min_budget
+    //         'category' => 'required|string|max:255',
+    //         'skills' => 'required|string|max:500',
+    //     ]);
 
         // Create the project if validation passes
         $project = Project::create([
