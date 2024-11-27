@@ -51,7 +51,7 @@ class ProjectController extends Controller
         // return $request->all();
 
         // Validate incoming data
-        $validatedData = $request->validate([
+    $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
             'min_budget' => 'required|numeric|min:0',
@@ -62,16 +62,16 @@ class ProjectController extends Controller
 
         // Create the project if validation passes
         $project = Project::create([
-            'title' => $validatedData['title'],
-            'description' => $validatedData['description'],
-            'budget_range' => $validatedData['budgetRange'], // Update to match your DB column
-            'category' => $validatedData['category'],
-            'skills' => json_encode($validatedData['skills']), // Convert the skills array to JSON
+            'title' => $request->title,
+            'description' => $request->description,
+            'budget_range' => $request->budgetRange,
+            'category' => $request->category,
+            'skills' => json_encode($request->skills),
 
         ]);
 
         // Return success response or redirect
-        return response()->json(['message' => 'Project created successfully', 'project' => $project], 201);
+        return $project;
     }
 
     public function updateProject() {}
