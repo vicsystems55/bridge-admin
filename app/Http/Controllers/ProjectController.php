@@ -67,6 +67,7 @@ class ProjectController extends Controller
         $maxBudget = trim($budgetParts[1]);
         $project = Project::create([
             'title' => $request->title,
+            'recruiter_id' => $request->user()->id,
             'description' => $request->description,
             'min_budget' => (float) $minBudget, // Convert to float for decimal handling
             'max_budget' => (float) $maxBudget,
