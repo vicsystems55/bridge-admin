@@ -19,7 +19,7 @@ class ProjectController extends Controller
 
         if ($user->hasRole('recruiter')) {
             // Fetch projects created by the authenticated recruiter
-            $query->where('recruiter_id', $user->id);
+            $query->where('created_by', $user->id);
         } elseif ($user->hasRole('freelancer')) {
             // Fetch projects the authenticated freelancer has bidded for
             $query->whereHas('bids', function ($q) use ($user) {
