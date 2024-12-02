@@ -22,9 +22,10 @@ class ProjectController extends Controller
             $query->where('created_by', $user->id);
         } elseif ($user->hasRole('freelancer')) {
             // Fetch projects the authenticated freelancer has bidded for
-            $query->whereHas('bids', function ($q) use ($user) {
-                $q->where('freelancer_id', $user->id);
-            });
+            // $query->whereHas('bids', function ($q) use ($user) {
+            //     $q->where('freelancer_id', $user->id);
+            // });
+            $query->latest();
         } elseif ($filter === 'admin') {
             // Fetch all projects if the user is an admin
             if ($user->role === 'admin') {
@@ -51,14 +52,14 @@ class ProjectController extends Controller
         // return $request->all();
 
         // Validate incoming data
-    // $request->validate([
-    //         'title' => 'required|string|max:255',
-    //         'description' => 'required|string|max:1000',
-    //         'min_budget' => 'required|numeric|min:0',
-    //         'max_budget' => 'required|numeric|min:0|gte:min_budget', // Ensure max_budget is greater than or equal to min_budget
-    //         'category' => 'required|string|max:255',
-    //         'skills' => 'required|string|max:500',
-    //     ]);
+        // $request->validate([
+        //         'title' => 'required|string|max:255',
+        //         'description' => 'required|string|max:1000',
+        //         'min_budget' => 'required|numeric|min:0',
+        //         'max_budget' => 'required|numeric|min:0|gte:min_budget', // Ensure max_budget is greater than or equal to min_budget
+        //         'category' => 'required|string|max:255',
+        //         'skills' => 'required|string|max:500',
+        //     ]);
 
         // Create the project if validation passes
 
