@@ -98,7 +98,7 @@ class JobPostingController extends Controller
 
         ]);
 
-        $this->sendToUser();
+        // $this->sendToUser();
 
         return $job_post;
     }
