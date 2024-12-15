@@ -95,6 +95,8 @@ Route::apiResource('/recruiter-profile', RecruiterProfileController::class)->mid
 
 Route::apiResource('/job-postings', JobPostingController::class)->middleware('auth:sanctum');
 
+Route::get('/search-job-postings', [JobPostingController::class, 'searchJobs'])->middleware('auth:sanctum');
+
 Route::get('/all-job-postings', [JobPostingController::class, 'allJobPostings'])->middleware('auth:sanctum');
 
 

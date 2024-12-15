@@ -57,6 +57,22 @@ class JobPostingController extends Controller
         return $jobPostings;
     }
 
+    public function searchJobs(Request $request){
+
+      $keyWord = $request->keyWord;
+
+      $jobs = JobPosting::query()
+      ->where('job_title', 'like', '%' . $keyWord . '%')
+      ->orWhere('job_description', 'like', '%' . $keyWord . '%')
+      ->orWhere('company_name', 'like', '%' . $keyWord . '%')
+      ->orWhere('employment_type', 'like', '%' . $keyWord . '%')
+      ->where('active', 1) // Optional: Filter for active job postings
+      ->get();
+
+      return $jobs;
+
+    }
+
     /**
      * Store a newly created resource in storage.
      */
