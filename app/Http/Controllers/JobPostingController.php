@@ -64,7 +64,7 @@ class JobPostingController extends Controller
     {
         //
 
-        $company_profile = CompanyProfile::find($request->company_profile_id);
+        $company_profile = CompanyProfile::where('user_id', $request->user()->id)->first();
 
         $job_post = JobPosting::updateOrCreate([
           'user_id' => $request->user()->id,
@@ -73,7 +73,7 @@ class JobPostingController extends Controller
         ],[
           'user_id' => $request->user()->id,
           'job_title' => $request->job_title,
-          'company_profile_id' => $request->company_profile_id,
+          'company_profile_id' => $company_profile->id,
           'job_description' => $request->job_description,
           'employment_type' => $request->employment_type,
           'deadline' => $request->deadline,
@@ -93,7 +93,7 @@ class JobPostingController extends Controller
 
           'user_id' => $request->user()->id,
           'subject' => 'New Job Post Published',
-          'body' => 'Your job post [' .$job_post->title .'] has been published successfully',
+          'body' => 'Your job post ' .$job_post->job_title .' has been published successfully',
           'type' => 'job-post',
 
         ]);
