@@ -93,6 +93,8 @@ class CompanyProfileController extends Controller
   {
     //
 
+    return $request->all();
+
     $company_profile = CompanyProfile::where('user_id', $request->user()->id)->update([
       'user_id' => $request->user()->id,
       'company_name' => $request->company_name,

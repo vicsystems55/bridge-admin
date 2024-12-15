@@ -25,11 +25,7 @@ class ApiAuthController extends Controller
    * @return \Illuminate\Http\Response
    */
 
-   public function test(){
 
-    return 123;
-
-   }
 
    public function updatePassword(Request $request){
 
@@ -96,12 +92,7 @@ class ApiAuthController extends Controller
     Mail::to($user->email)
     ->send(new WelcomeMail($datax));
 
-    // return $user;
-
-
-
-
-    // Mail::to($user->email)
+     // Mail::to($user->email)
     // ->send(new EmailVerificationMail($datax));
 
 
