@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RecruiterProfile;
 use Illuminate\Http\Request;
+use App\Models\ProfileUpdate;
+use App\Models\RecruiterProfile;
 
 class RecruiterProfileController extends Controller
 {
@@ -38,6 +39,17 @@ class RecruiterProfileController extends Controller
           'position' => $request->position,
 
         ]);
+
+        ProfileUpdate::updateOrCreate([
+          'user_id' => $request->user()->id,
+        ],[
+          'address' => $request->address,
+          'country' => $request->country,
+          'state' => $request->state,
+          'bio' => $request->bio,
+        ]);
+
+
 
         return $recruiter_profile;
 
