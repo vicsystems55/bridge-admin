@@ -61,7 +61,11 @@ class JobPostingController extends Controller
 
       $keyWord = $request->keyWord;
 
-      $jobs = JobPosting::query()
+      $user = auth()->user(); // Assuming authenticated user
+
+
+
+      $jobPostings = JobPosting::latest()
       ->where('job_title', 'like', '%' . $keyWord . '%')
       ->orWhere('job_description', 'like', '%' . $keyWord . '%')
       ->orWhere('company_name', 'like', '%' . $keyWord . '%')
@@ -69,7 +73,19 @@ class JobPostingController extends Controller
       ->where('active', 1) // Optional: Filter for active job postings
       ->get();
 
-      return $jobs;
+        $bookmarks = Bookmark::where('user_id', $user->id)
+            ->where('bookmarkable_type', JobPosting::class)
+            ->pluck('bookmarkable_id');
+
+        $jobPostings = $jobPostings->map(function ($jobPosting) use ($bookmarks) {
+            $jobPosting->bookmarked = $bookmarks->contains($jobPosting->id);
+            return $jobPosting;
+        });
+
+        return $jobPostings;
+
+
+
 
     }
 
