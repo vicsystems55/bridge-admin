@@ -25,9 +25,23 @@ class ApplicationSubmissionController extends Controller
       'resume' => 'required|file|mimes:pdf,doc,docx,jpg,jpeg,png', // Adjust validation rules as needed
     ]);
 
+
+    $profile = ProfileUpdate::where('user_id', $request->user()->id)->first();
+
+    if(!$profile){
+
+      return [
+        'message' => 'Kindly complete kyc'
+      ];
+
+
     if ($request->file('resume')) {
       # code...
       // Get the uploaded file
+
+
+
+      }
       $file = $request->file('resume');
 
       // Generate a unique filename
