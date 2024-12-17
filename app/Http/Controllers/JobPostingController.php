@@ -59,19 +59,36 @@ class JobPostingController extends Controller
 
     public function searchJobs(Request $request){
 
+
+
       $keyWord = $request->keyWord;
 
       $user = auth()->user(); // Assuming authenticated user
 
+      if($request->employment_type){
+
+        $jobPostings = JobPosting::latest()
+        ->where('job_title', 'like', '%' . $keyWord . '%')
+        ->orWhere('job_description', 'like', '%' . $keyWord . '%')
+        ->orWhere('company_name', 'like', '%' . $keyWord . '%')
+        ->whereIn('employment_type', $request->employment_type)
+        ->where('active', 1) // Optional: Filter for active job postings
+        ->get();
+
+      }else{
+
+        $jobPostings = JobPosting::latest()
+        ->where('job_title', 'like', '%' . $keyWord . '%')
+        ->orWhere('job_description', 'like', '%' . $keyWord . '%')
+        ->orWhere('company_name', 'like', '%' . $keyWord . '%')
+        ->orWhere('employment_type', 'like', '%' . $keyWord . '%')
+        ->where('active', 1) // Optional: Filter for active job postings
+        ->get();
+      }
 
 
-      $jobPostings = JobPosting::latest()
-      ->where('job_title', 'like', '%' . $keyWord . '%')
-      ->orWhere('job_description', 'like', '%' . $keyWord . '%')
-      ->orWhere('company_name', 'like', '%' . $keyWord . '%')
-      ->orWhere('employment_type', 'like', '%' . $keyWord . '%')
-      ->where('active', 1) // Optional: Filter for active job postings
-      ->get();
+
+
 
         $bookmarks = Bookmark::where('user_id', $user->id)
             ->where('bookmarkable_type', JobPosting::class)
