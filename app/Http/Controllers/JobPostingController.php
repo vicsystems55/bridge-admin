@@ -59,9 +59,14 @@ class JobPostingController extends Controller
 
     public function searchJobs(Request $request){
 
+      $employmentTypeString = $request->input('employment_type');
 
+      $employmentTypes = [];
+    if (!empty($employmentTypeString)) {
+        $employmentTypes = explode(',', $employmentTypeString);
+    }
 
-   return $request->employment_type;
+    return $employmentTypes;
 
 
       $keyWord = $request->keyWord;
