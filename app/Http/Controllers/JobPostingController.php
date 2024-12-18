@@ -61,7 +61,7 @@ class JobPostingController extends Controller
 
 
 
-      $employmentTypes = explode(',', $request->input('employment_type'));
+      $employmentTypes = json_decode($request->input('employment_type'), true);
 
       return $employmentTypes;
 
