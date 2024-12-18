@@ -76,11 +76,14 @@ class JobPostingController extends Controller
       if(!empty($employmentTypes)){
 
         $jobPostings = JobPosting::latest()
-        ->whereIn('employment_type', $employmentTypes)
-        ->where('job_title', 'like', '%' . $keyWord . '%')
-        ->orWhere('job_description', 'like', '%' . $keyWord . '%')
-        ->orWhere('company_name', 'like', '%' . $keyWord . '%')
-        ->where('active', 1) // Optional: Filter for active job postings
+        ->where('active', 1) // Ensure only active job postings
+        ->whereIn('employment_type', $employmentTypes) // Filter by employment types first
+        ->where(function ($query) use ($keyWord) {
+            // Apply keyword search across multiple fields
+            $query->where('job_title', 'like', '%' . $keyWord . '%')
+                ->orWhere('job_description', 'like', '%' . $keyWord . '%')
+                ->orWhere('company_name', 'like', '%' . $keyWord . '%');
+        })
         ->get();
 
       }else{
