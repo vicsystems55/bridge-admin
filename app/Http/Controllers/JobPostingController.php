@@ -76,10 +76,10 @@ class JobPostingController extends Controller
       if(!empty($employmentTypes)){
 
         $jobPostings = JobPosting::latest()
+        ->whereIn('employment_type', $employmentTypes)
         ->where('job_title', 'like', '%' . $keyWord . '%')
         ->orWhere('job_description', 'like', '%' . $keyWord . '%')
         ->orWhere('company_name', 'like', '%' . $keyWord . '%')
-        ->whereIn('employment_type', $employmentTypes)
         ->where('active', 1) // Optional: Filter for active job postings
         ->get();
 
