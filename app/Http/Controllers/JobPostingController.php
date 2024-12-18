@@ -66,7 +66,7 @@ class JobPostingController extends Controller
         $employmentTypes = explode(',', $employmentTypeString);
     }
 
-    return $employmentTypes;
+
 
 
       $keyWord = $request->keyWord;
@@ -79,7 +79,7 @@ class JobPostingController extends Controller
         ->where('job_title', 'like', '%' . $keyWord . '%')
         ->orWhere('job_description', 'like', '%' . $keyWord . '%')
         ->orWhere('company_name', 'like', '%' . $keyWord . '%')
-        ->whereIn('employment_type', $request->employment_type)
+        ->whereIn('employment_type', $employmentTypes)
         ->where('active', 1) // Optional: Filter for active job postings
         ->get();
 
