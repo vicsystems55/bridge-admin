@@ -73,7 +73,7 @@ class JobPostingController extends Controller
 
       $user = auth()->user(); // Assuming authenticated user
 
-      if($request->employment_type){
+      if(!empty($employmentTypes)){
 
         $jobPostings = JobPosting::latest()
         ->where('job_title', 'like', '%' . $keyWord . '%')
