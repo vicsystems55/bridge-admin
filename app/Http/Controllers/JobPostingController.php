@@ -61,6 +61,9 @@ class JobPostingController extends Controller
 
 
 
+      return $request->employment_type;
+
+
       $keyWord = $request->keyWord;
 
       $user = auth()->user(); // Assuming authenticated user
