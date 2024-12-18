@@ -61,7 +61,9 @@ class JobPostingController extends Controller
 
 
 
-      return $request->employment_type;
+      $employmentTypes = explode(',', $request->input('employment_type'));
+
+      return $employmentTypes;
 
 
       $keyWord = $request->keyWord;
