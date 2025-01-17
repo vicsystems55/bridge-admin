@@ -58,6 +58,7 @@ class JobPostingController extends Controller
     }
 
     public function searchJobs(Request $request){
+      
 
       return $request->all();
 
