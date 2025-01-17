@@ -129,7 +129,5 @@ Route::post('/bursconn/register-member', [BurconnRegController::class, 'regMembe
 
 Route::get('/bursconn/members', [BurconnRegController::class, 'members']);
 
-
-
 // test push notifications
 Route::get('/push-notification', [FirebaseController::class, 'sendToUser']);
