@@ -79,7 +79,32 @@ class JobPostingController extends Controller
 
 
 
-  return $sideBarFiltersString;
+// Decode the JSON string into an associative array
+$data = json_decode($sideBarFiltersString, true);
+
+// Convert the renumerationRange to min and max
+$renumerationRange = explode('-', $data['renumerationRange']);
+$data['renumerationRange'] = [
+    'min' => (int) $renumerationRange[0],
+    'max' => (int) $renumerationRange[1]
+];
+
+// Wrap the data into a filters key
+$output = [
+    'filters' => [
+        'latestUpdate' => $data['latestUpdate'],
+        'employmentType' => $data['employmentType'],
+        'qualifications' => [
+            'isMsc' => $data['isMsc'],
+            'isBsc' => $data['isBsc'],
+            'isBEng' => $data['isBEng'],
+            'isOND' => $data['isOND']
+        ],
+        'renumerationRange' => $data['renumerationRange']
+    ]
+];
+
+return $output;
 
 
       $keyWord = $request->keyWord;
