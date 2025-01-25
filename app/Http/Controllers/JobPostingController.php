@@ -81,7 +81,7 @@ class JobPostingController extends Controller
       $sideBarFilters = explode(',', $sideBarFiltersString);
     }
 
-    // return $sideBarFilters;
+    return $sideBarFilters["latestUpdate"];
 
     $filters = $sideBarFilters;
     $output = [
