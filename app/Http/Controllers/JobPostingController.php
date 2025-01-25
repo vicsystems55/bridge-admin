@@ -12,249 +12,262 @@ use Kreait\Firebase\Messaging\CloudMessage;
 
 class JobPostingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(Request $request)
-    {
-        //
-        $user = $request->user(); // Assuming authenticated user
+  /**
+   * Display a listing of the resource.
+   */
+  public function index(Request $request)
+  {
+    //
+    $user = $request->user(); // Assuming authenticated user
 
-        // return $user->id;
+    // return $user->id;
 
-        $jobPostings = JobPosting::where('user_id', $user->id)->get();
+    $jobPostings = JobPosting::where('user_id', $user->id)->get();
 
-        // return $jobPostings;
+    // return $jobPostings;
 
-        $bookmarks = Bookmark::where('user_id', $user->id)
-            ->where('bookmarkable_type', JobPosting::class)
-            ->pluck('bookmarkable_id');
+    $bookmarks = Bookmark::where('user_id', $user->id)
+      ->where('bookmarkable_type', JobPosting::class)
+      ->pluck('bookmarkable_id');
 
-        $jobPostings = $jobPostings->map(function ($jobPosting) use ($bookmarks) {
-            $jobPosting->bookmarked = $bookmarks->contains($jobPosting->id);
-            return $jobPosting;
-        });
+    $jobPostings = $jobPostings->map(function ($jobPosting) use ($bookmarks) {
+      $jobPosting->bookmarked = $bookmarks->contains($jobPosting->id);
+      return $jobPosting;
+    });
 
-        return $jobPostings;
-    }
+    return $jobPostings;
+  }
 
-    public function allJobPostings()
-    {
-        //
-        $user = auth()->user(); // Assuming authenticated user
+  public function allJobPostings()
+  {
+    //
+    $user = auth()->user(); // Assuming authenticated user
 
-        $jobPostings = JobPosting::latest()->get();
+    $jobPostings = JobPosting::latest()->get();
 
-        $bookmarks = Bookmark::where('user_id', $user->id)
-            ->where('bookmarkable_type', JobPosting::class)
-            ->pluck('bookmarkable_id');
+    $bookmarks = Bookmark::where('user_id', $user->id)
+      ->where('bookmarkable_type', JobPosting::class)
+      ->pluck('bookmarkable_id');
 
-        $jobPostings = $jobPostings->map(function ($jobPosting) use ($bookmarks) {
-            $jobPosting->bookmarked = $bookmarks->contains($jobPosting->id);
-            return $jobPosting;
-        });
+    $jobPostings = $jobPostings->map(function ($jobPosting) use ($bookmarks) {
+      $jobPosting->bookmarked = $bookmarks->contains($jobPosting->id);
+      return $jobPosting;
+    });
 
-        return $jobPostings;
-    }
+    return $jobPostings;
+  }
 
-    public function searchJobs(Request $request){
-
-
-
-
-      $employmentTypeString = $request->input('employment_type');
-
-      $sideBarFiltersString = $request->input('sideBarFilters');
+  public function searchJobs(Request $request)
+  {
 
 
-      $employmentTypes = [];
 
-      $sideBarFilters = [];
+
+    $employmentTypeString = $request->input('employment_type');
+
+    $sideBarFiltersString = $request->input('sideBarFilters');
+
+
+    $employmentTypes = [];
+
+    $sideBarFilters = [];
 
 
     if (!empty($employmentTypeString)) {
-        $employmentTypes = explode(',', $employmentTypeString);
+      $employmentTypes = explode(',', $employmentTypeString);
     }
 
     if (!empty($sideBarFiltersString)) {
       $sideBarFilters = explode(',', $sideBarFiltersString);
+    }
+
+    return $sideBarFilters;
+
+    $keyWord = $request->keyWord;
+
+    $user = auth()->user(); // Assuming authenticated user
+
+    if (!empty($employmentTypes)) {
+      $jobPostings = JobPosting::latest()
+        ->where('active', 1) // Ensure only active job postings
+        ->whereIn('employment_type', $employmentTypes) // Filter by employment types
+        ->where(function ($query) use ($keyWord) {
+          // Apply keyword search across multiple fields
+          $query->where('job_title', 'like', '%' . $keyWord . '%')
+            ->orWhere('job_description', 'like', '%' . $keyWord . '%')
+            ->orWhere('company_name', 'like', '%' . $keyWord . '%');
+        })
+        ->where(function ($query) use ($qualifications) {
+          // Filter by qualifications
+          foreach ($qualifications as $qualification => $value) {
+            if ($value) { // Only include qualifications that are true
+              $query->orWhere('min_qualification', $qualification);
+            }
+          }
+        })
+        ->whereBetween('renumeration_amount', [$renumerationRange['min'], $renumerationRange['max']]) // Filter by renumeration range
+        ->get();
+    } else {
+
+      $jobPostings = JobPosting::latest()
+      ->where(function ($query) use ($keyWord) {
+          $query->where('job_title', 'like', '%' . $keyWord . '%')
+              ->orWhere('job_description', 'like', '%' . $keyWord . '%')
+              ->orWhere('company_name', 'like', '%' . $keyWord . '%')
+              ->orWhere('employment_type', 'like', '%' . $keyWord . '%');
+      })
+      ->where('active', 1) // Filter for active job postings
+      ->where(function ($query) use ($qualifications) {
+          // Filter by qualifications
+          foreach ($qualifications as $qualification => $value) {
+              if ($value) { // Only include qualifications that are true
+                  $query->orWhere('min_qualification', $qualification);
+              }
+          }
+      })
+      ->whereBetween('renumeration_amount', [$renumerationRange['min'], $renumerationRange['max']]) // Filter by renumeration range
+      ->get();
+
+    }
+
+
+    $bookmarks = Bookmark::where('user_id', $user->id)
+      ->where('bookmarkable_type', JobPosting::class)
+      ->pluck('bookmarkable_id');
+
+    $jobPostings = $jobPostings->map(function ($jobPosting) use ($bookmarks) {
+      $jobPosting->bookmarked = $bookmarks->contains($jobPosting->id);
+      return $jobPosting;
+    });
+
+    return $jobPostings;
   }
 
-      return $sideBarFilters;
+  /**
+   * Store a newly created resource in storage.
+   */
+  public function store(Request $request)
+  {
+    //
 
-      $keyWord = $request->keyWord;
+    $company_profile = CompanyProfile::where('user_id', $request->user()->id)->first();
 
-      $user = auth()->user(); // Assuming authenticated user
-
-      if(!empty($employmentTypes)){
-
-        $jobPostings = JobPosting::latest()
-        ->where('active', 1) // Ensure only active job postings
-        ->whereIn('employment_type', $employmentTypes) // Filter by employment types first
-        ->where(function ($query) use ($keyWord) {
-            // Apply keyword search across multiple fields
-            $query->where('job_title', 'like', '%' . $keyWord . '%')
-                ->orWhere('job_description', 'like', '%' . $keyWord . '%')
-                ->orWhere('company_name', 'like', '%' . $keyWord . '%');
-        })
-        ->get();
-
-      }else{
-
-        $jobPostings = JobPosting::latest()
-        ->where('job_title', 'like', '%' . $keyWord . '%')
-        ->orWhere('job_description', 'like', '%' . $keyWord . '%')
-        ->orWhere('company_name', 'like', '%' . $keyWord . '%')
-        ->orWhere('employment_type', 'like', '%' . $keyWord . '%')
-        ->where('active', 1) // Optional: Filter for active job postings
-        ->get();
-      }
-
-
+    $job_post = JobPosting::updateOrCreate([
+      'user_id' => $request->user()->id,
+      'job_title' => $request->job_title,
+      'job_description' => $request->job_description,
+    ], [
+      'user_id' => $request->user()->id,
+      'job_title' => $request->job_title,
+      'company_profile_id' => $company_profile->id,
+      'job_description' => $request->job_description,
+      'employment_type' => $request->employment_type,
+      'deadline' => $request->deadline,
+      'min_qualification' => $request->min_qualification,
+      'min_experience' => $request->min_experience,
+      'renumeration_type' => $request->renumeration_type,
+      'renumeration_amount' => $request->renumeration_amount,
+      'company_name' => $request->company_name ?? $company_profile->company_name,
+      'company_industry' => $company_profile->industry_type ?? '',
+      'website' => $request->website,
+      'location' => $request->location ?? $company_profile->address,
+    ]);
 
 
 
-        $bookmarks = Bookmark::where('user_id', $user->id)
-            ->where('bookmarkable_type', JobPosting::class)
-            ->pluck('bookmarkable_id');
+    Notification::create([
 
-        $jobPostings = $jobPostings->map(function ($jobPosting) use ($bookmarks) {
-            $jobPosting->bookmarked = $bookmarks->contains($jobPosting->id);
-            return $jobPosting;
-        });
+      'user_id' => $request->user()->id,
+      'subject' => 'New Job Post Published',
+      'body' => 'Your job post ' . $job_post->job_title . ' has been published successfully',
+      'type' => 'job-post',
 
-        return $jobPostings;
+    ]);
+
+    // $this->sendToUser();
+
+    return $job_post;
+  }
 
 
+  public function sendPushNotification($fcmToken, $title, $body)
+  {
 
 
-    }
+    $firebase = (new Factory)->withServiceAccount(storage_path('app/public/bridgepushnotifications-firebase-adminsdk-cyugc-95763c3edb.json'));
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
 
-        $company_profile = CompanyProfile::where('user_id', $request->user()->id)->first();
+    $messaging = $firebase->createMessaging();
 
-        $job_post = JobPosting::updateOrCreate([
-          'user_id' => $request->user()->id,
-          'job_title' => $request->job_title,
-          'job_description' => $request->job_description,
-        ],[
-          'user_id' => $request->user()->id,
-          'job_title' => $request->job_title,
-          'company_profile_id' => $company_profile->id,
-          'job_description' => $request->job_description,
-          'employment_type' => $request->employment_type,
-          'deadline' => $request->deadline,
-          'min_qualification' => $request->min_qualification,
-          'min_experience' => $request->min_experience,
-          'renumeration_type' => $request->renumeration_type,
-          'renumeration_amount' => $request->renumeration_amount,
-          'company_name' => $request->company_name?? $company_profile->company_name,
-          'company_industry' => $company_profile->industry_type??'',
-          'website' => $request->website,
-          'location' => $request->location?? $company_profile->address,
-        ]);
+    // return $messaging;
+
+    $message = CloudMessage::withTarget('token', $fcmToken)
+      ->withNotification(['title' => $title, 'body' => $body]);
+
+    // return $message;
 
 
 
-        Notification::create([
+    $messaging->send($message);
+  }
 
-          'user_id' => $request->user()->id,
-          'subject' => 'New Job Post Published',
-          'body' => 'Your job post ' .$job_post->job_title .' has been published successfully',
-          'type' => 'job-post',
+  public function sendToUser()
+  {
 
-        ]);
+    // return $request->fcmToken;
+    $fcmToken = 'eRxa9H64TdScokyTpOEDgR:APA91bGzQmaEZjfzQARrgeEAtKmKFtqdUi057enM2QXk0HjN5fQx8BOms6O1DUfh_PNNCQoKALmTnAgE0XUNOIBcXIR-tRoaV4RlHeJdYYUZgIbon4_hj_U';
+    $title = "Hello User!";
+    $body = "This is a test push notification.";
 
-        // $this->sendToUser();
+    $this->sendPushNotification($fcmToken, $title, $body);
 
-        return $job_post;
-    }
+    // return response()->json(['success' => true]);
+  }
 
+  /**
+   * Display the specified resource.
+   */
+  public function show(JobPosting $jobPosting)
+  {
+    //
+    $job_post = JobPosting::find($jobPosting->id);
+    return $job_post;
+  }
 
-    public function sendPushNotification($fcmToken, $title, $body)
-    {
+  /**
+   * Update the specified resource in storage.
+   */
+  public function update(Request $request, JobPosting $jobPosting)
+  {
+    //
+    $job_post = JobPosting::find($jobPosting->id)->update([
+      'user_id' => $request->user()->id,
+      'job_title' => $request->job_title,
+      'company_profile_id' => $request->company_profile_id,
+      'job_description' => $request->job_description,
+      'employment_type' => $request->employment_type,
+      'deadline' => $request->deadline,
+      'min_qualification' => $request->min_qualification,
+      'min_experience' => $request->min_experience,
+      'renumeration_type' => $request->renumeration_type,
+      'renumeration_amount' => $request->renumeration_amount,
+      'company_name' => $request->company_name,
+      'company_industry' => $request->company_industry,
+      'website' => $request->website,
+      'location' => $request->location,
+    ]);
 
+    return $job_post;
+  }
 
-      $firebase = (new Factory)->withServiceAccount(storage_path('app/public/bridgepushnotifications-firebase-adminsdk-cyugc-95763c3edb.json'));
+  /**
+   * Remove the specified resource from storage.
+   */
+  public function destroy(JobPosting $jobPosting)
+  {
+    //
+    $job_post = JobPosting::find($jobPosting->id)->delete();
 
-
-      $messaging = $firebase->createMessaging();
-
-      // return $messaging;
-
-      $message = CloudMessage::withTarget('token', $fcmToken)
-        ->withNotification(['title' => $title, 'body' => $body]);
-
-        // return $message;
-
-
-
-      $messaging->send($message);
-    }
-
-    public function sendToUser()
-    {
-
-      // return $request->fcmToken;
-      $fcmToken = 'eRxa9H64TdScokyTpOEDgR:APA91bGzQmaEZjfzQARrgeEAtKmKFtqdUi057enM2QXk0HjN5fQx8BOms6O1DUfh_PNNCQoKALmTnAgE0XUNOIBcXIR-tRoaV4RlHeJdYYUZgIbon4_hj_U';
-      $title = "Hello User!";
-      $body = "This is a test push notification.";
-
-      $this->sendPushNotification($fcmToken, $title, $body);
-
-      // return response()->json(['success' => true]);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(JobPosting $jobPosting)
-    {
-        //
-        $job_post = JobPosting::find($jobPosting->id);
-        return $job_post;
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, JobPosting $jobPosting)
-    {
-        //
-        $job_post = JobPosting::find($jobPosting->id)->update([
-          'user_id' => $request->user()->id,
-          'job_title' => $request->job_title,
-          'company_profile_id' => $request->company_profile_id,
-          'job_description' => $request->job_description,
-          'employment_type' => $request->employment_type,
-          'deadline' => $request->deadline,
-          'min_qualification' => $request->min_qualification,
-          'min_experience' => $request->min_experience,
-          'renumeration_type' => $request->renumeration_type,
-          'renumeration_amount' => $request->renumeration_amount,
-          'company_name' => $request->company_name,
-          'company_industry' => $request->company_industry,
-          'website' => $request->website,
-          'location' => $request->location,
-        ]);
-
-        return $job_post;
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(JobPosting $jobPosting)
-    {
-        //
-        $job_post = JobPosting::find($jobPosting->id)->delete();
-
-        return $job_post;
-    }
+    return $job_post;
+  }
 }
