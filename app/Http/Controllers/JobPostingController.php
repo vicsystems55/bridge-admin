@@ -81,7 +81,26 @@ class JobPostingController extends Controller
       $sideBarFilters = explode(',', $sideBarFiltersString);
     }
 
-    return $sideBarFilters;
+    // return $sideBarFilters;
+
+    $output = [
+    "filters" => [
+        "latestUpdate" => $sideBarFilters[0]["latestUpdate"],
+        "employmentType" => $sideBarFilters[0]["employmentType"],
+        "qualifications" => [
+            "isMsc" => $sideBarFilters[0]["isMsc"],
+            "isBsc" => $sideBarFilters[0]["isBsc"],
+            "isBEng" => $sideBarFilters[0]["isBEng"],
+            "isOND" => $sideBarFilters[0]["isOND"],
+        ],
+        "renumerationRange" => [
+            "min" => (int)explode('-', $sideBarFilters[0]["renumerationRange"])[0],
+            "max" => (int)explode('-', $sideBarFilters[0]["renumerationRange"])[1]
+        ]
+    ]
+];
+
+return $output;
 
     $keyWord = $request->keyWord;
 
@@ -129,6 +148,8 @@ class JobPostingController extends Controller
       ->get();
 
     }
+
+
 
 
     $bookmarks = Bookmark::where('user_id', $user->id)
