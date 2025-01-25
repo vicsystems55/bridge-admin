@@ -175,6 +175,10 @@ $renumerationRange = $output["filters"]['renumerationRange'];
     {
         //
 
+        $request->validate([
+          'renumeration_amount' => 'required'
+        ]);
+
         $company_profile = CompanyProfile::where('user_id', $request->user()->id)->first();
 
         $job_post = JobPosting::updateOrCreate([
