@@ -131,7 +131,7 @@ $renumerationRange = $output["filters"]['renumerationRange'];
                     }
                 }
             })
-            ->whereBetween('renumeration_amount', [$renumerationRange['min'], $renumerationRange['max']]) // Filter by renumeration range
+            // ->whereBetween('renumeration_amount', [$renumerationRange['min'], $renumerationRange['max']]) // Filter by renumeration range
             ->get();
     }
     else{
