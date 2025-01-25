@@ -104,27 +104,35 @@ $output = [
     ]
 ];
 
-return $output;
+$qualifications = $output['qualifications'];
 
 
       $keyWord = $request->keyWord;
 
       $user = auth()->user(); // Assuming authenticated user
 
-      if(!empty($employmentTypes)){
-
+      if (!empty($employmentTypes)) {
         $jobPostings = JobPosting::latest()
-        ->where('active', 1) // Ensure only active job postings
-        ->whereIn('employment_type', $employmentTypes) // Filter by employment types first
-        ->where(function ($query) use ($keyWord) {
-            // Apply keyword search across multiple fields
-            $query->where('job_title', 'like', '%' . $keyWord . '%')
-                ->orWhere('job_description', 'like', '%' . $keyWord . '%')
-                ->orWhere('company_name', 'like', '%' . $keyWord . '%');
-        })
-        ->get();
-
-      }else{
+            ->where('active', 1) // Filter active job postings
+            ->whereIn('employment_type', $employmentTypes) // Filter by employment types
+            ->where(function ($query) use ($keyWord) {
+                // Apply keyword search across job_title, job_description, and company_name
+                $query->where('job_title', 'like', '%' . $keyWord . '%')
+                    ->orWhere('job_description', 'like', '%' . $keyWord . '%')
+                    ->orWhere('company_name', 'like', '%' . $keyWord . '%');
+            })
+            ->where(function ($query) use ($qualifications) {
+                // Filter by qualifications
+                foreach ($qualifications as $qualification => $value) {
+                    if ($value) {
+                        $query->orWhere('min_qualification', $qualification);
+                    }
+                }
+            })
+            ->whereBetween('renumeration_amount', [$renumerationRange['min'], $renumerationRange['max']]) // Filter by renumeration range
+            ->get();
+    }
+    else{
 
         $jobPostings = JobPosting::latest()
         ->where('job_title', 'like', '%' . $keyWord . '%')
