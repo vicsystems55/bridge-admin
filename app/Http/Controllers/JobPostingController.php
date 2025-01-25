@@ -60,7 +60,7 @@ class JobPostingController extends Controller
     public function searchJobs(Request $request){
 
 
-      // return $request->sideBarFilters;
+      return $request->sideBarFilters;
 
       $employmentTypeString = $request->input('employment_type');
 
