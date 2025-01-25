@@ -106,6 +106,8 @@ $output = [
 
 $qualifications = $output["filters"]['qualifications'];
 
+$renumerationRange = $output["filters"]['renumerationRange'];
+
 
       $keyWord = $request->keyWord;
 
