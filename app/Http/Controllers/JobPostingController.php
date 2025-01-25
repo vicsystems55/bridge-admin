@@ -58,13 +58,15 @@ class JobPostingController extends Controller
     }
 
     public function searchJobs(Request $request){
-      
 
-      return $request->all();
+
+      return $request->sideBarFilters;
 
       $employmentTypeString = $request->input('employment_type');
 
       $employmentTypes = [];
+
+
     if (!empty($employmentTypeString)) {
         $employmentTypes = explode(',', $employmentTypeString);
     }
