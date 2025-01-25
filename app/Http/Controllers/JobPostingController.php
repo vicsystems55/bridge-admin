@@ -83,7 +83,7 @@ class JobPostingController extends Controller
 
     // return $sideBarFilters;
 
-    $filters = $sideBarFilters[0];
+    $filters = $sideBarFilters;
     $output = [
         "filters" => [
             "latestUpdate" => $filters["latestUpdate"],
