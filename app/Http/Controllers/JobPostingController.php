@@ -95,10 +95,10 @@ $output = [
         'latestUpdate' => $data['latestUpdate'],
         'employmentType' => $data['employmentType'],
         'qualifications' => [
-            'isMsc' => $data['isMsc'],
-            'isBsc' => $data['isBsc'],
-            'isBEng' => $data['isBEng'],
-            'isOND' => $data['isOND']
+            'isMsc' => $data['isMsc']?'M.Sc':'',
+            'isBsc' => $data['isBsc']?'BSc.':'',
+            'isBEng' => $data['isBEng']?'BEng':'',
+            'isOND' => $data['isOND']?'OND':''
         ],
         'renumerationRange' => $data['renumerationRange']
     ]
