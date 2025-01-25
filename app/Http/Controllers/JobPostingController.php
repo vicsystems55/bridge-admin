@@ -109,6 +109,9 @@ $qualifications = $output["filters"]['qualifications'];
 $renumerationRange = $output["filters"]['renumerationRange'];
 
 
+return $qualifications;
+
+
       $keyWord = $request->keyWord;
 
       $user = auth()->user(); // Assuming authenticated user
@@ -127,7 +130,7 @@ $renumerationRange = $output["filters"]['renumerationRange'];
                 // Filter by qualifications
                 foreach ($qualifications as $qualification => $value) {
                     if ($value) {
-                        $query->orWhere('min_qualification', $qualification);
+                        $query->orWhere('min_qualification', $qualification['isMs']);
                     }
                 }
             })
