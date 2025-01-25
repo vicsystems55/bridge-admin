@@ -83,22 +83,23 @@ class JobPostingController extends Controller
 
     // return $sideBarFilters;
 
+    $filters = $sideBarFilters[0];
     $output = [
-    "filters" => [
-        "latestUpdate" => $sideBarFilters[0]["latestUpdate"],
-        "employmentType" => $sideBarFilters[0]["employmentType"],
-        "qualifications" => [
-            "isMsc" => $sideBarFilters[0]["isMsc"],
-            "isBsc" => $sideBarFilters[0]["isBsc"],
-            "isBEng" => $sideBarFilters[0]["isBEng"],
-            "isOND" => $sideBarFilters[0]["isOND"],
+        "filters" => [
+            "latestUpdate" => $filters["latestUpdate"],
+            "employmentType" => $filters["employmentType"],
+            "qualifications" => [
+                "isMsc" => $filters["isMsc"],
+                "isBsc" => $filters["isBsc"],
+                "isBEng" => $filters["isBEng"],
+                "isOND" => $filters["isOND"],
+            ],
+            "renumerationRange" => [
+                "min" => (int)explode('-', $filters["renumerationRange"])[0],
+                "max" => (int)explode('-', $filters["renumerationRange"])[1],
+            ],
         ],
-        "renumerationRange" => [
-            "min" => (int)explode('-', $sideBarFilters[0]["renumerationRange"])[0],
-            "max" => (int)explode('-', $sideBarFilters[0]["renumerationRange"])[1]
-        ]
-    ]
-];
+    ];
 
 return $output;
 
