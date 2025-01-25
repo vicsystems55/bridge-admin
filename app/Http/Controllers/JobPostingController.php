@@ -116,7 +116,7 @@ if ($data['isOND']) {
 $renumerationRange = $output["filters"]['renumerationRange'];
 
 
-return $qualifications;
+// return $qualifications;
 
 
       $keyWord = $request->keyWord;
@@ -133,15 +133,8 @@ return $qualifications;
                     ->orWhere('job_description', 'like', '%' . $keyWord . '%')
                     ->orWhere('company_name', 'like', '%' . $keyWord . '%');
             })
-            ->where(function ($query) use ($qualifications) {
-                // Filter by qualifications
-                foreach ($qualifications as $qualification => $value) {
-                    if ($value) {
-                        $query->orWhere('min_qualification', $qualification['isMs']);
-                    }
-                }
-            })
-            // ->whereBetween('renumeration_amount', [$renumerationRange['min'], $renumerationRange['max']]) // Filter by renumeration range
+            ->where('min_qualification', $qualifications)
+            ->whereBetween('renumeration_amount', [$renumerationRange['min'], $renumerationRange['max']]) // Filter by renumeration range
             ->get();
     }
     else{
