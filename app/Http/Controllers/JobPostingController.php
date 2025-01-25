@@ -145,6 +145,8 @@ $renumerationRange = $output["filters"]['renumerationRange'];
         ->orWhere('company_name', 'like', '%' . $keyWord . '%')
         ->orWhere('employment_type', 'like', '%' . $keyWord . '%')
         ->where('active', 1) // Optional: Filter for active job postings
+        ->whereIn('min_qualification', $qualifications)
+        ->whereBetween('renumeration_amount', [$renumerationRange['min'], $renumerationRange['max']]) // Filter by renumeration range
         ->get();
       }
 
