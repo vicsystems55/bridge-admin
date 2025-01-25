@@ -60,16 +60,27 @@ class JobPostingController extends Controller
     public function searchJobs(Request $request){
 
 
-      return $request->sideBarFilters["renumerationRange"];
+
 
       $employmentTypeString = $request->input('employment_type');
 
+      $sideBarFiltersString = $request->input('sideBarFilters');
+
+
       $employmentTypes = [];
+
+      $sideBarFilters = [];
 
 
     if (!empty($employmentTypeString)) {
         $employmentTypes = explode(',', $employmentTypeString);
     }
+
+    if (!empty($sideBarFiltersString)) {
+      $sideBarFilters = explode(',', $sideBarFiltersString);
+  }
+
+      return $sideBarFilters;
 
       $keyWord = $request->keyWord;
 
