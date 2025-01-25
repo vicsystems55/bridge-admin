@@ -104,7 +104,7 @@ $output = [
     ]
 ];
 
-$qualifications = $output['qualifications'];
+$qualifications = $output["filters"]['qualifications'];
 
 
       $keyWord = $request->keyWord;
