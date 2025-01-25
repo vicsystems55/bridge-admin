@@ -94,17 +94,24 @@ $output = [
     'filters' => [
         'latestUpdate' => $data['latestUpdate'],
         'employmentType' => $data['employmentType'],
-        'qualifications' => [
-          $data['isMsc']?'M.Sc':'',
-          $data['isBsc']?'BSc.':'',
-            $data['isBEng']?'BEng':'',
-          $data['isOND']?'OND':''
-        ],
         'renumerationRange' => $data['renumerationRange']
     ]
 ];
 
-$qualifications = $output["filters"]['qualifications'];
+$qualifications = [];
+
+if ($data['isMsc']) {
+  array_push($qualifications, 'M.Sc');
+}
+if ($data['isBsc']) {
+  array_push($qualifications, 'BSc.');
+}
+if ($data['isBEng']) {
+  array_push($qualifications, 'BEng');
+}
+if ($data['isOND']) {
+  array_push($qualifications, 'OND');
+}
 
 $renumerationRange = $output["filters"]['renumerationRange'];
 
