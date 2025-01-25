@@ -133,7 +133,7 @@ $renumerationRange = $output["filters"]['renumerationRange'];
                     ->orWhere('job_description', 'like', '%' . $keyWord . '%')
                     ->orWhere('company_name', 'like', '%' . $keyWord . '%');
             })
-            ->where('min_qualification', $qualifications)
+            ->whereIn('min_qualification', $qualifications)
             ->whereBetween('renumeration_amount', [$renumerationRange['min'], $renumerationRange['max']]) // Filter by renumeration range
             ->get();
     }
