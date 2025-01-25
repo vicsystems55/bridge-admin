@@ -77,11 +77,9 @@ class JobPostingController extends Controller
         $employmentTypes = explode(',', $employmentTypeString);
     }
 
-    if (!empty($employmentTypeString)) {
-      $employmentTypes = explode(',', $employmentTypeString);
-  }
 
-  return $employmentTypes;
+
+  return $sideBarFiltersString;
 
 
       $keyWord = $request->keyWord;
