@@ -69,9 +69,11 @@ class JobPostingController extends Controller
 
       $sideBarFilters = [];
 
-    if (!empty($employmentTypeString)) {
-        $employmentTypes = explode(',', $employmentTypeString);
-    }
+    // if (!empty($employmentTypeString)) {
+    //     $employmentTypes = explode(',', $employmentTypeString);
+    // }
+
+    $employmentTypes = $request->input('employment_type');
 
     // Decode the JSON string into an associative array
     $data = json_decode($sideBarFiltersString, true);
