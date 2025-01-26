@@ -75,40 +75,46 @@ class JobPostingController extends Controller
     // return count($employmentTypes);
 
     // Decode the JSON string into an associative array
-    $data = json_decode($sideBarFiltersString, true);
 
-    // Convert the renumerationRange to min and max
-    $renumerationRange = explode('-', $data['renumerationRange']);
-    $data['renumerationRange'] = [
-        'min' => (int) $renumerationRange[0],
-        'max' => (int) $renumerationRange[1]
-    ];
+    if($request->input('sideBarFilters')){
 
-    // Wrap the data into a filters key
-    $output = [
-        'filters' => [
-            'latestUpdate' => $data['latestUpdate'],
-            'employmentType' => $data['employmentType'],
-            'renumerationRange' => $data['renumerationRange']
-        ]
-    ];
+      $data = json_decode($sideBarFiltersString, true);
 
-    $qualifications = [];
+          // Convert the renumerationRange to min and max
+          $renumerationRange = explode('-', $data['renumerationRange']);
+          $data['renumerationRange'] = [
+              'min' => (int) $renumerationRange[0],
+              'max' => (int) $renumerationRange[1]
+          ];
 
-    if ($data['isMsc']) {
-      array_push($qualifications, 'M.Sc');
+          // Wrap the data into a filters key
+          $output = [
+              'filters' => [
+                  'latestUpdate' => $data['latestUpdate'],
+                  'employmentType' => $data['employmentType'],
+                  'renumerationRange' => $data['renumerationRange']
+              ]
+          ];
+
+          $qualifications = [];
+
+          if ($data['isMsc']) {
+            array_push($qualifications, 'M.Sc');
+          }
+          if ($data['isBsc']) {
+            array_push($qualifications, 'BSc.');
+          }
+          if ($data['isBEng']) {
+            array_push($qualifications, 'BEng');
+          }
+          if ($data['isOND']) {
+            array_push($qualifications, 'OND');
+          }
+
+          $renumerationRange = $output["filters"]['renumerationRange'];
+
+
     }
-    if ($data['isBsc']) {
-      array_push($qualifications, 'BSc.');
-    }
-    if ($data['isBEng']) {
-      array_push($qualifications, 'BEng');
-    }
-    if ($data['isOND']) {
-      array_push($qualifications, 'OND');
-    }
-
-    $renumerationRange = $output["filters"]['renumerationRange'];
 
 
 // return $qualifications;
