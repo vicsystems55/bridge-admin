@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\CompanyProfile;
 use Kreait\Firebase\Factory;
 use Kreait\Firebase\Messaging\CloudMessage;
+use PhpParser\Node\Stmt\TryCatch;
 
 class JobPostingController extends Controller
 {
@@ -67,6 +68,9 @@ class JobPostingController extends Controller
 
       $sideBarFilters = [];
 
+      $qualifications = [];
+
+
     if (!empty($employmentTypeString)) {
         $employmentTypes = explode(',', $employmentTypeString);
 
@@ -76,45 +80,50 @@ class JobPostingController extends Controller
 
     // Decode the JSON string into an associative array
 
-    if(!empty($request->input('sideBarFilters'))){
-
+    try {
+      //code...
       $data = json_decode($sideBarFiltersString, true);
 
-          // Convert the renumerationRange to min and max
-          $renumerationRange = explode('-', $data['renumerationRange']);
-          $data['renumerationRange'] = [
-              'min' => (int) $renumerationRange[0],
-              'max' => (int) $renumerationRange[1]
-          ];
+      // Convert the renumerationRange to min and max
+      $renumerationRange = explode('-', $data['renumerationRange']);
+      $data['renumerationRange'] = [
+          'min' => (int) $renumerationRange[0],
+          'max' => (int) $renumerationRange[1]
+      ];
 
-          // Wrap the data into a filters key
-          $output = [
-              'filters' => [
-                  'latestUpdate' => $data['latestUpdate'],
-                  'employmentType' => $data['employmentType'],
-                  'renumerationRange' => $data['renumerationRange']
-              ]
-          ];
+      // Wrap the data into a filters key
+      $output = [
+          'filters' => [
+              'latestUpdate' => $data['latestUpdate'],
+              'employmentType' => $data['employmentType'],
+              'renumerationRange' => $data['renumerationRange']
+          ]
+      ];
 
-          $qualifications = [];
+      $qualifications = [];
 
-          if ($data['isMsc']) {
-            array_push($qualifications, 'M.Sc');
-          }
-          if ($data['isBsc']) {
-            array_push($qualifications, 'BSc.');
-          }
-          if ($data['isBEng']) {
-            array_push($qualifications, 'BEng');
-          }
-          if ($data['isOND']) {
-            array_push($qualifications, 'OND');
-          }
+      if ($data['isMsc']) {
+        array_push($qualifications, 'M.Sc');
+      }
+      if ($data['isBsc']) {
+        array_push($qualifications, 'BSc.');
+      }
+      if ($data['isBEng']) {
+        array_push($qualifications, 'BEng');
+      }
+      if ($data['isOND']) {
+        array_push($qualifications, 'OND');
+      }
 
-          $renumerationRange = $output["filters"]['renumerationRange'];
+      $renumerationRange = $output["filters"]['renumerationRange'];
 
-
+    } catch (\Throwable $th) {
+      //throw $th;
     }
+
+
+
+
 
 
 // return $qualifications;
