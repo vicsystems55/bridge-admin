@@ -123,7 +123,7 @@ $renumerationRange = $output["filters"]['renumerationRange'];
 
       $user = auth()->user(); // Assuming authenticated user
 
-      if (!empty($employmentTypes) && count($qualifications) > 0) {
+      if (count($employmentTypes) > 0 && count($qualifications) > 0) {
         $jobPostings = JobPosting::latest()
             ->where('active', 1) // Filter active job postings
             ->whereIn('employment_type', $employmentTypes) // Filter by employment types
@@ -138,7 +138,7 @@ $renumerationRange = $output["filters"]['renumerationRange'];
             ->get();
     }
 
-    if (!empty($employmentTypes)) {
+    if (count($employmentTypes) > 0) {
       $jobPostings = JobPosting::latest()
           ->where('active', 1) // Filter active job postings
           ->whereIn('employment_type', $employmentTypes) // Filter by employment types
@@ -157,8 +157,8 @@ $renumerationRange = $output["filters"]['renumerationRange'];
         $jobPostings = JobPosting::latest()
         ->where('job_title', 'like', '%' . $keyWord . '%')
         ->orWhere('job_description', 'like', '%' . $keyWord . '%')
-        ->orWhere('company_name', 'like', '%' . $keyWord . '%')
-        ->orWhere('employment_type', 'like', '%' . $keyWord . '%')
+        // ->orWhere('company_name', 'like', '%' . $keyWord . '%')
+        // ->orWhere('employment_type', 'like', '%' . $keyWord . '%')
         ->where('active', 1) // Optional: Filter for active job postings
         ->get();
       }
