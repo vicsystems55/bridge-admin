@@ -72,7 +72,7 @@ class JobPostingController extends Controller
 
     }
 
-    return count($employmentTypes);
+    // return count($employmentTypes);
 
     // Decode the JSON string into an associative array
     $data = json_decode($sideBarFiltersString, true);
