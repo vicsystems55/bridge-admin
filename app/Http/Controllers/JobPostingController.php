@@ -59,21 +59,22 @@ class JobPostingController extends Controller
 
     public function searchJobs(Request $request){
 
-      // return $request->all();
-
       $employmentTypeString = $request->input('employment_type');
 
       $sideBarFiltersString = $request->input('sideBarFilters');
+
+      $employmentTypeString = json_decode($employmentTypeString, true);
 
       $employmentTypes = [];
 
       $sideBarFilters = [];
 
-    // if (!empty($employmentTypeString)) {
-    //     $employmentTypes = explode(',', $employmentTypeString);
-    // }
+    if (!empty($employmentTypeString)) {
+        $employmentTypes = explode(',', $employmentTypeString);
 
-    $employmentTypes = $request->input('employment_type');
+    }
+
+    return count($employmentTypes);
 
     // Decode the JSON string into an associative array
     $data = json_decode($sideBarFiltersString, true);
