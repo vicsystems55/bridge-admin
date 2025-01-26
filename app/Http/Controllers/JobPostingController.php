@@ -63,8 +63,6 @@ class JobPostingController extends Controller
 
       $sideBarFiltersString = $request->input('sideBarFilters');
 
-      $employmentTypeString = json_decode($employmentTypeString, true);
-
       $employmentTypes = [];
 
       $sideBarFilters = [];
