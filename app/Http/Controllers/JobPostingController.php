@@ -123,7 +123,7 @@ $renumerationRange = $output["filters"]['renumerationRange'];
 
       $user = auth()->user(); // Assuming authenticated user
 
-      if (!empty($employmentTypes)) {
+      if (!empty($employmentTypes) && count($qualifications) > 0) {
         $jobPostings = JobPosting::latest()
             ->where('active', 1) // Filter active job postings
             ->whereIn('employment_type', $employmentTypes) // Filter by employment types
@@ -137,6 +137,21 @@ $renumerationRange = $output["filters"]['renumerationRange'];
             ->whereBetween('renumeration_amount', [$renumerationRange['min'], $renumerationRange['max']]) // Filter by renumeration range
             ->get();
     }
+
+    if (!empty($employmentTypes)) {
+      $jobPostings = JobPosting::latest()
+          ->where('active', 1) // Filter active job postings
+          ->whereIn('employment_type', $employmentTypes) // Filter by employment types
+          ->where(function ($query) use ($keyWord) {
+              // Apply keyword search across job_title, job_description, and company_name
+              $query->where('job_title', 'like', '%' . $keyWord . '%')
+                  ->orWhere('job_description', 'like', '%' . $keyWord . '%')
+                  ->orWhere('company_name', 'like', '%' . $keyWord . '%');
+          })
+          ->get();
+
+  }
+
     else{
 
         $jobPostings = JobPosting::latest()
@@ -145,8 +160,6 @@ $renumerationRange = $output["filters"]['renumerationRange'];
         ->orWhere('company_name', 'like', '%' . $keyWord . '%')
         ->orWhere('employment_type', 'like', '%' . $keyWord . '%')
         ->where('active', 1) // Optional: Filter for active job postings
-        ->whereIn('min_qualification', $qualifications)
-        ->whereBetween('renumeration_amount', [$renumerationRange['min'], $renumerationRange['max']]) // Filter by renumeration range
         ->get();
       }
 
