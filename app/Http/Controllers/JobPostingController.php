@@ -76,7 +76,7 @@ class JobPostingController extends Controller
 
     // Decode the JSON string into an associative array
 
-    if($request->input('sideBarFilters')){
+    if(!empty($request->input('sideBarFilters'))){
 
       $data = json_decode($sideBarFiltersString, true);
 
