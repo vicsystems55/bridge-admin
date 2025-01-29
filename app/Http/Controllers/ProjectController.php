@@ -103,7 +103,7 @@ class ProjectController extends Controller
 
       // Apply industry filter if selected
       if (!empty($selectedIndustry)) {
-          $projects->whereIn('categr', $selectedIndustry);
+          $projects->whereIn('category', $selectedIndustry);
       }
 
 
