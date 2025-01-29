@@ -81,5 +81,11 @@ class ProjectController extends Controller
         return $project;
     }
 
+    public function searchProjects(Request $request){
+
+      return $request->all();
+
+    }
+
     public function updateProject() {}
 }

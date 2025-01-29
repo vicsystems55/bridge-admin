@@ -99,6 +99,8 @@ Route::get('/search-job-postings', [JobPostingController::class, 'searchJobs'])-
 
 Route::get('/all-job-postings', [JobPostingController::class, 'allJobPostings'])->middleware('auth:sanctum');
 
+//projects search
+Route::get('/search-projects', [ProjectController::class, 'searchProjects'])->middleware('auth:sanctum');
 
 
 
