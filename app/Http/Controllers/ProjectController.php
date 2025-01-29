@@ -7,85 +7,108 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
-    //
+  //
 
-    public function allProjects(Request $request)
-    {
-        $user = $request->user(); // Assuming the user is authenticated
-        $filter = $request->get('filter', 'all'); // Default to 'all' if no filter is provided
+  public function allProjects(Request $request)
+  {
+    $user = $request->user(); // Assuming the user is authenticated
+    $filter = $request->get('filter', 'all'); // Default to 'all' if no filter is provided
 
-        // Query builder for projects
-        $query = Project::query();
+    // Query builder for projects
+    $query = Project::query();
 
-        if ($user->hasRole('recruiter')) {
-            // Fetch projects created by the authenticated recruiter
-            $query->where('created_by', $user->id);
-        } elseif ($user->hasRole('freelancer')) {
-            // Fetch projects the authenticated freelancer has bidded for
-            // $query->whereHas('bids', function ($q) use ($user) {
-            //     $q->where('freelancer_id', $user->id);
-            // });
-            $query->latest();
-        } elseif ($filter === 'admin') {
-            // Fetch all projects if the user is an admin
-            if ($user->role === 'admin') {
-                // No additional filters needed for admin
-            } else {
-                return response()->json(['message' => 'Unauthorized'], 403);
-            }
-        } else {
-            return response()->json(['message' => 'Invalid filter provided'], 400);
-        }
-
-        // Get the filtered projects with any necessary relationships
-        // $projects = $query->with(['recruiter', 'bids.freelancer'])->get();
-        $projects = $query->get();
-
-
-        return $projects;
+    if ($user->hasRole('recruiter')) {
+      // Fetch projects created by the authenticated recruiter
+      $query->where('created_by', $user->id);
+    } elseif ($user->hasRole('freelancer')) {
+      // Fetch projects the authenticated freelancer has bidded for
+      // $query->whereHas('bids', function ($q) use ($user) {
+      //     $q->where('freelancer_id', $user->id);
+      // });
+      $query->latest();
+    } elseif ($filter === 'admin') {
+      // Fetch all projects if the user is an admin
+      if ($user->role === 'admin') {
+        // No additional filters needed for admin
+      } else {
+        return response()->json(['message' => 'Unauthorized'], 403);
+      }
+    } else {
+      return response()->json(['message' => 'Invalid filter provided'], 400);
     }
 
+    // Get the filtered projects with any necessary relationships
+    // $projects = $query->with(['recruiter', 'bids.freelancer'])->get();
+    $projects = $query->get();
 
-    public function createProject(Request $request)
-    {
 
-        // return $request->all();
+    return $projects;
+  }
 
-        // Validate incoming data
-        // $request->validate([
-        //         'title' => 'required|string|max:255',
-        //         'description' => 'required|string|max:1000',
-        //         'min_budget' => 'required|numeric|min:0',
-        //         'max_budget' => 'required|numeric|min:0|gte:min_budget', // Ensure max_budget is greater than or equal to min_budget
-        //         'category' => 'required|string|max:255',
-        //         'skills' => 'required|string|max:500',
-        //     ]);
 
-        // Create the project if validation passes
+  public function createProject(Request $request)
+  {
 
-        $budgetParts = explode('-', $request->budgetRange);
-        $minBudget = trim($budgetParts[0]);
-        $maxBudget = trim($budgetParts[1]);
-        $project = Project::create([
-            'title' => $request->title,
-            'created_by' => $request->user()->id,
-            'description' => $request->description,
-            'min_budget' => (float) $minBudget, // Convert to float for decimal handling
-            'max_budget' => (float) $maxBudget,
-            'category' => $request->category,
-            'skills' => json_encode($request->skills),
+    // return $request->all();
 
-        ]);
+    // Validate incoming data
+    // $request->validate([
+    //         'title' => 'required|string|max:255',
+    //         'description' => 'required|string|max:1000',
+    //         'min_budget' => 'required|numeric|min:0',
+    //         'max_budget' => 'required|numeric|min:0|gte:min_budget', // Ensure max_budget is greater than or equal to min_budget
+    //         'category' => 'required|string|max:255',
+    //         'skills' => 'required|string|max:500',
+    //     ]);
 
-        // Return success response or redirect
-        return $project;
+    // Create the project if validation passes
+
+    $budgetParts = explode('-', $request->budgetRange);
+    $minBudget = trim($budgetParts[0]);
+    $maxBudget = trim($budgetParts[1]);
+    $project = Project::create([
+      'title' => $request->title,
+      'created_by' => $request->user()->id,
+      'description' => $request->description,
+      'min_budget' => (float) $minBudget, // Convert to float for decimal handling
+      'max_budget' => (float) $maxBudget,
+      'category' => $request->category,
+      'skills' => json_encode($request->skills),
+
+    ]);
+
+    // Return success response or redirect
+    return $project;
+  }
+
+  public function searchProjects(Request $request)
+  {
+
+    $selectedExperienceString = $request->input('selectedExperience');
+    $selectedIndustryString = $request->input('selectedIndustry');
+    $selectedSkillsString = $request->input('selectedSkills');
+
+    $selectedExperience = [];
+    $selectedIndustry = [];
+    $selectedSkills = [];
+
+    if (!empty($selectedExperienceString)) {
+      $selectedExperience = explode(',', $selectedExperienceString);
+    }
+    if (!empty($selectedIndustryString)) {
+      $selectedIndustry = explode(',', $selectedIndustryString);
+    }
+    if (!empty($selectedSkillsString)) {
+      $selectedSkills = explode(',', $selectedSkillsString);
     }
 
-    public function searchProjects(Request $request){
+    return compact(
+    'selectedExperience',
+    'selectedIndustry',
+    'selectedSkills'
+  );
 
-      return $request->all();
+}
 
-    }
-
-    public function updateProject() {}
+  public function updateProject() {}
 }
