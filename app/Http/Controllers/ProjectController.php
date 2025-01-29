@@ -83,7 +83,7 @@ class ProjectController extends Controller
 
   public function searchProjects(Request $request)
   {
-      $keyWord = $request->input('keyWord', '');
+      $keyWord = $request->input('keyWord');
       $selectedExperience = $request->input('selectedExperience') ? explode(',', $request->input('selectedExperience')) : [];
       $selectedIndustry = $request->input('selectedIndustry') ? explode(',', $request->input('selectedIndustry')) : [];
       $selectedSkills = $request->input('selectedSkills') ? explode(',', $request->input('selectedSkills')) : [];
@@ -99,7 +99,9 @@ class ProjectController extends Controller
               $query->where('title', 'like', "%$keyWord%")
                   ->orWhere('description', 'like', "%$keyWord%");
           })
-          ->where('status', 'active');
+          ->where('status', 'active')->get();
+
+          return $projects;
 
       // Apply industry filter if selected
       if (!empty($selectedIndustry)) {
