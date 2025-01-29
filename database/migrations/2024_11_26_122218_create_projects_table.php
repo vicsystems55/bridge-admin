@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('min_budget', 10, 2); // Minimum budget for the project
             $table->decimal('max_budget', 10, 2); // Maximum budget for the project
             $table->string('category'); // Category of the project (e.g., tech, fashion)
+            $table->string('experience_level')->nullable(); // Category of the project (e.g., tech, fashion)
             $table->json('skills');
             $table->string('status')->default('active');
 

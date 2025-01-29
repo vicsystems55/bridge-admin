@@ -88,6 +88,12 @@ class ProjectController extends Controller
       $selectedIndustry = $request->input('selectedIndustry') ? explode(',', $request->input('selectedIndustry')) : [];
       $selectedSkills = $request->input('selectedSkills') ? explode(',', $request->input('selectedSkills')) : [];
 
+      $renumerationRangeArray = explode('-', $request->input('budgeRange'));
+      $renumerationRange = [
+          'min' => (int) $renumerationRangeArray[0],
+          'max' => (int) $renumerationRangeArray[1]
+      ];
+
       $projects = Project::latest()
           ->where(function ($query) use ($keyWord) {
               $query->where('title', 'like', "%$keyWord%")
@@ -100,6 +106,13 @@ class ProjectController extends Controller
       if (!empty($selectedIndustry)) {
           $projects->whereIn('industry', $selectedIndustry);
       }
+
+
+      if (!empty($renumerationRangeArray)) {
+        $projects->whereBetween('min_budget', [$renumerationRange['min'] - 1000, $renumerationRange['min'] + 1000])
+        ->whereBetween('max_budget', [$renumerationRange['max']  - 1000, $renumerationRange['max'] + 1000]);
+
+    }
 
       // Apply skills filter if selected
       if (!empty($selectedSkills)) {
