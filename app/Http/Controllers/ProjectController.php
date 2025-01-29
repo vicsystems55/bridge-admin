@@ -83,32 +83,35 @@ class ProjectController extends Controller
 
   public function searchProjects(Request $request)
   {
+      $keyWord = $request->input('keyWord', '');
+      $selectedExperience = $request->input('selectedExperience') ? explode(',', $request->input('selectedExperience')) : [];
+      $selectedIndustry = $request->input('selectedIndustry') ? explode(',', $request->input('selectedIndustry')) : [];
+      $selectedSkills = $request->input('selectedSkills') ? explode(',', $request->input('selectedSkills')) : [];
 
-    $selectedExperienceString = $request->input('selectedExperience');
-    $selectedIndustryString = $request->input('selectedIndustry');
-    $selectedSkillsString = $request->input('selectedSkills');
+      $projects = Project::latest()
+          ->where(function ($query) use ($keyWord) {
+              $query->where('title', 'like', "%$keyWord%")
+                  ->orWhere('description', 'like', "%$keyWord%")
+                  ->orWhereJsonContains('skills', $keyWord); // In case keyword matches a skill
+          })
+          ->where('status', 'active');
 
-    $selectedExperience = [];
-    $selectedIndustry = [];
-    $selectedSkills = [];
+      // Apply industry filter if selected
+      if (!empty($selectedIndustry)) {
+          $projects->whereIn('industry', $selectedIndustry);
+      }
 
-    if (!empty($selectedExperienceString)) {
-      $selectedExperience = explode(',', $selectedExperienceString);
-    }
-    if (!empty($selectedIndustryString)) {
-      $selectedIndustry = explode(',', $selectedIndustryString);
-    }
-    if (!empty($selectedSkillsString)) {
-      $selectedSkills = explode(',', $selectedSkillsString);
-    }
+      // Apply skills filter if selected
+      if (!empty($selectedSkills)) {
+          $projects->where(function ($query) use ($selectedSkills) {
+              foreach ($selectedSkills as $skill) {
+                  $query->orWhereJsonContains('skills', $skill);
+              }
+          });
+      }
 
-    return compact(
-    'selectedExperience',
-    'selectedIndustry',
-    'selectedSkills'
-  );
-
-}
+      return $projects->get();
+  }
 
   public function updateProject() {}
 }
