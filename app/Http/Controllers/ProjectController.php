@@ -88,7 +88,7 @@ class ProjectController extends Controller
       $selectedIndustry = $request->input('selectedIndustry') ? explode(',', $request->input('selectedIndustry')) : [];
       $selectedSkills = $request->input('selectedSkills') ? explode(',', $request->input('selectedSkills')) : [];
 
-      $renumerationRangeArray = explode('-', $request->input('budgeRange'));
+      $renumerationRangeArray = explode('-', $request->input('budgetRange'));
       $renumerationRange = [
           'min' => (int) $renumerationRangeArray[0],
           'max' => (int) $renumerationRangeArray[1]
@@ -97,8 +97,7 @@ class ProjectController extends Controller
       $projects = Project::latest()
           ->where(function ($query) use ($keyWord) {
               $query->where('title', 'like', "%$keyWord%")
-                  ->orWhere('description', 'like', "%$keyWord%")
-                  ->orWhereJsonContains('skills', $keyWord); // In case keyword matches a skill
+                  ->orWhere('description', 'like', "%$keyWord%");
           })
           ->where('status', 'active');
 
