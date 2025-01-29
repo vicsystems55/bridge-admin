@@ -87,12 +87,19 @@ class ProjectController extends Controller
       $selectedExperience = $request->input('selectedExperience') ? explode(',', $request->input('selectedExperience')) : [];
       $selectedIndustry = $request->input('selectedIndustry') ? explode(',', $request->input('selectedIndustry')) : [];
       $selectedSkills = $request->input('selectedSkills') ? explode(',', $request->input('selectedSkills')) : [];
+      $renumerationRange = [];
 
-      $renumerationRangeArray = explode('-', $request->input('budgetRange'));
-      $renumerationRange = [
-          'min' => (int) $renumerationRangeArray[0],
-          'max' => (int) $renumerationRangeArray[1]
-      ];
+      try {
+        //code...
+        $renumerationRangeArray = explode('-', $request->input('budgetRange'));
+        $renumerationRange = [
+            'min' => (int) $renumerationRangeArray[0],
+            'max' => (int) $renumerationRangeArray[1]
+        ];
+      } catch (\Throwable $th) {
+        //throw $th;
+      }
+
 
       $projects = Project::latest()
           ->where(function ($query) use ($keyWord) {
@@ -109,7 +116,7 @@ class ProjectController extends Controller
       }
 
 
-      if (!empty($renumerationRangeArray)) {
+      if (!empty($renumerationRange)) {
         $projects->whereBetween('min_budget', [$renumerationRange['min'] - 1000, $renumerationRange['min'] + 1000])
         ->whereBetween('max_budget', [$renumerationRange['max']  - 1000, $renumerationRange['max'] + 1000]);
 
