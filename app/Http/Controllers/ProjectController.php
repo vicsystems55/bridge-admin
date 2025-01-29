@@ -106,9 +106,9 @@ class ProjectController extends Controller
               $query->where('title', 'like', "%$keyWord%")
                   ->orWhere('description', 'like', "%$keyWord%");
           })
-          ->where('status', 'active')->get();
+          ->where('status', 'active');
 
-       
+
 
       // Apply industry filter if selected
       if (!empty($selectedIndustry)) {
