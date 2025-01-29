@@ -101,7 +101,7 @@ class ProjectController extends Controller
           })
           ->where('status', 'active')->get();
 
-          return $projects;
+          return $selectedIndustry;
 
       // Apply industry filter if selected
       if (!empty($selectedIndustry)) {
