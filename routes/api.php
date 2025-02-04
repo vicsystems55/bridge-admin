@@ -22,6 +22,7 @@ use App\Http\Controllers\WorkExperienceController;
 use App\Http\Controllers\UserPermissionsController;
 use App\Http\Controllers\RecruiterProfileController;
 use App\Http\Controllers\ApplicationSubmissionController;
+use App\Http\Controllers\YGSubmissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -133,3 +134,9 @@ Route::get('/bursconn/members', [BurconnRegController::class, 'members']);
 
 // test push notifications
 Route::get('/push-notification', [FirebaseController::class, 'sendToUser']);
+
+
+/// YG PROJECT
+Route::post('/yg-membership-submission', [YGSubmissionController::class, 'submit']);
+
+Route::post('/fetch-yg-membership-submissions', [YGSubmissionController::class, 'get']);
