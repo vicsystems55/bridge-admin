@@ -13,14 +13,14 @@ class YGSubmissionController extends Controller
     public function submit(Request $request)
     {
         $validatedData = $request->validate([
-            'full_name' => 'required|string',
-            'email' => 'required|email',
+            'full_name' => 'required|string|max:255|unique:y_g_submissions,full_name',
+            'email' => 'required|email|max:255|unique:y_g_submissions,email',
             'phone' => 'required|string', // Or 'required|numeric' if you want to enforce numbers
             'address' => 'required|string',
-            'facebook' => 'nullable|url',
-            'instagram' => 'nullable|url',
-            'tiktok' => 'nullable|url',
-            'twitter' => 'nullable|url',
+            'facebook' => 'nullable|url|max:255|unique:y_g_submissions,facebook',
+            'instagram' => 'nullable|url|max:255|unique:y_g_submissions,instagram',
+            'tiktok' => 'nullable|url|max:255|unique:y_g_submissions,tiktok',
+            'twitter' => 'nullable|url|max:255|unique:y_g_submissions,twitter',
             'other' => 'nullable|url',
             'file' => 'nullable|file|mimes:mp4,mov,avi,wmv,mkv|max:50480', // Accepts common video formats
             'user_id' => 'nullable|exists:users,id', // Foreign key validation
