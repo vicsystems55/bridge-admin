@@ -13,7 +13,7 @@ class YGSubmissionController extends Controller
     public function submit(Request $request)
     {
         $validatedData = $request->validate([
-            'fullName' => 'required|string',
+            'full_name' => 'required|string',
             'email' => 'required|email',
             'phone' => 'required|string', // Or 'required|numeric' if you want to enforce numbers
             'address' => 'required|string',
