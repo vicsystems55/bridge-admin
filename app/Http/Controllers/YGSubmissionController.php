@@ -22,7 +22,7 @@ class YGSubmissionController extends Controller
             'tiktok' => 'nullable|url',
             'twitter' => 'nullable|url',
             'other' => 'nullable|url',
-            'file' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048', // Example file validation
+            'file' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:50480', // Example file validation
             'user_id' => 'nullable|exists:users,id', // Foreign key validation
             'score' => 'integer|min:0', // Validate score, ensure it's not negative
 
