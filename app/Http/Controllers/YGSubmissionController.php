@@ -13,7 +13,7 @@ class YGSubmissionController extends Controller
     public function submit(Request $request)
     {
         $validatedData = $request->validate([
-            'full_name' => 'required|string',
+            'fullName' => 'required|string',
             'email' => 'required|email',
             'phone' => 'required|string', // Or 'required|numeric' if you want to enforce numbers
             'address' => 'required|string',
@@ -22,7 +22,7 @@ class YGSubmissionController extends Controller
             'tiktok' => 'nullable|url',
             'twitter' => 'nullable|url',
             'other' => 'nullable|url',
-            'file' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:50480', // Example file validation
+            'file' => 'nullable|file|mimes:mp4,mov,avi,wmv,mkv|max:50480', // Accepts common video formats
             'user_id' => 'nullable|exists:users,id', // Foreign key validation
             'score' => 'integer|min:0', // Validate score, ensure it's not negative
 
