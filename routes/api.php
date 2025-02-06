@@ -140,3 +140,5 @@ Route::get('/push-notification', [FirebaseController::class, 'sendToUser']);
 Route::post('/yg-membership-submission', [YGSubmissionController::class, 'submit']);
 
 Route::get('/fetch-yg-membership-submissions', [YGSubmissionController::class, 'fetch']);
+
+Route::get('/fetch-yg-membership-details', [YGSubmissionController::class, 'details']);

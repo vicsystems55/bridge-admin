@@ -34,7 +34,7 @@ class YGSubmissionController extends Controller
         $filePath = null; // Initialize
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $filePath = $file->store('uploads'); // Store and get the path
+            $filePath = $file->store('uploads', 'public'); // Store and get the path
         }
 
         // Create and save the MembershipSubmission
@@ -68,5 +68,11 @@ class YGSubmissionController extends Controller
             return $submissions; // Return as JSON
 
 
+    }
+
+    public function details(Request $request){
+      $applicant = YGSubmission::find($request->id);
+
+      return $applicant;
     }
 }
