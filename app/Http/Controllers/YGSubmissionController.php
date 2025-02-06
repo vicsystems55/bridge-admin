@@ -59,19 +59,14 @@ class YGSubmissionController extends Controller
 
     public function fetch(Request $request)
     {
-        try {
-            $submissions = YGSubmission::latest()->all(); // Get all submissions
+
+            $submissions = YGSubmission::latest()->get(); // Get all submissions
 
             // Optionally, transform the data if needed (e.g., for API resources)
             // $submissions = SubmissionResource::collection($submissions); // If using API resources
 
-            return response()->json($submissions, 200); // Return as JSON
+            return $submissions; // Return as JSON
 
-        } catch (\Exception $e) {
-            // Log the error for debugging
-            // Log::error($e);
 
-            return response()->json(['message' => 'Error fetching submissions'], 500); // Return error response
-        }
     }
 }
