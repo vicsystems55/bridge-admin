@@ -22,7 +22,7 @@ class YGSubmissionController extends Controller
             'tiktok' => 'nullable|url|max:255|unique:y_g_submissions,tiktok',
             'twitter' => 'nullable|url|max:255|unique:y_g_submissions,twitter',
             'other' => 'nullable|url',
-            'file' => 'nullable|file|mimes:mp4,mov,avi,wmv,mkv|max:50480', // Accepts common video formats
+            'file' => 'required|file|mimes:mp4,mov,avi,wmv,mkv|max:50480', // Accepts common video formats
             'user_id' => 'nullable|exists:users,id', // Foreign key validation
             'score' => 'integer|min:0', // Validate score, ensure it's not negative
 
