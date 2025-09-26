@@ -220,4 +220,84 @@ class ApiAuthController extends Controller
       return $th;
     }
   }
+
+
+  public function lift_register(Request $request)
+  {
+
+
+
+
+    $validatedData = $request->validate([
+      'name' => 'required|string|max:255',
+      'email' => 'required|string|email|max:255|unique:users',
+      'password' => 'required|string|min:8',
+    ]);
+
+
+    $regCode = "LIFT" . rand(11100, 999999);
+
+    $user = User::create([
+      'name' => $validatedData['name'],
+      'email' => $validatedData['email'],
+      'role' => 'user',
+      'avatar' => 'avatar.png',
+      'password' => Hash::make($validatedData['password']),
+    ]);
+
+
+    $user->update([
+      'otp' => rand(111111, 999999)
+    ]);
+
+
+    $token = $user->createToken('auth_token')->plainTextToken;
+
+    // return $token;
+
+
+    // $user = User::where($user->id);
+
+    return response()->json([
+      'access_token' => $token,
+      'user_data' => $user,
+      'token_type' => 'Bearer',
+    ]);
+  }
+
+  /**
+   * Sign in to an existing account
+   *
+   * @bodyParam email string required
+   * @bodyParam password string required
+
+   * @return \Illuminate\Http\Response
+   */
+
+  public function lift_login(Request $request)
+  {
+    # code...
+
+    if (!Auth::attempt($request->only('email', 'password'))) {
+
+      return response()->json([
+        'message' => 'Invalid login details'
+      ], 401);
+    } else {
+
+      $user = User::with('roles')->where('email', $request['email'])->firstOrFail();
+
+      $token = $user->createToken('auth_token')->plainTextToken;
+
+      return response()->json([
+        'access_token' => $token,
+        'role' => $user->roles[0]->name??'user',
+        'user_data' => $user,
+        'token_type' => 'Bearer',
+      ]);
+    }
+  }
+
+
+
 }
