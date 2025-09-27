@@ -38,7 +38,7 @@ class LiftResetCodeMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'views.mails.lift_reset_mail',
+            view: 'mails.lift_reset_mail',
             with: [
                 'resetCode' => $this->resetCode,
             ]
