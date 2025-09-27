@@ -312,7 +312,7 @@ class ApiAuthController extends Controller
       ]);
 
       // generate and mail a reset code
-      $resetCode = Str::random(60);
+      $resetCode = Str::random(5);
       $user->update(['otp' => $resetCode]);
 
       Mail::to($user->email)->send(new LiftResetCodeMail($resetCode));
@@ -334,11 +334,11 @@ class ApiAuthController extends Controller
     # code...
 
     $request->validate([
-      'otp' => 'required|string',
+      'reset_code' => 'required|string',
       'password' => 'required|string|min:8|confirmed'
     ]);
 
-    $user = User::where('otp', $request->resetCode)->first();
+    $user = User::where('otp', $request->reset_code)->first();
 
     if ($user) {
 
