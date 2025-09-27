@@ -47,6 +47,10 @@ Route::post('/lift_register', [ApiAuthController::class, 'lift_register']);
 
 Route::post('/lift_login', [ApiAuthController::class, 'lift_login']);
 
+Route::post('/lift_verify_email', [ApiAuthController::class, 'lift_verify_email']);
+
+Route::post('/lift_reset_password', [ApiAuthController::class, 'lift_reset_password']);
+
 Route::post('/verify-otp', [ApiAuthController::class, 'verify_otp']);
 
 Route::post('/resend-otp', [ApiAuthController::class, 'resend_otp']);

@@ -4,10 +4,12 @@ namespace App\Http\Controllers\API\v1;
 
 use App\Models\User;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Mail\EmailVerificationMail;
 use App\Mail\WelcomeMail;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Mail\LiftResetCodeMail;
+use App\Mail\EmailVerificationMail;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -298,6 +300,63 @@ class ApiAuthController extends Controller
     }
   }
 
+  public function lift_verify_email(Request $request)
+  {
+    # code...
 
+    $user = User::where('email', $request->email)->first();
+
+    if ($user) {
+      $user->update([
+        'email_verified_at' => now()
+      ]);
+
+      // generate and mail a reset code
+      $resetCode = Str::random(60);
+      $user->update(['otp' => $resetCode]);
+
+      Mail::to($user->email)->send(new LiftResetCodeMail($resetCode));
+
+      return response()->json([
+        'message' => 'Email verified successfully',
+        'user_data' => $user,
+        'token_type' => 'Bearer',
+      ]);
+    }
+
+    return response()->json([
+      'message' => 'Email not found'
+    ], 400);
+  }
+
+  public function lift_reset_password(Request $request)
+  {
+    # code...
+
+    $request->validate([
+      'otp' => 'required|string',
+      'password' => 'required|string|min:8|confirmed'
+    ]);
+
+    $user = User::where('otp', $request->resetCode)->first();
+
+    if ($user) {
+
+      $user->update([
+        'password' => Hash::make($request->password),
+        'otp' => null
+      ]);
+
+      return response()->json([
+        'message' => 'Password reset successfully',
+        'user_data' => $user,
+        'token_type' => 'Bearer',
+      ]);
+    }
+
+    return response()->json([
+      'message' => 'Invalid reset code'
+    ], 400);
+  }
 
 }
