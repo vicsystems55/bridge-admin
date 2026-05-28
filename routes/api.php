@@ -23,7 +23,7 @@ use App\Http\Controllers\UserPermissionsController;
 use App\Http\Controllers\RecruiterProfileController;
 use App\Http\Controllers\ApplicationSubmissionController;
 use App\Http\Controllers\YGSubmissionController;
-use App\Http\Controllers\Api\RanchController;
+use App\Http\Controllers\API\RanchController;
 
 /*
 |--------------------------------------------------------------------------
