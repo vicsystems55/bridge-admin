@@ -23,6 +23,7 @@ use App\Http\Controllers\UserPermissionsController;
 use App\Http\Controllers\RecruiterProfileController;
 use App\Http\Controllers\ApplicationSubmissionController;
 use App\Http\Controllers\YGSubmissionController;
+use App\Http\Controllers\Api\RanchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -150,3 +151,17 @@ Route::post('/yg-membership-submission', [YGSubmissionController::class, 'submit
 Route::get('/fetch-yg-membership-submissions', [YGSubmissionController::class, 'fetch']);
 
 Route::get('/fetch-yg-membership-details', [YGSubmissionController::class, 'details']);
+
+
+
+// ranches
+
+
+
+Route::prefix('ranches')->group(function () {
+    Route::get('/', [RanchController::class, 'index']);
+    Route::get('/map-points', [RanchController::class, 'mapPoints']);
+    Route::post('/import', [RanchController::class, 'import']);
+    Route::get('/{ranch}', [RanchController::class, 'show']);
+    Route::delete('/{ranch}', [RanchController::class, 'destroy']);
+});
